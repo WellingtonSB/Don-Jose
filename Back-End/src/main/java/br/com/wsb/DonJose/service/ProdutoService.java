@@ -33,14 +33,12 @@ public class ProdutoService {
 		if (produtos.size() != 0) {
 
 			produto.setPlu(produtos.get(last).getPlu() + aleatorio.nextInt(999));
-			produtoRepository.save(produto);
 
 		} else {
 			produto.setPlu(1000);
-			produtoRepository.save(produto);
 		}
 
-		return produto;
+		return produtoRepository.save(produto);
 	}
 
 	public Produto compraProduto(long idProduto, long idPedido) {
