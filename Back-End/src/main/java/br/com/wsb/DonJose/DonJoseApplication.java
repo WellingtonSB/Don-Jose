@@ -1,4 +1,4 @@
-package com.DonJose.DonJose;
+package br.com.wsb.DonJose;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
