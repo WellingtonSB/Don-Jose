@@ -1,13 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
-
-
-html{
-    font-family: var('Cabin', sans-serif);
+*{
+    margin: 0;
+    padding: 0;
     font-size: 10px;
-    color:var(#515151);
-    scroll-behavior: smooth;
 }
-body{
-    overflow-x: hidden;
-}
-

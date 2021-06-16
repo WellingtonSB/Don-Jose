@@ -1,16 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Cabin|Herr+Von+Muellerhoff|Source+Sans+Pro:400,900&display=swap');
 
-*{
-    font-size: 'Source Sans Pro', sans-serif;
-}
-
-:root{
-    --main-font: 'Source Sans Pro', sans-serif;
-    --secondary-font: 'Herr Von Muellerhoff', cursive;
-    --body-font: 'Cabin', sans-serif;
-    --main-font-color-dark: #252525;
-    --secondary-font-color: #c59d5f;
-    --body-font-color: #515151;
+/*Global styles*/
+*,
+*::before,
+*::after
+{
+    box-sizing: border-box;
+    font-family: 'Cabin', sans-serif;
+    font-size: 10px;
+    color:#515151;
+    scroll-behavior: smooth;
 }
 
 section{
@@ -78,7 +77,7 @@ header{
     left: 0;
     width: 80%;
     height: 100vh;
-    background-color: var(--main-font-color-dark);
+    background-color: #252525;
     padding: 4.4rem;
     display: flex;
     flex-direction: column;
@@ -133,7 +132,7 @@ header{
 }
 
 .nav-link:hover{
-    color:var(--secondary-font-color);
+    color:'Herr Von Muellerhoff', cursive;
 }
 
 /*HERO*/
@@ -151,8 +150,8 @@ header{
 
 .sub-headline{
     font-size: 8.5rem;
-    font-family: var(--secondary-font);
-    color: var(--secondary-font-color);
+    font-family: 'Herr Von Muellerhoff', cursive;
+    color: #c59d5f;
     font-weight: 100;
     line-height: .4;
     letter-spacing: 2px;
@@ -167,7 +166,7 @@ header{
 .headline{
     color: #fff;
     font-size: 3.7rem;
-    font-family: var(--main-font);
+    font-family: 'Source Sans Pro', sans-serif;
     text-transform: uppercase;
     font-weight: 900;
     letter-spacing: .5rem;
@@ -217,7 +216,7 @@ header{
 
 .asterisk{
     font-size: 1.2rem;
-    color:var(--secondary-font-color);
+    color:#c59d5f;
     margin:0 1.6rem;
     opacity: 0;
     animation: spin .5s forwards;
@@ -252,7 +251,7 @@ header{
     font-size: 1.1rem;
     background-color: #fff;
     padding: .9rem 1.8rem;
-    color: var(--main-font-color);
+    color: #252525;
     border-radius: .4rem ;
     transition: background-color .5s;
 }
@@ -260,7 +259,7 @@ header{
 .cta-btn:hover,
 .cta-btn:focus{
     color: #fff;
-    background-color: var(--secondary-font);
+    background-color: 'Herr Von Muellerhoff', cursive;
 }
 
 /* ABOUT US */
@@ -275,12 +274,12 @@ header{
 }
 
 .global-headline .asterisk{
-    color: var(--body-font-color);
+    color: #515151;
     margin: 2.4rem 0;
 }
 
 .headline-dark{
-    color: var(--main-font-color-dark);
+    color: #252525;
     letter-spacing: .7rem;
     margin-right: -.7rem;
 }
@@ -305,7 +304,7 @@ header{
 
 .body-btn{
     font-size: 1.5rem;
-    color: var(--secondary-font-color);
+    color: #c59d5f;
     position: relative;
     transition: color .5s;
 }
@@ -317,18 +316,18 @@ header{
     bottom: -3px;
     width: 100%;
     height: 2px;
-    background-color: var(--secondary-font-color);
+    background-color:#c59d5f;
     transition: background-color .5s;
 }
 
 .body-btn:hover,
 .body-btn:focus{
-    color: var(--main-font-color-dark);
+    color: #252525;
 }
 
 .body-btn:hover::before,
 .body-btn:focus::before{
-    background-color: var(--main-font-color-dark);
+    background-color: #252525;
 }
 
 /*=====Sobremessas==== */
@@ -433,7 +432,7 @@ footer{
 
 .social-icons i:hover,
 .social-icons i:focus{
-    color:var(--secondary-font-color);
+    color:#c59d5f;
 }
 
 .newsletter-form{
@@ -453,7 +452,7 @@ footer{
 .newsletter-btn{
     background-color: transparent;
     border: none;
-    color: var(--main-font-color-dark);
+    color: #252525;
     cursor: pointer;
     font-size: 1.6rem;
     padding: 1px .6rem;
@@ -627,4 +626,3 @@ footer{
      transform: translateY(-1rem);
     }
 }
-
