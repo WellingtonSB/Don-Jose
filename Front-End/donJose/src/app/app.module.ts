@@ -8,13 +8,17 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SingUpComponent } from './sing-up/sing-up.component';
 import { SingInComponent } from './sing-in/sing-in.component';
+import { MenuComponent } from './logado/menu/menu.component';
+import { ProdutosComponent } from './logado/produtos/produtos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SingUpComponent,
-    SingInComponent
+    SingInComponent,
+    MenuComponent,
+    ProdutosComponent
   ],
   imports: [
     BrowserModule,
