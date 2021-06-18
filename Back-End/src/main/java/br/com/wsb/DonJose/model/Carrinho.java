@@ -21,7 +21,7 @@ public class Carrinho {
 	@JsonIgnoreProperties("carrinho")
 	private Cliente cliente;
 	
-	@ManyToMany(mappedBy = "listaDesejos", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "carrinho", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnoreProperties({"nome", "descricao", "marca", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "carrinho","plu"})
 	private List<Produto> produtos = new ArrayList<>();
 

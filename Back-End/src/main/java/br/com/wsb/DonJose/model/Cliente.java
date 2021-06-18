@@ -1,6 +1,5 @@
 package br.com.wsb.DonJose.model;
 
-import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.br.CPF;
@@ -34,7 +33,6 @@ public class Cliente {
 
 	private String numero;
 
-	private String complemento;
 
 	private String bairro;
 
@@ -126,13 +124,7 @@ public class Cliente {
 		this.numero = numero;
 	}
 
-	public String getComplemento() {
-		return complemento;
-	}
 
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
 
 	public String getBairro() {
 		return bairro;
@@ -188,7 +180,6 @@ public class Cliente {
 		this.cep = cep;
 		this.endereco = endereco;
 		this.numero = numero;
-		this.complemento = complemento;
 		this.bairro = bairro;
 		this.cidade = cidade;
 		this.estado = estado;

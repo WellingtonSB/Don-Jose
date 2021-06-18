@@ -628,6 +628,8 @@
     object-fit: cover;
     height: 100%;
     width: 100%;
+    max-width: 500px;
+    max-height: 150px;
   }
   
   .product .bottom {

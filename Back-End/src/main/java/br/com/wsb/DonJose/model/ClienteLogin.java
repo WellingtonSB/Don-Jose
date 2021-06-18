@@ -20,8 +20,6 @@ public class ClienteLogin {
 
 	private String numero;
 
-	private String complemento;
-
 	private String bairro;
 
 	private String cep;
@@ -112,13 +110,7 @@ public class ClienteLogin {
 		this.numero = numero;
 	}
 
-	public String getComplemento() {
-		return complemento;
-	}
 
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
 
 	public String getBairro() {
 		return bairro;
@@ -168,6 +160,14 @@ public class ClienteLogin {
 		this.tipo = tipo;
 	}
 
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+
 	public Pedido getPedidos() {
 		return pedidos;
 	}
@@ -182,14 +182,6 @@ public class ClienteLogin {
 
 	public void setCarrinho(Carrinho carrinho) {
 		this.carrinho = carrinho;
-	}
-
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
 	}
 
 	

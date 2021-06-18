@@ -3,7 +3,6 @@ package br.com.wsb.DonJose.model;
 import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import org.hibernate.validator.constraints.URL;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -47,7 +46,7 @@ public class Produto {
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "produto_lista", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "lista_id"))
 	@JsonIgnoreProperties({ "produtos", "cliente" })
-	private List<Carrinho> listaDesejos = new ArrayList<>();
+	private List<Carrinho> carrinho = new ArrayList<>();
 
 	public long getId() {
 		return id;
@@ -129,13 +128,14 @@ public class Produto {
 		this.pedidos = pedidos;
 	}
 
-	public List<Carrinho> getListaDesejos() {
-		return listaDesejos;
+	public List<Carrinho> getCarrinho() {
+		return carrinho;
 	}
 
-	public void setListaDesejos(List<Carrinho> listaDesejos) {
-		this.listaDesejos = listaDesejos;
+	public void setCarrinho(List<Carrinho> carrinho) {
+		this.carrinho = carrinho;
 	}
+
 
 	
 }

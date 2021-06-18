@@ -81,7 +81,6 @@ public class ClienteService {
 				clienteLogin.get().setBairro(cliente.get().getBairro());
 				clienteLogin.get().setCep(cliente.get().getCep());
 				clienteLogin.get().setCidade(cliente.get().getCidade());
-				clienteLogin.get().setComplemento(cliente.get().getComplemento());
 				clienteLogin.get().setCpf(cliente.get().getCpf());
 				clienteLogin.get().setEndereco(cliente.get().getEndereco());
 				clienteLogin.get().setEstado(cliente.get().getEstado());

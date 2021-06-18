@@ -19,6 +19,8 @@ import br.com.wsb.DonJose.model.Produto;
 import br.com.wsb.DonJose.repository.ProdutoRepository;
 import br.com.wsb.DonJose.service.ProdutoService;
 
+
+
 @RestController
 @RequestMapping("/produtos")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -36,12 +38,24 @@ public class ProdutoController {
 		return ResponseEntity.ok(repository.findAll());
 	}
 
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Produto> findByIdProduto(@PathVariable long id) {
 
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
+	
+	@GetMapping("/maiorPreco/{preco}")
+	public ResponseEntity<List<Produto>> GetAllByPrecoMaior(@PathVariable double preco) {
+		return ResponseEntity.ok(repository.findAllByPrecoGreaterThanEqual(preco));
+	}
 
+	@GetMapping("/menorPreco/{preco}")
+	public ResponseEntity<List<Produto>> GetAllByPrecoLess(@PathVariable double preco) {
+		return ResponseEntity.ok(repository.findAllByPrecoLessThanEqual(preco));
+	}
+	
+	
 	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<Produto>> findAllByNomeProdutos(@PathVariable String nome) {
 

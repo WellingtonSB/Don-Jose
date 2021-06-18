@@ -21,7 +21,7 @@ import br.com.wsb.DonJose.repository.CarrinhoRepository;
 import br.com.wsb.DonJose.service.ProdutoService;
 
 @RestController
-@RequestMapping("/listadesejo")
+@RequestMapping("/carrinho")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CarrinhoController {
 
@@ -38,44 +38,44 @@ public class CarrinhoController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Carrinho> findByIdListaDeDesejos(@PathVariable long id) {
+	public ResponseEntity<Carrinho> findById(@PathVariable long id) {
 
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 
-	@GetMapping("/listaDeDesejo/{idListaDeDesejo}/nome/{nome}")
-	public ResponseEntity<List<Produto>> findAllByNomeProdutoListaDeDesejos(@PathVariable long idListaDeDesejo,
+	@GetMapping("/carrinho/{idCarrinho}/nome/{nome}")
+	public ResponseEntity<List<Produto>> findAllByNomeProdutoCarrinho(@PathVariable long idCarrinho,
 			@PathVariable String nome) {
 
-		return ResponseEntity.ok(service.pesquisaPorIdDeProdutoNaListaDeDesejos(idListaDeDesejo, nome));
+		return ResponseEntity.ok(service.pesquisaPorIdDeProdutoCarrinho(idCarrinho, nome));
 	}
 
-	@GetMapping("/listaDeDesejo/{idListaDeDesejo}")
-	public ResponseEntity<List<Produto>> findAllByProdutosListaDeDesejos(@PathVariable long idListaDeDesejo) {
-		return ResponseEntity.ok(service.pesquisaPorProdutoNaListaDeDesejos(idListaDeDesejo));
+	@GetMapping("/carrinho/{idCarrinho}")
+	public ResponseEntity<List<Produto>> findAllByProdutosCarrinho(@PathVariable long idCarrinho) {
+		return ResponseEntity.ok(service.pesquisaPorProdutoNoCarrinho(idCarrinho));
 	}
 
 	@PostMapping
-	public ResponseEntity<Carrinho> postListaDeDesejos(@RequestBody Carrinho listaDeDesejos) {
+	public ResponseEntity<Carrinho> post(@RequestBody Carrinho carrinho) {
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(listaDeDesejos));
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(carrinho));
 	}
 
 	@PutMapping
-	public ResponseEntity<Carrinho> putListaDeDesejos(@RequestBody Carrinho listaDeDesejos) {
+	public ResponseEntity<Carrinho> putListaDeDesejos(@RequestBody Carrinho carrinho) {
 
-		return ResponseEntity.ok(repository.save(listaDeDesejos));
+		return ResponseEntity.ok(repository.save(carrinho));
 	}
 
-	@DeleteMapping("/produto_lista/produtos/{idProduto}/listaDesejos/{idListaDeDesejo}")
+	@DeleteMapping("/produto_lista/produtos/{idProduto}/carrinho/{idCarrinho}")
 	public ResponseEntity<Produto> removeProdutoListaDeDesejos(@PathVariable long idProduto,
-			@PathVariable long idListaDeDesejo) {
+			@PathVariable long idCarrinho) {
 
-		return ResponseEntity.ok(service.removeProdutoListaDeDesejo(idProduto, idListaDeDesejo));
+		return ResponseEntity.ok(service.removeProdutoListaDeDesejo(idProduto, idCarrinho));
 	}
 
 	@DeleteMapping("/{id}")
-	public void deleteListaDeDesejos(@PathVariable long id) {
+	public void deletarProduto(@PathVariable long id) {
 
 		repository.deleteById(id);
 	}
