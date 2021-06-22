@@ -4,37 +4,52 @@
     <div class="container">
         <form action="#">
             <div class="title">Cadastrar</div>
-            <div class="input-box underline">
-                <input type="text" placeholder="Nome" required>
+            <div class="input-box underline" for="nome">
+                <input  [(ngModel)]='cliente.nome' type="text" placeholder="Nome" required name="nome" id="nome" >
                 <div class="underline"></div>
             </div>
-            <div class="input-box underline">
-                <input type="email" placeholder="Email" required>
+            <div class="input-box underline" for="email">
+                <input [(ngModel)]='cliente.email' type="email" placeholder="Email" required name="email" id="email">
                 <div class="underline"></div>
             </div>
 
-            <div class="input-box underline">
-                <input type="text" placeholder="Celular" required>
+            <div class="input-box underline" for="celular">
+                <input [(ngModel)]='cliente.celular' type="tel" placeholder="Celular" required name="celular" id="celular">
                 <div class="underline"></div>
-            </div>
-            <div class="input-box underline">
-                <input type="text" placeholder="CPF" required>
+            </div>  
+            
+            <div class="input-box underline" for="cpf">
+                <input [(ngModel)]='cliente.cpf' type="text" placeholder="CPF" required name="cpf" id="cpf">
                 <div class="underline"></div>
-            </div>
-            <div class="input-box underline">
-                <input type="text" placeholder="CEP" required>
+            </div> 
+
+            <div class="input-box underline" for="dataNascimento">
+                <input [(ngModel)]='cliente.dataNascimento' type="text" placeholder="Data de Nascimento" required name="dataNascimento" id="dataNascimento">
                 <div class="underline"></div>
-            </div>
-            <div class="input-box">
-                <input type="password" placeholder="Senha" required>
+            </div> 
+
+            <div class="input-box underline" for="cep">
+                <input [(ngModel)]='cliente.cep' type="text" placeholder="CEP" required name="cep" id="cep">
                 <div class="underline"></div>
-            </div>
-            <div class="input-box">
-                <input type="password" placeholder="Confirmar senha" required>
+            </div> 
+            <div class="input-box underline" for="numero">
+                <input [(ngModel)]='cliente.numero' type="text" placeholder="Numero residencia" required name="numero" id="numero">
+                <div class="underline"></div>
+            </div> 
+            <div class="input-box underline" for="complemento">
+                <input [(ngModel)]='cliente.complemento' type="text" placeholder="Complemento" required name="complemento" id="complemento">
+                <div class="underline"></div>
+            </div> 
+            <div class="input-box" for="senha">
+                <input (input)='confirmSenha($event)' type="password" placeholder="Senha" required name="senha" id="senha">
+                <div class="underline"></div>
+            </div>            
+            <div class="input-box" for="confirmSenha">
+                <input [(ngModel)]='cliente.senha' type="password" placeholder="Confirmar senha" required name="confirmSenha" id="confirmSenha">
                 <div class="underline"></div>
             </div>
             <div class="input-box button">
-                <input type="submit" name="" value="Continue">
+                <input type="submit" name="" value="Continue" (click)='cadastrar()' >
             </div>
         </form>
         <div class="option">Já possui conta?<a routerLink="/login">entrar</a></div>

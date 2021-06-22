@@ -34,7 +34,6 @@ export class AuthService {
   }
 
   cadastrar(cliente: Cliente): Observable<Cliente> {
-
     return this.http.post<Cliente>(`${this.endereco}/clientes/cadastrar`, cliente);
   }
 

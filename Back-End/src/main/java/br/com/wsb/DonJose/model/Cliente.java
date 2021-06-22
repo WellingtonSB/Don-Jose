@@ -18,22 +18,27 @@ public class Cliente {
 	@ApiModelProperty(hidden = true)
 	private long id;
 
+	@NotNull
 	@Column(name = "nome", nullable = false)
 	private String nome;
 
+	@NotNull
 	@Size(max = 11)
 	private String celular;
 
 	@Column(name = "email", nullable = false, unique = true)
+	@Email
+	@NotNull
 	private String email;
 
-	@Column(name = "cpf", nullable = false, unique = true)
+	@Column(name = "cpf", unique = true)
 	@CPF
 	private String cpf;
 
+	@Column(name = "senha", nullable = false, unique = true)
 	private String senha;
-
-	@Column(name = "data_nascimento", nullable = false)
+	
+	@Column(name = "dataNascimento", nullable = false, unique = true)
 	private String dataNascimento;
 
 	private String foto;
@@ -42,7 +47,8 @@ public class Cliente {
 	@ApiModelProperty(hidden = true)
 	private String logradouro;
 
-	@Column(name = "numero", nullable = false)
+
+	@Column(name = "numero")
 	private String numero;
 
 	@Column(name = "complemento")
@@ -63,6 +69,7 @@ public class Cliente {
 
 	@Column(name = "cep", nullable = false)
 	@Pattern(regexp = "[0-9]{5}-[0-9]{3}")
+	@NotNull
 	private String cep;
 
 	@OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
@@ -97,7 +104,8 @@ public class Cliente {
 		this.cep = cep;
 	}
 
-	public Cliente(String nome, String email, String cpf, String dataNascimento, String senha, String foto,String logradouro, String numero, String complemento, String bairro, String localidade, String uf,
+	public Cliente(String nome, String email, String cpf, String dataNascimento, String senha, String foto,
+			String logradouro, String numero, String complemento, String bairro, String localidade, String uf,
 			String cep) {
 		this.nome = nome;
 		this.email = email;

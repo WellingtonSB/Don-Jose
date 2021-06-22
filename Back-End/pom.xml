@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.5</version>
+		<version>2.3.4.RELEASE</version>
 		<relativePath />
 	</parent>
 	<groupId>br.com.wsb</groupId>
@@ -16,6 +16,7 @@
 	<description>Ecommerce</description>
 	<properties>
 		<java.version>1.8</java.version>
+		<spring-cloud.version>Hoxton.SR10</spring-cloud.version>
 	</properties>
 	<dependencies>
 
@@ -43,7 +44,6 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
-			<version>3.0.3</version>
 		</dependency>
 
 		<dependency>
@@ -60,12 +60,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
@@ -77,17 +71,19 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Hoxton.SR8</version>
+				<version>${spring-cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	
 	<build>
 		<plugins>
 			<plugin>

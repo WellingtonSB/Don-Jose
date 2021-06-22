@@ -29,7 +29,7 @@ public class ClienteService {
 	private CarrinhoRepository carrinhoRepository;
 
 	public Optional<Cliente> CadastrarCliente(Cliente cliente) {
-
+		
 		if (clienteRepository.findByEmail(cliente.getEmail()).isPresent() && cliente.getId() == 0) {
 			return null;
 
@@ -74,10 +74,19 @@ public class ClienteService {
 				String authHeader = "Basic " + new String(encodedAuth);
 
 				clienteLogin.get().setToken(authHeader);
-				clienteLogin.get().setEmail(cliente.get().getEmail());
 				clienteLogin.get().setCelular(cliente.get().getCelular());
-				clienteLogin.get().setFoto(cliente.get().getFoto());
 				clienteLogin.get().setNome(cliente.get().getNome());
+				clienteLogin.get().setEmail(cliente.get().getEmail());
+				clienteLogin.get().setCpf(cliente.get().getCpf());
+				clienteLogin.get().setDataNascimento(cliente.get().getDataNascimento());
+				clienteLogin.get().setSenha(cliente.get().getSenha());
+				clienteLogin.get().setFoto(cliente.get().getFoto());
+				clienteLogin.get().setNumero(cliente.get().getNumero());
+				clienteLogin.get().setLogradouro(cliente.get().getLogradouro());
+				clienteLogin.get().setComplemento(cliente.get().getComplemento());
+				clienteLogin.get().setLocalidade(cliente.get().getLocalidade());
+				clienteLogin.get().setUf(cliente.get().getUf());
+				clienteLogin.get().setCep(cliente.get().getCep());
 				clienteLogin.get().setPedidos(cliente.get().getPedidos());
 				clienteLogin.get().setCarrinho(cliente.get().getCarrinho());
 

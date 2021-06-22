@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.wsb.DonJose.model.Cliente;
 import br.com.wsb.DonJose.model.ClienteLogin;
 import br.com.wsb.DonJose.repository.ClienteRepository;
+import br.com.wsb.DonJose.service.CepService;
 import br.com.wsb.DonJose.service.ClienteService;
 
 @RestController
@@ -26,6 +27,9 @@ import br.com.wsb.DonJose.service.ClienteService;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ClienteController {
 
+	@Autowired
+    private CepService cepService;
+	
 	@Autowired
 	private ClienteRepository repository;
 
@@ -43,7 +47,7 @@ public class ClienteController {
 
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
-
+	
 	@PostMapping("/logar")
 	public ResponseEntity<ClienteLogin> Autentication(@RequestBody Optional<ClienteLogin> user) {
 		return service.Logar(user).map(resp -> ResponseEntity.ok(resp))
@@ -54,8 +58,18 @@ public class ClienteController {
 	@PostMapping("/cadastrar")
 	public ResponseEntity<Cliente> Post(@RequestBody Cliente usuario) {
 		Optional<Cliente> user = service.CadastrarCliente(usuario);
-
+		Cliente infoEndereco = cepService.buscaEnderecoPorCep(usuario.getCep());
+		
 		try {
+			usuario.setBairro(infoEndereco.getBairro());
+			usuario.setLocalidade(infoEndereco.getLocalidade());
+			usuario.setUf(infoEndereco.getUf());
+			usuario.setLogradouro(infoEndereco.getLogradouro());
+
+			if (usuario.getComplemento() == null) {
+				usuario.setComplemento(infoEndereco.getComplemento());
+			}
+			usuario.setNumero(usuario.getNumero());			
 			return ResponseEntity.ok(user.get());
 
 		} catch (Exception e) {
