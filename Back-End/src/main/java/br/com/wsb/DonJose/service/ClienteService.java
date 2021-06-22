@@ -75,18 +75,9 @@ public class ClienteService {
 
 				clienteLogin.get().setToken(authHeader);
 				clienteLogin.get().setEmail(cliente.get().getEmail());
-				clienteLogin.get().setSenha(cliente.get().getSenha());
+				clienteLogin.get().setCelular(cliente.get().getCelular());
 				clienteLogin.get().setFoto(cliente.get().getFoto());
 				clienteLogin.get().setNome(cliente.get().getNome());
-				clienteLogin.get().setBairro(cliente.get().getBairro());
-				clienteLogin.get().setCep(cliente.get().getCep());
-				clienteLogin.get().setCidade(cliente.get().getCidade());
-				clienteLogin.get().setCpf(cliente.get().getCpf());
-				clienteLogin.get().setEndereco(cliente.get().getEndereco());
-				clienteLogin.get().setEstado(cliente.get().getEstado());
-				clienteLogin.get().setCelular(cliente.get().getCelular());
-				clienteLogin.get().setId(cliente.get().getId());
-				clienteLogin.get().setNumero(cliente.get().getNumero());
 				clienteLogin.get().setPedidos(cliente.get().getPedidos());
 				clienteLogin.get().setCarrinho(cliente.get().getCarrinho());
 

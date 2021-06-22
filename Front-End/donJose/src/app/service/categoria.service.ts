@@ -31,7 +31,7 @@ export class CategoriaService {
   }
 
   findByNomeCategoria(nome:string):Observable<Categoria[]>{
-    return this.http.get<Categoria[]>(`${this.endereco}/categoria/nome/${nome}`,this.autorizacao)
+    return this.http.get<Categoria[]>(`${this.endereco}/categorias/nome/${nome}`,this.autorizacao)
   }
 
   postCategoria(categoria: Categoria): Observable<Categoria> {

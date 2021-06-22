@@ -8,7 +8,7 @@
 }
 html, body{
   display: grid;
-  height: 120vh;
+  height: 130vh;
   width: 100%;
   place-items: center;
   background: url("https://i.imgur.com/8DuVyRB.jpg") center no-repeat;
@@ -18,7 +18,7 @@ html, body{
 
 }
 .container{
-  margin-top: 20px;
+  margin-top: 75px;
   background: #fff;
   max-width: 350px;
   width: 100%;

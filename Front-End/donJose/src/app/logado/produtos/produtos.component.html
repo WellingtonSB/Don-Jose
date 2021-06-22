@@ -1,104 +1,119 @@
-  <section class="section products">
-    <div class="products-layout container">
-      <div class="col-1-of-4">
-        <div>
-          <div class="block-title">
-            <h3>Categorias</h3>
-          </div>
-
-          <ul class="block-content " >
-            <li  *ngFor='let cat of listaCategorias '> 
-                <input type="checkbox" name="" id="" (click)= 'filtrarCategoria(cat.nome)'>
-                <label for="">
-                  <span>{{cat.nome}} </span>
-                 <!-- <small >({{qtd.nome}})</small> -->
-                 <small>(5)</small>
-                </label>
-            </li>
-          </ul>
+<section class="section products">
+  <div class="products-layout container">
+    <div class="col-1-of-4">
+      <div>
+        <div class="block-title">
+          <h3>Categorias</h3>
         </div>
-        <div>
-          <div class="block-title">
-            <h3>Top 10</h3>
-          </div>
 
-          <ul class="block-content">
-            <li>
-              <input type="checkbox" name="" id="">
-              <label for="">
-                <span>Gucci</span>
-                <small>(10)</small>
-              </label>
-            </li>
-          </ul>
-        </div>
+        <ul class="block-content ">
+          <li *ngFor='let cat of listaCategorias'>
+            <input type="checkbox" name="" id=""  [(ngModel)]='nomeProduto' (click)='filtrarCategoria(cat.nome)'>
+            <label for="">
+              <span>{{cat.nome}} </span>
+              <!-- <small >({{qtd.nome}})</small> -->
+              <small>(5)</small>
+            </label>
+          </li>
+        </ul>
       </div>
-      <div class="col-3-of-4">
-        <form action="">
-          <div class="item">
-            <label for="sort-by">Procurar </label>
-            <select name="sort-by" id="sort-by">
-              <option value="title" selected="selected">Nome</option>
-              <option value="number" >Preço</option>
-              <option value="search_api_relevance">Relevancia</option>
-              <option value="created">Novidade</option>
-            </select>
-          </div>
-          <div class="item" >
-            <label for="order-by">Ordenar </label>
-            <select name="order-by" id="sort-by">
-              <option >Maior preço</option>
-              <option>Menor preço</option>
-            </select>
-          </div>
-          <a href="">Buscar</a>
-        </form>
-
-        <div class="product-layout " *ngIf='filterOff == false'>
-          <div class="product" *ngFor='let prod of listaProdutos'>
-            <div class="img-container">
-              <img src="{{prod.img}}" alt="" />
-              <div class="addCart">
-                <i class="fas fa-shopping-cart"></i>
-              </div>
-            </div>
-            <div class="bottom">
-              <a href="">{{prod.nome}}</a>
-              <div class="price">
-                <span>R$ {{prod.preco}}</span>
-              </div>
-            </div>
-          </div>
+      <div>
+        <div class="block-title">
+          <h3>Top 10</h3>
         </div>
 
-        <div class="product-layout " *ngIf='filterOff'>
-          <div class="product" *ngFor='let prod of listaProdutos'>
-            <div class="img-container">
-              <img src="{{prod.img}}" alt="" />
-              <div class="addCart">
-                <i class="fas fa-shopping-cart"></i>
-              </div>
-            </div>
-            <div class="bottom">
-              <a href="">{{prod.nome}}</a>
-              <div class="price">
-                <span>R$ {{prod.preco}}</span>
-              </div>
-            </div>
-          </div>
+        <ul class="block-content">
+          <li *ngFor='let top of listaCategorias'>
+            <input type="checkbox" name="" id="">
+            <label for="">
+              <span>{{top.nome}}</span>
+              <small>(10)</small>
+            </label>
+          </li>
+        </ul>
+
+        <div class="block-title">
+          <h3>Preço</h3>
         </div>
-
-
-
-
-
-        <!-- PAGINATION -->
-        <ul class="pagination">
-          <span>1</span>
-          <span>2</span>
-          <span class="icon">››</span>
-          <span class="last">Last »</span>
+        <ul class="block-content">
+          <li>
+            <form action="">
+              <div class="item">
+                <label for="sort-by">Procurar </label>
+                <select name="sort-by" id="sort-by">
+                  <option value="number">Preço</option>
+                  <option value="search_api_relevance">Relevancia</option>
+                  <option value="created">Novidade</option>
+                </select>
+                <br>
+                <label for="order-by">Ordenar </label>
+                <select name="order-by" id="sort-by">
+                  <option>Maior preço</option>
+                  <option>Menor preço</option>
+                </select>
+              </div>
+            </form>
+          </li>
         </ul>
       </div>
     </div>
-  </section>
+
+
+    <div class="col-3-of-4">
+      <form action="">
+        <div class="item form-group">
+          <input type="text" class=" form-control" id="nome" placeholder="Pesquise um produto"
+            [(ngModel)]='nomeProduto'>
+        </div>
+        <button class="btn btn-outline-light" (click)='findByNomeProduto()'><a>Buscar</a></button>
+      </form>
+
+
+
+      <div class="product-layout " *ngIf='filterOff == false'>
+        <div class="row" *ngFor='let cat of listaCategorias'>
+          <div class="product" *ngFor='let prod of cat.produto'>
+            <div class="img-container">
+              <img src="{{prod.img}}" alt="" />
+              <div class="addCart">
+                <a  routerLink="/login"><i class="fas fa-shopping-cart"></i></a>
+               
+              </div>
+            </div>
+            <div class="bottom">
+              <a href="">{{prod.nome}}</a>
+              <div class="price">
+                <span>R$ {{prod.preco}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="product-layout " *ngIf='filterOff'>
+        <div class="product" *ngFor='let prod of listaProdutos'>
+          <div class="img-container">
+            <img src="{{prod.img}}" alt="" />
+            <div class="addCart">
+              <a  routerLink="/login"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+          </div>
+          <div class="bottom">
+            <a href="">{{prod.nome}}</a>
+            <div class="price">
+              <span>R$ {{prod.preco}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- PAGINATION -->
+      <ul class="pagination">
+        <span>1</span>
+        <span>2</span>
+        <span class="icon">››</span>
+        <span class="last">Last »</span>
+      </ul>
+    </div>
+  </div>
+</section>

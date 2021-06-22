@@ -19,9 +19,8 @@ export class ProdutosComponent implements OnInit {
   listaCategorias: Categoria[]
   listaProdutos: Produto[]
   filterOff: boolean = true
-  nomeProduto: String
-  key = 'preco'
-
+  nomeProduto: string
+  key = 'data'
   reverse = true
   totalProdutos: number
   precoLess: Produto[]
@@ -39,7 +38,6 @@ export class ProdutosComponent implements OnInit {
     if (this.filterOff) {
       this.findAllProduto()
     }
-
     this.findAllCategoria()
 
   }
@@ -62,8 +60,19 @@ export class ProdutosComponent implements OnInit {
       this.listaCategorias = resp
       this.filterOff = false
     })
- 
-  } }
+
+  }
+
+  findByNomeProduto() {
+    if (this.nomeProduto == '') {
+      this.findAllProduto()
+    } else {
+      this.produtoService.findAllByNomeProdutos(this.nomeProduto).subscribe((resp: Produto[]) => {
+        this.listaProdutos = resp
+      })
+    }
+  }
+}
 
 
 
