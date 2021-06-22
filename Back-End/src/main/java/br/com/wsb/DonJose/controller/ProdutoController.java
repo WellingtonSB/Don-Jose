@@ -75,9 +75,9 @@ public class ProdutoController {
 
 	@PutMapping("/produto_pedido/produtos/{idProduto}/pedidos/{idPedido}")
 	public ResponseEntity<Produto> putProduto(@PathVariable long idProduto,
-			@PathVariable long idPedido/* , @PathVariable int qtdProduto */) {
+			@PathVariable long idPedido) {
 
-		return ResponseEntity.ok(service.compraProduto(idProduto, idPedido/* , qtdProduto */));
+		return ResponseEntity.ok(service.compraProduto(idProduto, idPedido));
 	}
 
 	@PutMapping("/produto_lista/produtos/{idProduto}/listaDesejos/{idListaDeDesejo}")

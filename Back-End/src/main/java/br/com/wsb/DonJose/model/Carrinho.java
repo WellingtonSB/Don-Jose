@@ -22,7 +22,7 @@ public class Carrinho {
 	private Cliente cliente;
 	
 	@ManyToMany(mappedBy = "carrinho", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({"nome", "descricao", "marca", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "carrinho","plu"})
+	@JsonIgnoreProperties({"nome", "descricao", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "carrinho","plu"})
 	private List<Produto> produtos = new ArrayList<>();
 
 	public long getId() {

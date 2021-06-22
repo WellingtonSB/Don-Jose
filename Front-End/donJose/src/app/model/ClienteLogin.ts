@@ -1,3 +1,6 @@
+import { Carrinho } from "./Carrinho"
+import { Pedido } from "./Pedido"
+
 export class ClienteLogin{
     public id: number
     public nome: string
@@ -16,4 +19,8 @@ export class ClienteLogin{
     public localidade: string
     public bairro: string
     public uf: string
+
+    /* Relacionamento */
+    public pedidos: Pedido;
+    public carrinho: Carrinho;
 }

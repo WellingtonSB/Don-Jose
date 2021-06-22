@@ -18,27 +18,25 @@ public class Cliente {
 	@ApiModelProperty(hidden = true)
 	private long id;
 
-	@NotNull
 	@Column(name = "nome", nullable = false)
 	private String nome;
 
-	@NotNull
+	@Column(name = "celular", nullable = false)
 	@Size(max = 11)
 	private String celular;
 
 	@Column(name = "email", nullable = false, unique = true)
 	@Email
-	@NotNull
 	private String email;
 
 	@Column(name = "cpf", unique = true)
 	@CPF
 	private String cpf;
 
-	@Column(name = "senha", nullable = false, unique = true)
+	@Column(name = "senha")
 	private String senha;
 	
-	@Column(name = "dataNascimento", nullable = false, unique = true)
+	@Column(name = "dataNascimento")
 	private String dataNascimento;
 
 	private String foto;
@@ -67,7 +65,7 @@ public class Cliente {
 	@ApiModelProperty(hidden = true)
 	private String uf;
 
-	@Column(name = "cep", nullable = false)
+	@Column(name = "cep")
 	@Pattern(regexp = "[0-9]{5}-[0-9]{3}")
 	@NotNull
 	private String cep;
@@ -81,46 +79,6 @@ public class Cliente {
 	@PrimaryKeyJoinColumn
 	@JsonIgnoreProperties("cliente")
 	private Carrinho carrinho;
-
-	public Cliente() {
-	}
-
-	public Cliente(long id, String nome, String email, String cpf, String dataNascimento, String senha, String foto,
-			String logradouro, String numero, String complemento, String bairro, String localidade, String uf,
-			String cep, String celular) {
-		this.id = id;
-		this.nome = nome;
-		this.email = email;
-		this.cpf = cpf;
-		this.dataNascimento = dataNascimento;
-		this.senha = senha;
-		this.foto = foto;
-		this.logradouro = logradouro;
-		this.numero = numero;
-		this.complemento = complemento;
-		this.bairro = bairro;
-		this.localidade = localidade;
-		this.uf = uf;
-		this.cep = cep;
-	}
-
-	public Cliente(String nome, String email, String cpf, String dataNascimento, String senha, String foto,
-			String logradouro, String numero, String complemento, String bairro, String localidade, String uf,
-			String cep) {
-		this.nome = nome;
-		this.email = email;
-		this.cpf = cpf;
-		this.dataNascimento = dataNascimento;
-		this.senha = senha;
-		this.foto = foto;
-		this.logradouro = logradouro;
-		this.numero = numero;
-		this.complemento = complemento;
-		this.bairro = bairro;
-		this.localidade = localidade;
-		this.uf = uf;
-		this.cep = cep;
-	}
 
 	public long getId() {
 		return id;
@@ -170,36 +128,20 @@ public class Cliente {
 		this.senha = senha;
 	}
 
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-
-	public Pedido getPedidos() {
-		return pedidos;
-	}
-
-	public void setPedidos(Pedido pedidos) {
-		this.pedidos = pedidos;
-	}
-
-	public Carrinho getCarrinho() {
-		return carrinho;
-	}
-
-	public void setCarrinho(Carrinho carrinho) {
-		this.carrinho = carrinho;
-	}
-
 	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
 	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	public String getLogradouro() {
@@ -258,4 +200,21 @@ public class Cliente {
 		this.cep = cep;
 	}
 
+	public Pedido getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(Pedido pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public Carrinho getCarrinho() {
+		return carrinho;
+	}
+
+	public void setCarrinho(Carrinho carrinho) {
+		this.carrinho = carrinho;
+	}
+
+	
 }

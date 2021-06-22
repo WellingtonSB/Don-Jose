@@ -5,20 +5,35 @@ public class ClienteLogin {
 	private long id;
 	
 	private String token;
-	private String celular;
+	
 	private String nome;
+	
+	private String celular;
+
 	private String email;
+	
 	private String cpf;
-	private String dataNascimento;
+
 	private String senha;
+	
+	private String dataNascimento;
+	
 	private String foto;
+	
 	private String logradouro;
+	
 	private String numero;
+	
 	private String complemento;
+	
 	private String bairro;
+		
 	private String localidade;
+	
 	private String uf;
+	
 	private String cep;
+	
 	private Pedido pedidos;
 
 	private Carrinho carrinho;
@@ -31,12 +46,28 @@ public class ClienteLogin {
 		this.id = id;
 	}
 
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 
 	public String getEmail() {
@@ -55,20 +86,20 @@ public class ClienteLogin {
 		this.cpf = cpf;
 	}
 
-	public String getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-
 	public String getSenha() {
 		return senha;
 	}
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public String getFoto() {
@@ -151,23 +182,6 @@ public class ClienteLogin {
 		this.carrinho = carrinho;
 	}
 
-	public String getToken() {
-		return token;
-	}
-
-	public void setToken(String token) {
-		this.token = token;
-	}
-
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
-	}
-	
-	
 	
 	
 }

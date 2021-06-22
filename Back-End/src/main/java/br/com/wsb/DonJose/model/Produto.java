@@ -3,6 +3,9 @@ package br.com.wsb.DonJose.model;
 import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
+
+import org.hibernate.validator.constraints.URL;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -19,6 +22,7 @@ public class Produto {
 
 	@NotNull
 	@Size(max = 250)
+	@URL
 	private String descricao;
 
 	@NotNull

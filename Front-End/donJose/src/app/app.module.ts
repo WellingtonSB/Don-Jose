@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
+//import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { ProdutosComponent } from './logado/produtos/produtos.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    //ModalModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

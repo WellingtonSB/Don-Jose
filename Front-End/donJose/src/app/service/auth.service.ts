@@ -51,14 +51,13 @@ export class AuthService {
   logOut() {
     environment.id = 0;
     environment.nome = '';
-    environment.usuario = '';
     environment.email = '';
     environment.senha = '';
     environment.foto = '';
     environment.tipo = '';
     environment.token = '';
     environment.pedidos = 0;
-    environment.listaDeDesejos = 0;
+    environment.carrinho = 0;
 
     /* ARMAZENA O TOKEN DO USUARIO NO LOCAL STORAGE */
     localStorage.removeItem('token');

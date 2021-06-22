@@ -9,6 +9,5 @@ import br.com.wsb.DonJose.model.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-
 	public Optional<Cliente> findByEmail(String email);
 }

@@ -45,6 +45,12 @@ public class ProdutoService {
 		Optional<Produto> produtoExistente = produtoRepository.findById(idProduto);
 		Optional<Pedido> pedidoExistente = pedidoRepository.findById(idPedido);
 
+		if(produtoExistente.isPresent() && pedidoExistente.isPresent() && produtoExistente.get().getEstoque() == 0) {
+			System.out.println("estoque vazio!");
+			
+		}
+		
+		
 		if (produtoExistente.isPresent() && pedidoExistente.isPresent() && produtoExistente.get().getEstoque() >= 0
 				&& !(pedidoExistente.get().getProdutos().isEmpty())) {
 
@@ -54,7 +60,7 @@ public class ProdutoService {
 
 			long[] vetor = new long[pedidoExistente.get().getProdutos().size()];
 
-			for (int i = 0; i < pedidoExistente.get().getProdutos().size(); i++) {
+			for(int i = 0; i < pedidoExistente.get().getProdutos().size(); i++) {
 
 				vetor[i] = pedidoExistente.get().getProdutos().get(i).getId();
 
@@ -65,8 +71,7 @@ public class ProdutoService {
 
 			}
 
-			pedidoExistente.get().setValorTotal(
-					pedidoExistente.get().getValorTotal() - (produtoExistente.get().getPreco() * contador));
+			pedidoExistente.get().setValorTotal(pedidoExistente.get().getValorTotal() - (produtoExistente.get().getPreco() * contador));
 
 			contador++;
 

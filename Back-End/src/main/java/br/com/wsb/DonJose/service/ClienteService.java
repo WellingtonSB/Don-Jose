@@ -27,14 +27,21 @@ public class ClienteService {
 
 	@Autowired
 	private CarrinhoRepository carrinhoRepository;
-
+	
+	@Autowired
+    private CepService cepService;
+	
+	
 	public Optional<Cliente> CadastrarCliente(Cliente cliente) {
+		//Cliente infoEndereco = cepService.buscaEnderecoPorCep(cliente.getCep());
+		
 		
 		if (clienteRepository.findByEmail(cliente.getEmail()).isPresent() && cliente.getId() == 0) {
 			return null;
-
 		}
-
+		
+		
+		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 		String senhaEncoder = encoder.encode(cliente.getSenha());
@@ -73,20 +80,19 @@ public class ClienteService {
 
 				String authHeader = "Basic " + new String(encodedAuth);
 
-				clienteLogin.get().setToken(authHeader);
-				clienteLogin.get().setCelular(cliente.get().getCelular());
-				clienteLogin.get().setNome(cliente.get().getNome());
+				clienteLogin.get().setToken(authHeader);				
 				clienteLogin.get().setEmail(cliente.get().getEmail());
-				clienteLogin.get().setCpf(cliente.get().getCpf());
-				clienteLogin.get().setDataNascimento(cliente.get().getDataNascimento());
 				clienteLogin.get().setSenha(cliente.get().getSenha());
 				clienteLogin.get().setFoto(cliente.get().getFoto());
-				clienteLogin.get().setNumero(cliente.get().getNumero());
-				clienteLogin.get().setLogradouro(cliente.get().getLogradouro());
-				clienteLogin.get().setComplemento(cliente.get().getComplemento());
-				clienteLogin.get().setLocalidade(cliente.get().getLocalidade());
-				clienteLogin.get().setUf(cliente.get().getUf());
+				clienteLogin.get().setNome(cliente.get().getNome());
+				clienteLogin.get().setBairro(cliente.get().getBairro());
 				clienteLogin.get().setCep(cliente.get().getCep());
+				clienteLogin.get().setComplemento(cliente.get().getComplemento());
+				clienteLogin.get().setCpf(cliente.get().getCpf());
+				clienteLogin.get().setUf(cliente.get().getUf());
+				clienteLogin.get().setCelular(cliente.get().getCelular());
+				clienteLogin.get().setId(cliente.get().getId());
+				clienteLogin.get().setNumero(cliente.get().getNumero());
 				clienteLogin.get().setPedidos(cliente.get().getPedidos());
 				clienteLogin.get().setCarrinho(cliente.get().getCarrinho());
 

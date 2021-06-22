@@ -38,7 +38,7 @@ public class Pedido {
 	private int qtdProduto;
 	
 	@ManyToMany(mappedBy = "pedidos", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnoreProperties({"nome", "descricao", "marca", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "carrinho"})
+	@JsonIgnoreProperties({"nome", "descricao", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "carrinho"})
 	private List<Produto> produtos = new ArrayList<>();
 
 	@OneToOne

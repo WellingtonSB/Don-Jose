@@ -18,7 +18,7 @@ export class SingUpComponent implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
     window.scroll(0, 0)
   }
 
