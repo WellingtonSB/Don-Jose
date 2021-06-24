@@ -37,16 +37,6 @@ export class AuthService {
     return this.http.post<Cliente>(`${this.endereco}/clientes/cadastrar`, cliente);
   }
 
-  logIn() {
-    let identificador: boolean = false;
-    if (environment.token != '') {
-      identificador = true;
-
-    }
-
-    return identificador;
-  }
-
   /* DELOGA DA SESSAO */
   logOut() {
     environment.id = 0;

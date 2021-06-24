@@ -6,7 +6,6 @@
     margin: 0;
     padding: 0;
     box-sizing: inherit;
-    
   }
   
 
@@ -14,11 +13,9 @@
   html {
     box-sizing: border-box;
     font-size: 62.5%;
-    
   }
   
   body {
-    
     font-family: "Open Sans", sans-serif;
     font-size: 1.6rem;
     background-color:#fff;
@@ -630,9 +627,9 @@
   .product .img-container img {
     object-fit: cover;
     height: 100%;
-    width: 150%;
+    width: 100%;
     max-width: 500px;
-    max-height: 450px;
+    max-height: 150px;
   }
   
   .product .bottom {
@@ -1260,7 +1257,6 @@
   }
   
   .col-1-of-4 div {
-    margin-left: 1.4rem;
     margin-bottom: 8rem;
   }
   
@@ -1278,7 +1274,6 @@
   }
   
   .block-content li input {
-    margin-left: 1.4rem;
     outline: none;
   }
   

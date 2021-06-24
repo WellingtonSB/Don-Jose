@@ -1,0 +1,65 @@
+<section class="section product-detail">
+  <div class="details container">
+    <div class="left">
+      <div class="main">
+        <img src="{{produto.img}}" alt={{produto.nome}} />
+      </div>
+      <div class="thumbnails">
+        <div class="thumbnail">
+          <img src="{{produto.img}}" alt={{produto.nome}} />
+        </div>
+        <div class="thumbnail">
+          <img src="{{produto.img}}" alt={{produto.nome}} />
+        </div>
+        <div class="thumbnail">
+          <img src="{{produto.img}}" alt={{produto.nome}} />
+        </div>
+        <div class="thumbnail">
+          <img src="{{produto.img}}" alt={{produto.nome}} />
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <h1>{{produto.nome}}</h1>
+      <div class="price">R$ {{produto.preco}}</div>
+      <h4 *ngIf="produto.estoque !=0">Estoque Disponivel ({{produto.estoque}} unid.)</h4>
+      <h4 *ngIf="produto.estoque == 0">Estoque indisponivel</h4>
+      <form class="form">
+        <button class="addCart" (click)='adicionaItemCarrinho(produto.id, idPedido)'>Adicionar ao carrinho </button><br>
+        <button class="addCart" (click)='comprarAgora(produto.id, idPedido)'>Comprar Agora</button>
+      </form>
+      <h4>Descricao</h4>
+      <p>{{produto.descricao}}</p>
+      <a href="#">Ver os meios de pagamento</a>
+    </div>
+  </div>
+</section>
+
+<!-- Related Products -->
+
+<section class="section related-products">
+  <div class="title">
+    <h2>Produtos Relacionados</h2>
+    <span>Veja mais algumas de nossas delicias</span>
+  </div>
+  <div class="product-layout container">
+    <div class="product" *ngFor='let item of listaDeProdutos'>
+      <div class="img-container">
+        <img src="{{item.img}}" alt="{{item.nome}}" />
+        <div class="addCart">
+          <a (click)='adicionaItemCarrinho(item.id, idPedido)'><i class="fas fa-shopping-cart"></i></a>
+        </div>
+        <ul class="side-icons">
+          <span><i class="far fa-heart"></i></span>
+          <span [routerLink]="['/produtos-detalhe',item.id]"><i class="fas fa-sliders-h"></i></span>
+        </ul>
+      </div>
+      <div class="bottom">
+        <a href="">{{item.nome}}</a>
+        <div class="price">
+          <span>R$ {{item.preco}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/service/auth.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public authService: AuthService
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+  }
+
+  menuCliente(){
+    let ok:boolean = false
+    if(localStorage.getItem('token') != null) {
+      ok = true
+    }
+    return ok
   }
 
 }
