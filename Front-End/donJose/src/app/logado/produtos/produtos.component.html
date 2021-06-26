@@ -1,5 +1,4 @@
 <!-- Cliente -->
-
 <section class="section products">
   <div class="products-layout container">
     <div class="col-1-of-4">
@@ -59,7 +58,7 @@
       <div class="product-layout ">
         <div class="product" *ngFor='let item of listaDeProdutos'>
           <div class="img-container">
-            <img src="{{item.img}}" alt="{{item.nome}}" />
+            <img [routerLink]="['/produtos-detalhe',item.id]" src="{{item.img}}" alt="{{item.nome}}" />
             <div class="addCart">
               <a (click)='adicionaItemCarrinho(item.id, idPedido)'><i class="fas fa-shopping-cart"></i></a>
             </div>
@@ -88,3 +87,4 @@
 
 
 <!-- ADM -->
+

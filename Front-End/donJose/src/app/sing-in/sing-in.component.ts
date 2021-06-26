@@ -33,7 +33,7 @@ export class SingInComponent implements OnInit {
 
       environment.token = this.clienteLogin.token
       environment.nome = this.clienteLogin.nome
-     /*  environment.foto = this.clienteLogin.foto */
+      /*  environment.foto = this.clienteLogin.foto */
       environment.email = this.clienteLogin.email
       environment.carrinho = this.clienteLogin.carrinho.id
       environment.pedidos = this.clienteLogin.pedidos.id
@@ -52,11 +52,15 @@ export class SingInComponent implements OnInit {
       console.log("Nome: " + environment.nome);
       console.log("Foto: " + environment.foto);
       console.log("Pedido ID: " + environment.pedidos);
-      console.log("Lista de Desejos ID: " + environment.carrinho);
+      console.log("Carrinho ID: " + environment.carrinho);
 
 
+      if (environment.email == 'adm@gmail.com') {
+        this.router.navigate(['/conta'])
+      }else{
+        this.router.navigate(['/products'])
+      }   
 
-      this.router.navigate(['/products'])
 
     })
   }

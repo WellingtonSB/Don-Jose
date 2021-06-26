@@ -48,7 +48,7 @@ header{
     background-image: linear-gradient(to bottom,rgba(0,0,0,.5),transparent);
 }
 
-.nav{
+.nav-pri{
     height: 7.2rem;
     display: flex;
     align-items: center;
@@ -87,7 +87,7 @@ header{
     transition: transform .5s;
 }
 
-.nav::before{
+.nav-pri::before{
     content:'';
     position: fixed;
     top:0;
@@ -113,7 +113,7 @@ header{
     transform: translateX(0);
 }
 
-.open .nav::before{
+.open .nav-pri::before{
     opacity: 1;
     transform: scale(1);
 }
@@ -146,7 +146,7 @@ header{
     .menu-toggle{
         display: none;
     }
-    .nav{
+    .nav-pri{
         justify-content: space-between;
     }
     .nav-list{

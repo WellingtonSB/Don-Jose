@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Carrinho } from '../model/Carrinho';
+import { Cliente } from '../model/Cliente';
 import { Produto } from '../model/Produto';
 
 @Injectable({
@@ -20,6 +21,11 @@ export class ClienteService {
     private http: HttpClient
 
   ) { }
+
+  findAllClientes(): Observable<Cliente[]> {
+
+    return this.http.get<Cliente[]>(`${this.api}/clientes`, this.autorizacao);
+  }
 
   findByIdListaDeDesejos(id: number): Observable<Carrinho> {
 

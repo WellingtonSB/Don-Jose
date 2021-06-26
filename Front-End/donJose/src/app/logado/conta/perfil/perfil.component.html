@@ -1,0 +1,170 @@
+<div class="wrapper ">
+  <div class="main-panel">
+
+    <div class="content">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card card-user">
+            <div class="card-body">
+              <div class="author">
+                <a href="#">
+                  <img class="avatar border-gray" src="{{foto}}" alt="{{nome}}">
+                  <h5 class="title">{{nome}}</h5>
+                </a>
+                <p class="description">
+                  {{email}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Membros Don José</h4>
+            </div>
+            <div class="card-body">
+              <ul class="list-unstyled team-members">
+                <li>
+                  <div class="row">
+                    <div class="col-md-2 col-2">
+                      <div class="avatar">
+                        <img src="" alt="associado img" class="img-circle img-no-padding img-responsive">
+                      </div>
+                    </div>
+                    <div class="col-md-7 col-7">
+                      Souza
+                      <br />
+                      <span class="text-muted"><small>Offline</small></span>
+                    </div>
+                    <div class="col-md-3 col-3 text-right">
+
+
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col-md-2 col-2">
+                      <div class="avatar">
+                        <img src="" alt="associado img" class="img-circle img-no-padding img-responsive">
+                      </div>
+                    </div>
+                    <div class="col-md-7 col-7">
+                      Wellington
+                      <br />
+                      <span class="text-success"><small>Online</small></span>
+                    </div>
+                    <div class="col-md-3 col-3 text-right">
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col-md-2 col-2">
+                      <div class="avatar">
+                        <img src="" alt="associado img" class="img-circle img-no-padding img-responsive">
+                      </div>
+                    </div>
+                    <div class="col-ms-7 col-7">
+                      José
+                      <br />
+                      <span class="text-danger"><small>Ocupado</small></span>
+                    </div>
+                    <div class="col-md-3 col-3 text-right">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card card-user">
+            <div class="card-header">
+              <h5 class="card-title">Editar perfil</h5>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="row">
+                  <div class="col-md-8 pr-1">
+                    <div class="form-group">
+                      <label>Nome</label>
+                      <input type="text" class="form-control" placeholder="Nome" value={{nome}}>
+                    </div>
+                  </div>
+                  <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email </label>
+                      <input type="email" class="form-control" placeholder="Email" value="{{email}}">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 pr-1">
+                    <div class="form-group">
+                      <label>CPF</label>
+                      <input type="text" class="form-control" value="{{usuario.cep}}" disabled="">
+                    </div>
+                  </div>
+                  <div class="col-md-9 pl-1">
+                    <div class="form-group">
+                      <label>Foto</label>
+                      <input type="text" class="form-control" placeholder="url foto" >
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                      <label>CEP</label>
+                      <input type="text" class="form-control" placeholder="CEP" value="{{usuario.cep}}">
+                    </div>
+                  </div>
+                  <div class="col-md-8 pl-1">
+                    <div class="form-group">
+                      <label>Endereco</label>
+                      <input type="text" class="form-control" placeholder="{{usuario.logradouro}}" value="Melbourne, Australia">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 pr-1">
+                    <div class="form-group">
+                      <label>City</label>
+                      <input type="text" class="form-control" placeholder="City" value="Melbourne">
+                    </div>
+                  </div>
+                  <div class="col-md-4 px-1">
+                    <div class="form-group">
+                      <label>Country</label>
+                      <input type="text" class="form-control" placeholder="Country" value="Australia">
+                    </div>
+                  </div>
+                  <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                      <label>Postal Code</label>
+                      <input type="number" class="form-control" placeholder="ZIP Code">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row pt-3">
+                  <div class="col-md-2 ">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round">Cancelar</button>
+                    </div>
+                  </div>
+                  <div class="col-md-2 ">
+                    <div class="update ml-auto mr-auto">
+                      <button type="submit" class="btn btn-primary btn-round">Atualizar</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

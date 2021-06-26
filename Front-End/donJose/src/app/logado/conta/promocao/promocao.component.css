@@ -18,7 +18,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #a98921;
+  background: #3ea175;
   border-radius: 10px;
 }
 
@@ -59,12 +59,12 @@ body {
 }
 
 .text-green {
-  color: #e9e516;
+  color: #3b9668;
 }
 
 .container {
   display: grid;
-  height: 110vh;
+  height: 100vh;
   grid-template-columns: 0.8fr 1fr 1fr 1fr;
   grid-template-rows: 0.2fr 3fr;
   grid-template-areas:
@@ -211,7 +211,7 @@ main {
 
 .charts__left__title > div > h1 {
   font-size: 24px;
-  color: #373a3d;
+  color: #2e4a66;
   margin-bottom: 5px;
 }
 
@@ -352,7 +352,7 @@ main {
 }
 
 .sidebar__menu > h2 {
-  color: #a98921;
+  color: #3ea175;
   font-size: 16px;
   margin-top: 15px;
   margin-bottom: 5px;
@@ -368,12 +368,12 @@ main {
 }
 
 .active_menu_link {
-  background: #a98921;
-  color: #ececec;
+  background: rgba(62, 161, 117, 0.3);
+  color: #3ea175;
 }
 
 .active_menu_link a {
-  color: #ffffff !important;
+  color: #3ea175 !important;
 }
 
 .sidebar__link > a {

@@ -6,6 +6,7 @@ export class Pedido{
     public data : Date
     public valorTotal: number
     public qtdProduto: number
+    public ativo:boolean
     public cliente: Cliente
     public produtos: Produto[]
 }

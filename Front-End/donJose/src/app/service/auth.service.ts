@@ -37,6 +37,15 @@ export class AuthService {
     return this.http.post<Cliente>(`${this.endereco}/clientes/cadastrar`, cliente);
   }
 
+  adminstrador(){
+    let autorizado:boolean = false;
+    if(environment.email=='adm@gmail.com'){
+      autorizado= true
+    }
+    return autorizado
+  }
+
+
   /* DELOGA DA SESSAO */
   logOut() {
     environment.id = 0;
