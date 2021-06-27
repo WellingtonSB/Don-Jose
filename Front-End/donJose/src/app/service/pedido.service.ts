@@ -37,6 +37,12 @@ export class PedidoService {
     return this.http.get<Produto[]>(`${this.endereco}/pedidos/meuspedidos/${idPedido}`, this.autorizacao);
   }
 
+  /* PESQUISA PELO NUMERO DOS PEDIDOS */
+  findAllByNumeroPedido(numeroPedido:number):Observable<Pedido>{
+    return this.http.get<Pedido>(`${this.endereco}/pedidos/numeroPedido/${numeroPedido}`, this.autorizacao)
+  }
+
+
   /* INSERE UM NOVO DADO DENTRO DA BASE DE DADOS */
   postPedido(pedido: Pedido): Observable<Pedido> { //PARA PEDIDO NAO UTILIZAREMOS O POST DE PEDIDO
 

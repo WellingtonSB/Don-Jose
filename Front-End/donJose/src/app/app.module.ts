@@ -17,7 +17,6 @@ import { ContaComponent } from './logado/conta/conta.component';
 import { PerfilComponent } from './logado/conta/perfil/perfil.component';
 import { EditarCategoriaComponent } from './logado/conta/editar-categoria/editar-categoria.component';
 import { EditarProdutoComponent } from './logado/conta/editar-produto/editar-produto.component';
-import { EstoqueComponent } from './logado/conta/estoque/estoque.component';
 import { PromocaoComponent } from './logado/conta/promocao/promocao.component';
 import { HomeDashComponent } from './logado/conta/home-dash/home-dash.component';
 import { TransacoesComponent } from './logado/conta/transacoes/transacoes.component';
@@ -38,7 +37,6 @@ import { TransacoesComponent } from './logado/conta/transacoes/transacoes.compon
     PerfilComponent,
     EditarCategoriaComponent,
     EditarProdutoComponent,
-    EstoqueComponent,
     PromocaoComponent,
     HomeDashComponent,
     TransacoesComponent

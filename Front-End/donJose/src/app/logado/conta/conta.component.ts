@@ -10,7 +10,7 @@ export class ContaComponent implements OnInit {
 
 
    /* Gambiarra-refatorar */
-  home: boolean = false
+  home: boolean = true
   estoque: boolean = false
   editarProduto: boolean = false
   editarCategoria: boolean = false
@@ -37,16 +37,10 @@ export class ContaComponent implements OnInit {
     this.promocao=false
     this.editarProduto =false
     this.editarCategoria = false
+    this.transacoes= false
 
   }
-  dashEstoque() {
-    this.home = false
-    this.perfil = false
-    this.estoque = true
-    this.promocao=false
-    this.editarProduto =false
-    this.editarCategoria = false
-  }
+
   dashEditarProduto() {
     this.home = false
     this.perfil = false
@@ -54,6 +48,7 @@ export class ContaComponent implements OnInit {
     this.promocao=false
     this.editarProduto =true
     this.editarCategoria = false
+    this.transacoes= false
   }
 
   dashEditarCategoria() {
@@ -63,6 +58,7 @@ export class ContaComponent implements OnInit {
     this.promocao=false
     this.editarProduto =false
     this.editarCategoria = true
+    this.transacoes= false
   }
 
   dashPerfil() {
@@ -72,6 +68,7 @@ export class ContaComponent implements OnInit {
     this.promocao=false
     this.editarProduto =false
     this.editarCategoria = false
+    this.transacoes= false
   }
 
   dashPromocao() {
@@ -81,6 +78,7 @@ export class ContaComponent implements OnInit {
     this.promocao=true
     this.editarProduto =false
     this.editarCategoria = false
+    this.transacoes= false
   }
 
   dashTransacoes(){

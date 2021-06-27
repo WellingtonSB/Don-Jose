@@ -1,8 +1,18 @@
 
-.wrapper {
+.content {
   padding-top: 50px;
   max-height: 1000px;
   max-width: 1050px;
   padding-left: 10px;
  }
- 
+
+  
+.btn{
+  margin-left: 3px;
+  margin-bottom: 3px;
+
+}
+
+.btn2{
+  margin-top: 15px;
+}

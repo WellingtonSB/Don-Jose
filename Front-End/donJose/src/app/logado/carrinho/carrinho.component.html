@@ -8,7 +8,7 @@
             <th>Subtotal</th>
         </tr>
         <tr *ngFor='let item of listaDeProdutos'>
-            <td *ngIf='listaDeProdutos.length == 0'>
+            <td *ngIf='0>listaDeProdutos.length '>
                 <h2>seu carrinho esta vazio!</h2>
             </td>
             <td *ngIf='listaDeProdutos.length != 0'>
@@ -18,7 +18,8 @@
                         <p>{{item.nome}}</p>
                         <span>{{item.descricao}}</span>
                         <br />
-                        <button class="deletar" id="liveToastBtn" (click)='removerDoCarrinho(item.id, idCarrinho)'>Remover</button>
+                        <button class="deletar" id="liveToastBtn"
+                            (click)='removerDoCarrinho(item.id, idCarrinho)'>Remover</button>
                     </div>
                 </div>
             </td>
@@ -42,6 +43,12 @@
                 <td>R$ {{pedido.valorTotal}}</td>
             </tr>
         </table>
-        <a href="#" class="checkout btn">Confirmar compra</a>
+
+        <!-- 
+            chamar quando escolher os metodos de pagamento
+            <div class="container mt-3">
+            <div class="pay" #paypal></div>
+        </div> -->
     </div>
+
 </div>

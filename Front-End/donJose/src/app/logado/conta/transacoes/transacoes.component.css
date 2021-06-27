@@ -1,8 +1,14 @@
 
 main {
-    padding-top: 50px;
+    padding-top: 10px;
     max-height: 1000px;
     max-width: 1050px;
     padding-left: 10px;
    }
    
+.classe{
+    padding-top: 10px;
+    max-height: 1000px;
+    max-width: 1050px;
+    padding-left: 10px;
+}

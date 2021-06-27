@@ -12,7 +12,6 @@
 
         <main>
            <app-home-dash *ngIf='home == true'></app-home-dash>
-           <app-estoque *ngIf='estoque == true'></app-estoque>
            <app-editar-produto *ngIf='editarProduto == true'></app-editar-produto>
            <app-editar-categoria *ngIf='editarCategoria == true'></app-editar-categoria>
            <app-perfil *ngIf='perfil == true'></app-perfil>
@@ -31,7 +30,7 @@
             <div class="sidebar__menu">
                 <div class="sidebar__link active_menu_link">
                     <i class="fa fa-home"></i>
-                    <a (click)='dashHome()'>Home</a>
+                    <a (click)='dashHome()'>Dashboad</a>
                 </div>
                 <h2>ADM</h2>
                 <div class="sidebar__link">
@@ -47,11 +46,7 @@
                     <a (click)='dashEditarProduto()'>Editar Produtos</a>
                 </div>
                 <div class="sidebar__link">
-                    <i class="fa fa-archive"></i>
-                    <a (click)='dashEstoque()'>Estoque</a>
-                </div>
-                <div class="sidebar__link">
-                    <i class="fa fa-archive"></i>
+                    <i class="far fa-credit-card"></i>
                     <a (click)='dashTransacoes()'>Transações</a>
                 </div>
                 <h2>LEAVE</h2>

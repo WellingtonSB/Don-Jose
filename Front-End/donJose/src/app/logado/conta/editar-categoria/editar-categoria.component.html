@@ -1,87 +1,143 @@
-<div class="wrapper ">
+<div class="content">
+    <div class="container-fluid">
+        <div>
+            <div class="card mb-4">
 
-    <div class="content">
-        <div class="row">
-            <div class="col-md-12 pb-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Categorias </h4>
-                        <p>Cuidado! Ao alterar a categoriam, os produtos linkados à ela também sofrerão alterações</p>
+                <div class="card-header align-items-center">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="card-title">Categorias</h4>
+                        </div>
+                        <div class="col text-end">
+                            <a (click)='cadastrarCategoria()' class="btn  btn-primary">Adicionar Categoria</a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                    <th>
-                                        Nome
-                                    </th>
-                                    <th>
-                                        Data
-                                    </th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            Nome da categoria
-                                        </td>
-                                        <td>
-                                            Data que ela foi criada
-                                        </td>
-                                        <td>
-                                           <button>Editar</button>
-                                        </td>
-                                        <td>
-                                            <button>Apagar</button>
-                                        </td>
+                    <p class="category">Cuidado! Ao alterar a categoria, os produtos linkados à ela também sofrerão
+                        alterações</p>
+                </div>
 
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                <div class="card-content row">
+                    <div class="col-sm-12">
+                        <div class="el-table el-table--fit el-table--enable-row-hover el-table--enable-row-transition">
+                            <div class="hidden-columns">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div class="el-table__header-wrapper">
+                                <table cellspacing="0" cellpadding="0" border="0" class="el-table__header"
+                                    style="width: 960px;">
+                                    <colgroup>
+                                        <col name="el-table_10_column_46" width="48">
+                                        <col name="el-table_10_column_47" width="228">
+                                        <col name="el-table_10_column_48" width="228">
+                                        <col name="el-table_10_column_49" width="228">
+                                        <col name="el-table_10_column_50" width="228">
+                                        <col name="gutter" width="0">
+                                    </colgroup>
+                                    <thead class="has-gutter">
+                                        <tr class="">
+                                            <th colspan="1" rowspan="1" class="el-table_10_column_46 is-leaf text-center">
+                                                <div class="cell">#</div>
+                                            </th>
+                                            <th colspan="1" rowspan="1" class="el-table_10_column_47 is-leaf text-center" >
+                                                <div class="cell">Name</div>
+                                            </th>
+                                            <th colspan="1" rowspan="1" class="el-table_10_column_48 is-leaf text-center">
+                                                <div class="cell">Data</div>
+                                            </th>
+                                            <th colspan="1" rowspan="1" class="el-table_10_column_49 is-leaf text-center">
+                                                <div class="cell">Produtos</div>
+                                            </th>
+                                            <th colspan="1" rowspan="1" class="el-table_10_column_50 is-leaf text-center">
+                                                <div class="cell" >Edit/Delete</div>
+                                            </th>
+                                            <th class="gutter" style="width: 0px; display: none;"></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="el-table__body-wrapper is-scrolling-none">
+                                <table cellspacing="0" cellpadding="0" border="0" class="el-table__body"
+                                    style="width: 960px;" *ngFor='let cat of listaDeCategorias'>
+                                    <colgroup>
+                                        <col name="el-table_10_column_46" width="48">
+                                        <col name="el-table_10_column_47" width="228">
+                                        <col name="el-table_10_column_48" width="228">
+                                        <col name="el-table_10_column_49" width="228">
+                                        <col name="el-table_10_column_50" width="228">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr class="el-table__row">
+                                            <td rowspan="1" colspan="1" class="el-table_10_column_46 text-center ">
+                                                <div class="cell">
+                                                    <div>{{cat.id}}</div>
+                                                </div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_10_column_47">
+                                                <div class="cell">{{cat.nome}}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_10_column_48 text-center ">
+                                                <div class="cell">{{cat.data}}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_10_column_49 text-center">
+                                                <div class="cell">{{produtosDaCategoria}}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_10_column_50 text-center ">
+                                                <div class="cell">
+                                                    <a class="btn btn-simple btn-warning btn-xs btn-icon edit ">
+                                                        <i class="fas fa-pen" (click)='findByIdCategoria(cat.id)'></i>
+                                                    </a>
+                                                    <a class="btn btn-simple btn-danger btn-xs btn-icon remove">
+                                                        <i class="far fa-trash-alt" (click)='deleteCategoria(cat.id)'></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="el-table__column-resize-proxy" style="display: none;"></div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-12 pb-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Categorias </h4>
-                        <p>Cuidado! Ao alterar a categoriam, os produtos linkados à ela também sofrerão alterações</p>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead class=" text-primary">
-                                    <th>
-                                        Nome
-                                    </th>
-
-                                    <th>
-                                        Data
-                                    </th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <input type="text" placeholder="nome">
-                                        </td>
-                                        <td>
-                                            Data que ela foi criada
-                                        </td>
-                                        <td>
-                                           <button>Cancelar</button>
-                                        </td>
-                                        <td>
-                                            <button>Confirmar</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+            
+            <div class="card mb-4" *ngIf='addCat!=false || editar!=false '>
+                <div class="card-header">
+                    <h4 class="card-title" *ngIf='addCat!=false'>Cadastrar  nova categoria</h4>
+                    <h4 class="card-title" *ngIf='editar!=false'>Editar Categoria</h4>
+                   
+                </div>
+                <div class="card-content row table-full-width">
+                    <div class="col-sm-12">
+                        <div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group" *ngIf='addCat!=false'>
+                                                <label >Nome</label>
+                                                <input type="text" class="form-control" name="nome" placeholder="Digite a nome da categoria" [(ngModel)]="categoria.nome" >
+                                                <button class="btn btn2  btn-success" (click)='postCategoria()'>Cadastrar</button>
+                                            </div>
+                                            <div class="form-group" *ngIf='editar!=false'>
+                                                <label >Nome</label>
+                                                <input  type="text" class="form-control" name="nome" placeholder="Digite o novo nome" [(ngModel)]="categoria.nome" >
+                                                <button class="btn btn2  btn-success" (click)='putCategoria()'>Atualizar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                           
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>

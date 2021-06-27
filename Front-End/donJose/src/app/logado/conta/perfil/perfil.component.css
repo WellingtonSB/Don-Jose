@@ -1,10 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 
-.wrapper {
- padding-top: 50px;
- max-height: 1000px;
- max-width: 1050px;
- padding-left: 10px;
+:root {
+    --bs-font-sans-serif: "Inter", sans-serif;
+    --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        scroll-behavior: smooth;
+    }
+}
+
+.main {
+    font-family: var(--bs-font-sans-serif);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #374151;
+    padding-top: 25px;
+    max-height: 1000px;
+    max-width: 1050px;
+    padding-left: 10px;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(17, 24, 39, 0);
+}
+
 
 .card-user{
     margin-bottom: 15px;

@@ -60,10 +60,11 @@
           <div class="img-container">
             <img [routerLink]="['/produtos-detalhe',item.id]" src="{{item.img}}" alt="{{item.nome}}" />
             <div class="addCart">
-              <a (click)='adicionaItemCarrinho(item.id, idPedido)'><i class="fas fa-shopping-cart"></i></a>
+              
+              <a (click)='comprarProduto(item.id, idPedido)'><i class="fas fa-shopping-cart"></i></a>
             </div>
             <ul class="side-icons">
-              <span><i class="far fa-heart"></i></span>
+              <span (click)='adicionaItemCarrinho(item.id,idCarrinho)'><i class="far fa-heart"></i></span>
               <span [routerLink]="['/produtos-detalhe',item.id]"><i class="fas fa-sliders-h"></i></span>
             </ul>
           </div>

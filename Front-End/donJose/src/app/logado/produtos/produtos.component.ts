@@ -78,6 +78,12 @@ export class ProdutosComponent implements OnInit {
 
   }
 
+  comprarProduto(idProduto: number, idPedido: number){
+    this.produtoService.compraProduto(idProduto,idPedido).subscribe(()=>{
+      this.router.navigate(['/carrinho'])
+    })
+  }
+
 
   /* ADICIONA PRODUTOS AO CARRINHO DO USUARIO */
   adicionaItemCarrinho(idProduto: number, idCarrinho: number) {
