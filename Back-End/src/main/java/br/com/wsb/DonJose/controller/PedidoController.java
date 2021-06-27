@@ -47,6 +47,11 @@ public class PedidoController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
+	@GetMapping("/numeroPedido/{numeroPedido}")
+	public ResponseEntity<List<Pedido>>FindByNumeroPedido(@PathVariable int numeroPedido){
+		return ResponseEntity.ok(repository.findByNumeroPedido(numeroPedido));
+	}
+	
 	@GetMapping("/meuspedidos/{idPedido}")
 	public ResponseEntity<List<Produto>> findAllByProdutosListaDeDesejos(@PathVariable long idPedido) {
 		
@@ -55,7 +60,6 @@ public class PedidoController {
 	
 	@PostMapping
 	public ResponseEntity<Pedido> postPedido(@RequestBody Pedido pedido) {
-		
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(pedido));
 	}
 	

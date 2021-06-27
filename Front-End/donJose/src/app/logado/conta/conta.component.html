@@ -34,20 +34,20 @@
                 </div>
                 <h2>ADM</h2>
                 <div class="sidebar__link">
-                    <i class="fa fa-user-secret" aria-hidden="true"></i>
-                    <a (click)='dashPerfil()'>Perfil</a>
+                    <i (click)='dashPerfil()' class="fa fa-user-secret" aria-hidden="true"></i>
+                    <a >Perfil</a>
                 </div>
                 <div class="sidebar__link">
-                    <i class="fa fa-wrench"></i>
-                    <a (click)='dashEditarCategoria()'>Editar categorias</a>
+                    <i (click)='dashEditarCategoria()' class="fa fa-wrench"></i>
+                    <a >Editar categorias</a>
                 </div>
                 <div class="sidebar__link">
-                    <i class="fa fa-wrench"></i>
-                    <a (click)='dashEditarProduto()'>Editar Produtos</a>
+                    <i (click)='dashEditarProduto()' class="fa fa-wrench"></i>
+                    <a >Editar Produtos</a>
                 </div>
                 <div class="sidebar__link">
-                    <i class="far fa-credit-card"></i>
-                    <a (click)='dashTransacoes()'>Transações</a>
+                    <i (click)='dashTransacoes()' class="far fa-credit-card"></i>
+                    <a >Transações</a>
                 </div>
                 <h2>LEAVE</h2>
                 <div class="sidebar__link">
@@ -55,11 +55,11 @@
                     <a href="#">Chat</a>
                 </div>
                 <div class="sidebar__link">
-                    <i class="fa fa-calendar-check-o"></i>
-                    <a (click)='dashPromocao()'>Editar Promoções</a>
+                    <i (click)='dashPromocao()'class="fa fa-calendar-check-o"></i>
+                    <a >Editar Promoções</a>
                 </div>
                 <div class="sidebar__logout">
-                    <i class="fa fa-power-off"></i>
+                    <i (click)='sair()'class="fa fa-power-off"></i>
                     <a>Sair</a>
                 </div>
             </div>

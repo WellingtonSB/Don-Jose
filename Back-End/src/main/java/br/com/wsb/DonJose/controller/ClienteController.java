@@ -45,6 +45,9 @@ public class ClienteController {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 
+	
+	
+	
 	@PostMapping("/logar")
 	public ResponseEntity<ClienteLogin> Autentication(@RequestBody Optional<ClienteLogin> user) {
 		return service.Logar(user).map(resp -> ResponseEntity.ok(resp))
@@ -62,12 +65,6 @@ public class ClienteController {
 			return ResponseEntity.badRequest().build();
 
 		}
-	}
-
-	@PutMapping
-	public ResponseEntity<Cliente> putCliente(@RequestBody Cliente cliente) {
-
-		return ResponseEntity.ok(repository.save(cliente));
 	}
 
 	@DeleteMapping("/{id}")

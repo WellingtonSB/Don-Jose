@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -31,7 +32,12 @@ public class Pedido {
 	private long id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date data = new java.sql.Date(System.currentTimeMillis());
+	
+	private String status;//criado,em andamento, entregue
+	
+	private int numeroPedido;
 	
 	private double valorTotal;
 	
@@ -63,28 +69,28 @@ public class Pedido {
 		this.data = data;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public int getNumeroPedido() {
+		return numeroPedido;
+	}
+
+	public void setNumeroPedido(int numeroPedido) {
+		this.numeroPedido = numeroPedido;
+	}
+
 	public double getValorTotal() {
 		return valorTotal;
 	}
 
 	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
 	}
 
 	public int getQtdProduto() {
@@ -95,4 +101,22 @@ public class Pedido {
 		this.qtdProduto = qtdProduto;
 	}
 
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	
+	
 }

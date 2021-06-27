@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-conta',
@@ -20,6 +21,7 @@ export class ContaComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private auth:AuthService
   ) { }
 
   ngOnInit() {
@@ -91,4 +93,7 @@ export class ContaComponent implements OnInit {
     this.editarCategoria = false
   }
 
+  sair(){
+    this.auth.logOut()
+  }
 }

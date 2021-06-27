@@ -22,7 +22,6 @@ public class Produto {
 
 	@NotNull
 	@Size(max = 250)
-	@URL
 	private String descricao;
 
 	@NotNull
@@ -44,7 +43,7 @@ public class Produto {
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "produto_pedido", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "pedido_id"))
-	@JsonIgnoreProperties({ "data", "valorTotal", "produtos", "cliente", "qtdProduto" })
+	@JsonIgnoreProperties({ "data", "valorTotal", "produtos", "cliente", "qtdProduto","numeroPedido","status"})
 	private List<Pedido> pedidos = new ArrayList<>();
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -139,7 +138,6 @@ public class Produto {
 	public void setCarrinho(List<Carrinho> carrinho) {
 		this.carrinho = carrinho;
 	}
-
 
 	
 }

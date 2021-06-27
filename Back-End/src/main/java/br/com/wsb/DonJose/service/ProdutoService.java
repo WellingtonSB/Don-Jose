@@ -22,8 +22,7 @@ public class ProdutoService {
 	private CarrinhoRepository carrinhoRepository;
 
 	double a = 0;
-	int posicao = 0;
-	Random aleatorio = new Random(9000);
+	int posicao = 0; 
 
 	public Produto cadastrarProduto(Produto produto) {
 		List<Produto> produtos = produtoRepository.findAll();
@@ -31,10 +30,10 @@ public class ProdutoService {
 
 		if (produtos.size() != 0) {
 
-			produto.setPlu(produtos.get(last).getPlu() + aleatorio.nextInt(999));
+			produto.setPlu(produtos.get(last).getPlu()+1);
 
 		} else {
-			produto.setPlu(1000);
+			produto.setPlu(1);
 		}
 
 		return produtoRepository.save(produto);
@@ -55,6 +54,7 @@ public class ProdutoService {
 				&& !(pedidoExistente.get().getProdutos().isEmpty())) {
 
 			produtoExistente.get().getPedidos().add(pedidoExistente.get());
+			
 
 			int contador = 0;
 
@@ -74,7 +74,8 @@ public class ProdutoService {
 			pedidoExistente.get().setValorTotal(pedidoExistente.get().getValorTotal() - (produtoExistente.get().getPreco() * contador));
 
 			contador++;
-
+			
+			pedidoExistente.get().setNumeroPedido(pedidoExistente.get().getNumeroPedido()+1);
 			produtoExistente.get().setQtdPedidoProduto(contador);
 
 			produtoExistente.get().setEstoque(produtoExistente.get().getEstoque() - 1);
@@ -111,7 +112,7 @@ public class ProdutoService {
 	}
 
 	public void deletarProduto(long idProduto, long idPedido) {
-
+		
 		Optional<Produto> produtoExistente = produtoRepository.findById(idProduto);
 		Optional<Pedido> pedidoExistente = pedidoRepository.findById(idPedido);
 
@@ -157,7 +158,7 @@ public class ProdutoService {
 
 	}
 
-	public Produto adicionarProdutoListaDeDesejo(long idProduto, long idCarrinho) {
+	public Produto adicionarProdutoNoCarrinho(long idProduto, long idCarrinho) {
 		Optional<Produto> produtoExistente = produtoRepository.findById(idProduto);
 		Optional<Carrinho> carrinhoExistente = carrinhoRepository.findById(idCarrinho);
 

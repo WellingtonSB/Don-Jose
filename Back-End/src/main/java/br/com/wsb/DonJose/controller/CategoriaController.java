@@ -29,7 +29,7 @@ public class CategoriaController {
 	
 	@GetMapping
 	public ResponseEntity<List<Categoria>> findAllCategorias() {
-		
+			
 		return ResponseEntity.ok(repository.findAll());
 	}
 	

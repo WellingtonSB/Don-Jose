@@ -74,19 +74,19 @@ public class ProdutoController {
 	}
 
 	@PutMapping("/produto_pedido/produtos/{idProduto}/pedidos/{idPedido}")
-	public ResponseEntity<Produto> putProduto(@PathVariable long idProduto,
+	public ResponseEntity<Produto> comprarProduto(@PathVariable long idProduto,
 			@PathVariable long idPedido) {
 
 		return ResponseEntity.ok(service.compraProduto(idProduto, idPedido));
 	}
 
-	@PutMapping("/produto_lista/produtos/{idProduto}/listaDesejos/{idListaDeDesejo}")
-	public ResponseEntity<Produto> adicionaProdutoListaDeDesejos(@PathVariable long idProduto,
-			@PathVariable long idListaDeDesejo) {
+	@PutMapping("/produto_lista/produtos/{idProduto}/carrinho/{idCarrinho}")
+	public ResponseEntity<Produto> adicionarProdutonoCarrinho(@PathVariable long idProduto,
+			@PathVariable long idCarrinho) {
 
-		return ResponseEntity.ok(service.adicionarProdutoListaDeDesejo(idProduto, idListaDeDesejo));
+		return ResponseEntity.ok(service.adicionarProdutoNoCarrinho(idProduto, idCarrinho));
 	}
-
+	
 	@DeleteMapping("/{id}")
 	public void deleteProduto(@PathVariable long id) {
 

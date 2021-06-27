@@ -11,4 +11,5 @@ import br.com.wsb.DonJose.model.Categoria;
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
 	public List<Categoria>findAllByNomeContainingIgnoreCase(String nome);
+
 }
