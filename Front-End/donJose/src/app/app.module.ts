@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
-//import { ModalModule } from 'ngx-bootstrap/modal';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -20,6 +18,8 @@ import { EditarProdutoComponent } from './logado/conta/editar-produto/editar-pro
 import { PromocaoComponent } from './logado/conta/promocao/promocao.component';
 import { HomeDashComponent } from './logado/conta/home-dash/home-dash.component';
 import { TransacoesComponent } from './logado/conta/transacoes/transacoes.component';
+import { FooterComponent } from './footer/footer.component';
+
 
 
 
@@ -39,17 +39,17 @@ import { TransacoesComponent } from './logado/conta/transacoes/transacoes.compon
     EditarProdutoComponent,
     PromocaoComponent,
     HomeDashComponent,
-    TransacoesComponent
-       
+    TransacoesComponent,
+    FooterComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    //ModalModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

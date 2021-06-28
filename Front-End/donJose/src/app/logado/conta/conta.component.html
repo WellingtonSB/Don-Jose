@@ -1,4 +1,5 @@
 <!-- ADM -->
+
 <body id="body">
     <div class="container">
         <nav class="navbar">
@@ -11,12 +12,12 @@
         </nav>
 
         <main>
-           <app-home-dash *ngIf='home == true'></app-home-dash>
-           <app-editar-produto *ngIf='editarProduto == true'></app-editar-produto>
-           <app-editar-categoria *ngIf='editarCategoria == true'></app-editar-categoria>
-           <app-perfil *ngIf='perfil == true'></app-perfil>
-           <app-promocao *ngIf='promocao == true'></app-promocao>
-           <app-transacoes *ngIf='transacoes == true'> </app-transacoes>
+            <app-home-dash *ngIf='home == true'></app-home-dash>
+            <app-editar-produto *ngIf='editarProduto == true'></app-editar-produto>
+            <app-editar-categoria *ngIf='editarCategoria == true'></app-editar-categoria>
+            <app-perfil *ngIf='perfil == true'></app-perfil>
+            <app-promocao *ngIf='promocao == true'></app-promocao>
+            <app-transacoes *ngIf='transacoes == true'> </app-transacoes>
         </main>
 
         <div id="sidebar">
@@ -28,39 +29,40 @@
             </div>
 
             <div class="sidebar__menu">
-                <div class="sidebar__link active_menu_link">
+                <div class="sidebar__link active_menu_link" (click)='dashHome()'>
                     <i class="fa fa-home"></i>
-                    <a (click)='dashHome()'>Dashboad</a>
+                    <a>Dashboad</a>
                 </div>
                 <h2>ADM</h2>
-                <div class="sidebar__link">
-                    <i (click)='dashPerfil()' class="fa fa-user-secret" aria-hidden="true"></i>
-                    <a >Perfil</a>
+                <div class="sidebar__link" (click)='dashPerfil()'>
+                    <i class="fa fa-user-secret" aria-hidden="true"></i>
+                    <a>Perfil</a>
                 </div>
-                <div class="sidebar__link">
-                    <i (click)='dashEditarCategoria()' class="fa fa-wrench"></i>
-                    <a >Editar categorias</a>
+                <div class="sidebar__link" (click)='dashEditarCategoria()'>
+                    <i class="fa fa-wrench"></i>
+                    <a>Editar categorias</a>
                 </div>
-                <div class="sidebar__link">
-                    <i (click)='dashEditarProduto()' class="fa fa-wrench"></i>
-                    <a >Editar Produtos</a>
+                <div class="sidebar__link" (click)='dashEditarProduto()'>
+                    <i class="fa fa-wrench"></i>
+                    <a>Editar Produtos</a>
                 </div>
-                <div class="sidebar__link">
-                    <i (click)='dashTransacoes()' class="far fa-credit-card"></i>
-                    <a >Transações</a>
+                <div class="sidebar__link" (click)='dashTransacoes()'>
+                    <i class="far fa-credit-card"></i>
+                    <a>Transações</a>
                 </div>
                 <h2>LEAVE</h2>
                 <div class="sidebar__link">
                     <i class="fa fa-question"></i>
                     <a href="#">Chat</a>
                 </div>
-                <div class="sidebar__link">
-                    <i (click)='dashPromocao()'class="fa fa-calendar-check-o"></i>
-                    <a >Editar Promoções</a>
+                <div class="sidebar__link" (click)='dashPromocao()'>
+                    <i class="fa fa-calendar-check-o"></i>
+                    <a>Editar Promoções</a>
                 </div>
-                <div class="sidebar__logout">
-                    <i (click)='sair()'class="fa fa-power-off"></i>
+                <div class="sidebar__logout" (click)='sair()'>
+                    <i class="fa fa-power-off"></i>
                     <a>Sair</a>
+
                 </div>
             </div>
         </div>

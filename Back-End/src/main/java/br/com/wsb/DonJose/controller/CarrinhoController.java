@@ -32,7 +32,7 @@ public class CarrinhoController {
 	private ProdutoService service;
 
 	@GetMapping
-	public ResponseEntity<List<Carrinho>> findAllByListaDeDesejos() {
+	public ResponseEntity<List<Carrinho>> findAllByCarrinho() {
 
 		return ResponseEntity.ok(repository.findAll());
 	}
@@ -62,16 +62,16 @@ public class CarrinhoController {
 	}
 
 	@PutMapping
-	public ResponseEntity<Carrinho> putListaDeDesejos(@RequestBody Carrinho carrinho) {
+	public ResponseEntity<Carrinho> putCarrinho(@RequestBody Carrinho carrinho) {
 
 		return ResponseEntity.ok(repository.save(carrinho));
 	}
 
 	@DeleteMapping("/produto_lista/produtos/{idProduto}/carrinho/{idCarrinho}")
-	public ResponseEntity<Produto> removeProdutoListaDeDesejos(@PathVariable long idProduto,
+	public ResponseEntity<Produto> removeProdutoDoCarrinho(@PathVariable long idProduto,
 			@PathVariable long idCarrinho) {
 
-		return ResponseEntity.ok(service.removeProdutoListaDeDesejo(idProduto, idCarrinho));
+		return ResponseEntity.ok(service.removeProdutoDoCarrinho(idProduto, idCarrinho));
 	}
 
 	@DeleteMapping("/{id}")

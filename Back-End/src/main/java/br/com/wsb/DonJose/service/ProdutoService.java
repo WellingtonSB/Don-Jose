@@ -177,13 +177,13 @@ public class ProdutoService {
 
 	}
 
-	public Produto removeProdutoListaDeDesejo(long idProduto, long idCarrinho) {
+	public Produto removeProdutoDoCarrinho(long idProduto, long idCarrinho) {
 		Optional<Produto> produtoExistente = produtoRepository.findById(idProduto);
-		Optional<Carrinho> listaDeDesejoExistente = carrinhoRepository.findById(idCarrinho);
+		Optional<Carrinho> carrinhoExistente = carrinhoRepository.findById(idCarrinho);
 
-		if (produtoExistente.get().getCarrinho().contains(listaDeDesejoExistente.get())) {
+		if (produtoExistente.get().getCarrinho().contains(carrinhoExistente.get())) {
 
-			produtoExistente.get().getCarrinho().remove(listaDeDesejoExistente.get());
+			produtoExistente.get().getCarrinho().remove(carrinhoExistente.get());
 
 			produtoRepository.save(produtoExistente.get());
 

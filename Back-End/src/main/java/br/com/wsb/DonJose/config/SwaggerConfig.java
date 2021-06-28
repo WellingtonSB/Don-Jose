@@ -26,7 +26,7 @@ public class SwaggerConfig {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("API - Don José")
-				.description("API para compor aplicações WEB Spring/Java/MySQL").version("1.0").contact(contact())
+				.description("API teste").version("1.0").contact(contact())
 				.build();
 
 	}

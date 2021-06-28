@@ -1,3 +1,4 @@
+
 <main class="main">
     <div class="row">
         <div class="col-12 col-xl-8">
@@ -7,10 +8,10 @@
                         <div class="card-header">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h2 class="fs-5 fw-bold mb-0">Page visits</h2>
+                                    <h2 class="fs-5 fw-bold mb-0">Produtos comprados</h2>
                                 </div>
                                 <div class="col text-end">
-                                    <a href="#" class="btn btn-sm btn-primary">See all</a>
+                                    <a class="btn btn-sm btn-primary" (click)='findAllProdutos()'>Ver todos</a>
                                 </div>
                             </div>
                         </div>
@@ -18,26 +19,26 @@
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="border-bottom" scope="col">Page name</th>
-                                        <th class="border-bottom" scope="col">Page Views</th>
-                                        <th class="border-bottom" scope="col">Page Value</th>
-                                        <th class="border-bottom" scope="col">Bounce rate</th>
+                                        <th class="border-bottom" scope="col">Nome do produto</th>
+                                        <th class="border-bottom text-center" scope="col">Skus compradas</th>
+                                        <th class="border-bottom text-center" scope="col">Valor arrecadado</th>
+                                        <th class="border-bottom text-center" scope="col">Volume de compras</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngFor='let prod of listaDeProdutos'>
                                         <th class="text-gray-900" scope="row">
-                                            /demo/admin/index.html
+                                            {{prod.nome}}
                                         </th>
-                                        <td class="fw-bolder text-gray-500">
-                                            3,225
+                                        <td class="fw-bolder text-gray-500 text-center">
+                                            {{prod.estoque}}(und.)
                                         </td>
-                                        <td class="fw-bolder text-gray-500">
-                                            $20
+                                        <td class="fw-bolder text-gray-500 text-center">
+                                            R$ {{prod.preco}}
                                         </td>
-                                        <td class="fw-bolder text-gray-500">
-                                            <div class="d-flex">
-                                                <svg class="icon icon-xs text-danger me-2" fill="currentColor"
+                                        <td class="fw-bolder text-gray-500 text-center">
+                                            <div *ngIf='0>produto.estoque' class="d-flex">
+                                                <svg class="icon icon-xs text-success me-2" fill="currentColor"
                                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd"
                                                         d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
@@ -45,21 +46,8 @@
                                                 </svg>
                                                 42,55%
                                             </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-gray-900" scope="row">
-                                            /demo/admin/forms.html
-                                        </th>
-                                        <td class="fw-bolder text-gray-500">
-                                            2,987
-                                        </td>
-                                        <td class="fw-bolder text-gray-500">
-                                            0
-                                        </td>
-                                        <td class="fw-bolder text-gray-500">
-                                            <div class="d-flex">
-                                                <svg class="icon icon-xs text-success me-2" fill="currentColor"
+                                            <div *ngIf='produto.estoque>=1' class="d-flex">
+                                                <svg class="icon icon-xs text-danger  me-2" fill="currentColor"
                                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd"
                                                         d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
@@ -69,86 +57,20 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th class="text-gray-900" scope="row">
-                                            /demo/admin/util.html
-                                        </th>
-                                        <td class="fw-bolder text-gray-500">
-                                            2,844
-                                        </td>
-                                        <td class="fw-bolder text-gray-500">
-                                            294
-                                        </td>
-                                        <td class="fw-bolder text-gray-500">
-                                            <div class="d-flex">
-                                                <svg class="icon icon-xs text-success me-2" fill="currentColor"
-                                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
-                                                        clip-rule="evenodd"></path>
-                                                </svg>
-                                                32,35%
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-gray-900" scope="row">
-                                            /demo/admin/validation.html
-                                        </th>
-                                        <td class="fw-bolder text-gray-500">
-                                            2,050
-                                        </td>
-                                        <td class="fw-bolder text-gray-500">
-                                            $147
-                                        </td>
-                                        <td class="fw-bolder text-gray-500">
-                                            <div class="d-flex">
-                                                <svg class="icon icon-xs text-danger me-2" fill="currentColor"
-                                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                                                        clip-rule="evenodd"></path>
-                                                </svg>
-                                                50,87%
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-gray-900" scope="row">
-                                            /demo/admin/modals.html
-                                        </th>
-                                        <td class="fw-bolder text-gray-500">
-                                            1,483
-                                        </td>
-                                        <td class="fw-bolder text-gray-500">
-                                            $19
-                                        </td>
-                                        <td class="fw-bolder text-gray-500">
-                                            <div class="d-flex">
-                                                <svg class="icon icon-xs text-success me-2" fill="currentColor"
-                                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
-                                                        clip-rule="evenodd"></path>
-                                                </svg>
-                                                26,12%
-                                            </div>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-12 col-xxl-6 mb-4">
+                <!-- <div class="col-12 col-xxl-6 mb-4">
                     <div class="card border-0 shadow">
                         <div class="card-header border-bottom d-flex align-items-center justify-content-between">
                             <h2 class="fs-5 fw-bold mb-0">Progress track</h2>
                             <a href="#" class="btn btn-sm btn-primary">See tasks</a>
                         </div>
                         <div class="card-body">
-                            <!-- Project 1 -->
+                         
                             <div class="row mb-4">
                                 <div class="col-auto">
                                     <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20"
@@ -172,7 +94,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Project 2 -->
+                          
                             <div class="row align-items-center mb-4">
                                 <div class="col-auto">
                                     <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20"
@@ -196,7 +118,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Project 3 -->
+                           
                             <div class="row align-items-center mb-4">
                                 <div class="col-auto">
                                     <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20"
@@ -220,7 +142,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Project 4 -->
+                            
                             <div class="row align-items-center mb-3">
                                 <div class="col-auto">
                                     <svg class="icon icon-sm text-gray-500" fill="currentColor" viewBox="0 0 20 20"
@@ -246,8 +168,26 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
+ <!--    <div class="container">
+        <ul class="nav nav-tabs">
+          <li class="nav-item ">
+            <a class="nav-link" >Tipo do Grafico</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" >Tipo do Grafico</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" >Tipo do Grafico</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" >Tipo do Grafico</a>
+          </li>
+        </ul>
+    </div> -->
+
 </main>
+

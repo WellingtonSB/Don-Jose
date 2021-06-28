@@ -1,5 +1,17 @@
-<!-- Cliente -->
 <section class="section products">
+  <div class="box">
+    <div class="breadcumb">
+      <a class="breadcumbA" routerLink='/home'>Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+        class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
+        <path fill-rule="evenodd"
+          d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
+      </svg>
+      <a class="breadcumbA" routerLink='/products'>Produtos</a>
+    </div>
+  </div>
   <div class="products-layout container">
     <div class="col-1-of-4">
       <div>
@@ -19,7 +31,33 @@
       </div>
       <div>
         <div class="block-title">
-          <h3>Top 10</h3>
+          <h3>Preço</h3>
+        </div>
+
+        <ul class="block-content ">
+          <li>
+            <input type="checkbox" name="" id="">
+            <label for="">
+              <span>Até R$40</span>
+            </label>
+          </li>
+          <li>
+            <input type="checkbox" name="" id="">
+            <label for="">
+              <span>R$60 a R$100</span>
+            </label>
+          </li>
+          <li>
+            <input type="checkbox" name="" id="">
+            <label for="">
+              <span>Mais de R$300</span>
+            </label>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div class="block-title">
+          <h3>Top da semana</h3>
         </div>
 
         <ul class="block-content">
@@ -27,8 +65,31 @@
           <li *ngFor='let top of listaDeCategoria'>
             <input type="checkbox" name="" id="">
             <label for="">
-              <span>{{top.nome}}</span>
-              <small>(10)</small>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill"
+                viewBox="0 0 16 16">
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill"
+                viewBox="0 0 16 16">
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill"
+                viewBox="0 0 16 16">
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill"
+                viewBox="0 0 16 16">
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill"
+                viewBox="0 0 16 16">
+                <path
+                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+              </svg>
             </label>
           </li>
         </ul>
@@ -36,42 +97,35 @@
     </div>
     <div class="col-3-of-4">
       <form action="">
-        <div class="item">
-          <label for="sort-by">BB </label>
-          <select name="sort-by" id="sort-by">
-            <option value="title" selected="selected">Name</option>
-            <option value="number">Price</option>
-            <option value="search_api_relevance">Relevance</option>
-            <option value="created">Newness</option>
-          </select>
+        <div class="search">
+          <input type="text" placeholder="Buscar por produto">
+
         </div>
-        <div class="item">
-          <label for="order-by" >Teste </label>
-          <select name="order-by" id="sort-by">
-            <option value="ASC" selected="selected">ASC</option>
-            <option value="DESC">DESC</option>
-          </select>
-        </div>
-        <a href="">Buscar</a>
+        <a>Buscar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-search" viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+          </svg></a>
       </form>
 
       <div class="product-layout ">
         <div class="product" *ngFor='let item of listaDeProdutos'>
-          <div class="img-container">
-            <img [routerLink]="['/produtos-detalhe',item.id]" src="{{item.img}}" alt="{{item.nome}}" />
-            <div class="addCart">
-              
-              <a (click)='comprarProduto(item.id, idPedido)'><i class="fas fa-shopping-cart"></i></a>
+          <div class="product-test">
+            <div class="img-container">
+              <img [routerLink]="['/produtos-detalhe',item.id]" src="{{item.img}}" alt="{{item.nome}}" />
+              <div class="addCart">
+                <a (click)='comprarProduto(item.id, idPedido)'><i class="fas fa-shopping-cart"></i></a>
+              </div>
+              <ul class="side-icons">
+                <span (click)='adicionaItemCarrinho(item.id,idCarrinho)'><i class="far fa-heart"></i></span>
+              </ul>
             </div>
-            <ul class="side-icons">
-              <span (click)='adicionaItemCarrinho(item.id,idCarrinho)'><i class="far fa-heart"></i></span>
-              <span [routerLink]="['/produtos-detalhe',item.id]"><i class="fas fa-sliders-h"></i></span>
-            </ul>
-          </div>
-          <div class="bottom">
-            <a href="">{{item.nome}}</a>
-            <div class="price">
-              <span>R$ {{item.preco}}</span>
+            <hr>
+            <div class="bottom">
+              <a href="">{{item.nome}}</a>
+              <div class="price">
+                <span>R$ {{item.preco}}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -85,7 +139,3 @@
     </div>
   </div>
 </section>
-
-
-<!-- ADM -->
-

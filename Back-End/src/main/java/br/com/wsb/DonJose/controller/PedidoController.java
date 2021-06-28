@@ -53,7 +53,7 @@ public class PedidoController {
 	}
 	
 	@GetMapping("/meuspedidos/{idPedido}")
-	public ResponseEntity<List<Produto>> findAllByProdutosListaDeDesejos(@PathVariable long idPedido) {
+	public ResponseEntity<List<Produto>> findAllByProdutosCarrinho(@PathVariable long idPedido) {
 		
 		return ResponseEntity.ok(service.pesquisaPorProdutoNoCarrinho(idPedido));
 	}

@@ -114,15 +114,14 @@ p{
     left: 0;
 }
 
-.asterisk{
-    font-size: 1.2rem;
+.asterisk> .asterisco{
+    font-size: 3.0rem;
     color:#c59d5f;
     margin:0 1.6rem;
     opacity: 0;
     animation: spin .5s forwards;
     animation-delay: .7s;
 }
-
 .single-animation{
     opacity: 0;
     animation: fadeDown .5s forwards;
@@ -414,7 +413,7 @@ footer{
         font-size: 12.2rem;
     }
     .headline{
-        font-size: 4.7rem;
+        font-size: 3.7rem;
         letter-spacing: .8rem;
     }
 

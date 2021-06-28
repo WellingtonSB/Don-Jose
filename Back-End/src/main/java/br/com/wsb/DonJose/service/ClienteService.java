@@ -64,7 +64,6 @@ public class ClienteService {
 
 	}
 
-	/* LOGA USUARIO NO SISTEMA */
 	public Optional<ClienteLogin> Logar(Optional<ClienteLogin> clienteLogin) {
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

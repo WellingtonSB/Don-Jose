@@ -15,8 +15,6 @@
                     <p class="category">Cuidado! Ao alterar a categoria, os produtos linkados à ela também sofrerão
                         alterações</p>
                 </div>
-
-
                 <div class="card-content row">
                     <div class="col-sm-12">
                         <div class="el-table el-table--fit el-table--enable-row-hover el-table--enable-row-transition">
@@ -29,17 +27,17 @@
                             </div>
                             <div class="el-table__header-wrapper">
                                 <table cellspacing="0" cellpadding="0" border="0" class="el-table__header"
-                                    style="width: 960px;">
+                                    style="width: 1050px;">
                                     <colgroup>
                                         <col name="el-table_10_column_46" width="48">
-                                        <col name="el-table_10_column_47" width="228">
-                                        <col name="el-table_10_column_48" width="228">
-                                        <col name="el-table_10_column_49" width="228">
-                                        <col name="el-table_10_column_50" width="228">
-                                        <col name="el-table_10_column_51" width="228">
-                                        <col name="el-table_10_column_52" width="228">
-                                        <col name="el-table_10_column_53" width="228">
-                                        <col name="el-table_10_column_54" width="228">
+                                        <col name="el-table_10_column_47" width="114">
+                                        <col name="el-table_10_column_48" width="331">
+                                        <col name="el-table_10_column_49" width="331">
+                                        <col name="el-table_10_column_50" width="82">
+                                        <col name="el-table_10_column_51" width="82">
+                                        <col name="el-table_10_column_52" width="82">
+                                        <col name="el-table_10_column_53" width="82">
+                                        <col name="el-table_10_column_54" width="114">
                                         <col name="gutter" width="0">
                                     </colgroup>
                                     <thead class="has-gutter">
@@ -87,17 +85,17 @@
                             </div>
                             <div class="el-table__body-wrapper is-scrolling-none">
                                 <table cellspacing="0" cellpadding="0" border="0" class="el-table__body"
-                                    style="width: 960px;" *ngFor='let prod of listaDeProdutos'>
+                                    style="width: 1050px;" *ngFor='let prod of listaDeProdutos'>
                                     <colgroup>
                                         <col name="el-table_10_column_46" width="48">
-                                        <col name="el-table_10_column_47" width="228">
-                                        <col name="el-table_10_column_48" width="228">
-                                        <col name="el-table_10_column_49" width="228">
-                                        <col name="el-table_10_column_50" width="228">
-                                        <col name="el-table_10_column_51" width="228">
-                                        <col name="el-table_10_column_52" width="228">
-                                        <col name="el-table_10_column_53" width="228">
-                                        <col name="el-table_10_column_54" width="228">
+                                        <col name="el-table_10_column_47" width="114">
+                                        <col name="el-table_10_column_48" width="331">
+                                        <col name="el-table_10_column_49" width="331">
+                                        <col name="el-table_10_column_50" width="82">
+                                        <col name="el-table_10_column_51" width="82">
+                                        <col name="el-table_10_column_52" width="82">
+                                        <col name="el-table_10_column_53" width="82">
+                                        <col name="el-table_10_column_54" width="114">
                                     </colgroup>
                                     <tbody>
                                         <tr class="el-table__row">
@@ -109,10 +107,10 @@
                                             <td rowspan="1" colspan="1" class="el-table_10_column_47 text-center">
                                                 <div class="cell">{{prod.nome}}</div>
                                             </td>
-                                            <td rowspan="1" colspan="1" class="el-table_10_column_48 text-center ">
+                                            <td rowspan="1" colspan="1" class="el-table_10_column_48 text-wrap text-center">
                                                 <div class="cell">{{prod.descricao}}</div>
                                             </td>
-                                            <td rowspan="1" colspan="1" class="el-table_10_column_49 text-center">
+                                            <td rowspan="1" colspan="1" class="el-table_10_column_49 text-wrap text-center">
                                                 <div class="cell">{{prod.img}}</div>
                                             </td>
                                             <td rowspan="1" colspan="1" class="el-table_10_column_50 text-center">
@@ -222,7 +220,8 @@
                                                         <i class="fas fa-ban" (click)='cancelar()'> Cancelar</i>
                                                     </a>
                                                     <a class="btn btn-simple btn-success btn-xs btn-icon remove">
-                                                        <i class="fas fa-check dark" (click)='putProduto()'> Atualizar</i>
+                                                        <i class="fas fa-check dark" (click)='putProduto()'>
+                                                            Atualizar</i>
                                                     </a>
                                                 </div>
                                             </div>

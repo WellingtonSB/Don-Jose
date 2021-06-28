@@ -86,8 +86,8 @@ export class ProdutosComponent implements OnInit {
 
 
   /* ADICIONA PRODUTOS AO CARRINHO DO USUARIO */
-  adicionaItemCarrinho(idProduto: number, idCarrinho: number) {
-    this.produtoService.adicionaItemCarrinho(idProduto, idCarrinho).subscribe(() => {
+  adicionaItemCarrinho(idProduto: number, idPedido: number) {
+    this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
       alert('Produto adicionado ao carrinho!');
 
       this.findAllByProdutos();

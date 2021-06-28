@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+
 import { Router } from '@angular/router';
 import { Carrinho } from 'src/app/model/Carrinho';
 import { Cliente } from 'src/app/model/Cliente';
@@ -22,9 +23,9 @@ export class HomeDashComponent implements OnInit {
   idUsuario = environment.id;
   idPedido = environment.pedidos;
 
-  minhListaDeDesejos: Carrinho = new Carrinho();
-  listaDeDesejosItens: Carrinho[];
-  idListaDeDesejos = environment.carrinho;
+  meuCarrinho: Carrinho = new Carrinho();
+  listaCarrinho: Carrinho[];
+  idListaCarrinho = environment.carrinho;
 
   produto: Produto = new Produto();
   listaDeDesejos: Produto[];
@@ -40,33 +41,38 @@ export class HomeDashComponent implements OnInit {
 
   idCarrinho = environment.pedidos;
 
-  
-
-  listaDeClientes:Cliente[];
+  listaDeClientes: Cliente[];
 
 
   totalPedidos: number;
-  totalClientes:number;
+  totalClientes: number;
 
   dia: Date = new Date();
 
+ 
   constructor(
     private router: Router,
     private pedidoService: PedidoService,
     private authService: AuthService,
-    private clienteService:ClienteService
-  ) { }
+    private clienteService: ClienteService,
+    private produtoService: ProdutoService
+  ) {
+
+  }
 
   ngOnInit() {
     this.findByIdUsuario(environment.id);
 
-    if(localStorage.getItem('token') == null) {
+    if (localStorage.getItem('token') == null) {
       this.router.navigate(['/login']);
     }
     /* DADOS CARRINHO USUARIO */
     this.findByIdPedido();
     this.findAllPedido();
     this.findAllClientes();
+    this.findAllProdutos()
+
+    /* Chart.js */
   }
 
   findByIdUsuario(id: number) {
@@ -76,8 +82,8 @@ export class HomeDashComponent implements OnInit {
     })
   }
 
-  findAllClientes(){
-    this.clienteService.findAllClientes().subscribe((resp:Cliente[])=>{
+  findAllClientes() {
+    this.clienteService.findAllClientes().subscribe((resp: Cliente[]) => {
       this.listaDeClientes = resp;
       this.totalClientes = this.listaDeClientes.length
     })
@@ -95,4 +101,12 @@ export class HomeDashComponent implements OnInit {
       this.pedido = resp;
     })
   }
+
+  findAllProdutos() {
+    this.produtoService.findAllByProdutos().subscribe((resp: Produto[]) => {
+      this.listaDeProdutos = resp;
+    })
+  }
+
+
 }

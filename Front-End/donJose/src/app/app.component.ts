@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Chart } from 'chart.js';
 import { AuthService } from './service/auth.service';
 
 @Component({
@@ -6,11 +7,13 @@ import { AuthService } from './service/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent  {
 
+  
   constructor(
-  public auth:AuthService
-  ) {}
+    public auth: AuthService
+  ) { }
+
+  
   title = 'donJose';
 }
-
