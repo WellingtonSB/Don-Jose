@@ -33,15 +33,23 @@ public class ClienteService {
 	
 	
 	public Optional<Cliente> CadastrarCliente(Cliente cliente) {
-		//Cliente infoEndereco = cepService.buscaEnderecoPorCep(cliente.getCep());
-		
 		
 		if (clienteRepository.findByEmail(cliente.getEmail()).isPresent() && cliente.getId() == 0) {
 			return null;
 		}
 		
+		Cliente infoEndereco = cepService.buscaEnderecoPorCep(cliente.getCep());
+		cliente.setBairro(infoEndereco.getBairro());
+		cliente.setLocalidade(infoEndereco.getLocalidade());
+		cliente.setUf(infoEndereco.getUf());
+		cliente.setLogradouro(infoEndereco.getLogradouro());
+
+		if (cliente.getComplemento() == null) {
+			cliente.setComplemento(infoEndereco.getComplemento());
+		}
 		
-		
+		cliente.setNumero(infoEndereco.getNumero());
+	
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 		String senhaEncoder = encoder.encode(cliente.getSenha());

@@ -1,0 +1,119 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <ul class="custom-nav nav nav-pills mb-5">
+          <li class="nav-item w-50">
+            <a class="nav-link text-sm disabled" [routerLink]="['/pagamento',pedido.id]">
+              Endereço
+            </a>
+          </li>
+          <li class="nav-item w-25">
+            <a class="nav-link text-sm active" [routerLink]="['/forma-pagamento',pedido.id]">
+              Forma de pagamento
+            </a>
+          </li>
+          <li class="nav-item w-25">
+            <a class="nav-link text-sm disabled" [routerLink]="['/finalizar-pagamento',pedido.id]">
+              Resumo da compra
+            </a>
+          </li>
+        </ul>
+        <div class="mb-5">
+          <div id="accordion" role="tablist">
+            <div class="block mb-3">
+              <div class="block-header" id="headingOne" role="tab"><strong><a class="accordion-link "
+                    data-bs-toggle="collapse" href="#collapseOne" aria-expanded="true"
+                    aria-controls="collapseOne">Cartão de credito/debito</a></strong></div>
+              <div class="collapse show" id="collapseOne" role="tabpanel" aria-labelledby="headingOne"
+                data-parent="#accordion">
+                <div class="block-body">
+                  <form action="#">
+                    <div class="row">
+                      <div class="mb-4 col-md-6">
+                        <label class="form-label" for="card-name">Nome do titular</label>
+                        <input class="form-control" type="text" name="card-name" placeholder="Nome do titular"
+                          id="card-name">
+                      </div>
+                      <div class="mb-4 col-md-6">
+                        <label class="form-label" for="card-number">Numero do cartão</label>
+                        <input class="form-control" type="text" name="card-number" placeholder="Numero do cartão"
+                          id="card-number">
+                      </div>
+                      <div class="mb-4 col-md-4">
+                        <label class="form-label" for="expiry-date">Data de validade</label>
+                        <input class="form-control" type="text" name="expiry-date" placeholder="MM/YY" id="expiry-date">
+                      </div>
+                      <div class="mb-4 col-md-4">
+                        <label class="form-label" for="cvv">CVC/CVV</label>
+                        <input class="form-control" type="text" name="cvv" placeholder="123" id="cvv">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="block mb-3">
+              <div class="block-header" id="headingTwo" role="tab"><strong><a class="accordion-link collapsed"
+                    data-bs-toggle="collapse" href="#collapseTwo" aria-expanded="false"
+                    aria-controls="collapseTwo">Paypal</a></strong>
+                  </div>
+              <div class="collapse" id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo"
+                data-parent="#accordion">
+                <div class="block-body py-5 d-flex align-items-center">
+                 <!--  <input type="radio" name="shippping" id="payment-method-1">
+                  <label class="ms-3" for="payment-method-1"><strong class="d-block text-uppercase mb-2"> PayPal</strong>
+                    <span class="text-muted text-sm">Lorem ipsum dolor sit amet, consectetur
+                      adipisicing elit. </span>
+                    </label> -->
+                    <div class="container mt-3">
+                      <div class="pay" #paypal></div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <div class="block mb-3">
+              <div class="block-header" id="headingThree" role="tab"><strong><a class="accordion-link collapsed"
+                    data-bs-toggle="collapse" href="#collapseThree" aria-expanded="false"
+                    aria-controls="collapseThree">Pix</a></strong></div>
+              <div class="collapse" id="collapseThree" role="tabpanel" aria-labelledby="headingThree"
+                data-parent="#accordion">
+                <div class="block-body py-5 d-flex align-items-center">
+                  <input type="radio" name="shippping" id="payment-method-2">
+                  <label class="ms-3" for="payment-method-2"><strong class="d-block text-uppercase mb-2">Pix</strong><span class="text-muted text-sm">Lorem ipsum dolor sit amet, consectetur
+                      adipisicing elit. </span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-5 d-flex justify-content-between flex-column flex-lg-row"><a class="btn btn-link text-muted"
+            href="checkout2.html"> <i class="fa fa-angle-left me-2"></i>Voltar</a><a
+            class="btn btn-dark" [routerLink]="['/finalizar-pagamento',pedido.id]">Continue to order review<i
+              class="fa fa-angle-right ms-2"></i></a></div>
+      </div>
+      <div class="col-lg-4">
+        <div class="block mb-5">
+          <div class="block-header">
+            <h6 class="text-uppercase mb-0">Resumo da compra</h6>
+          </div>
+          <div class="block-body bg-light pt-1">
+            <p class="text-sm">O envio e os custos adicionais são calculados com base nos valores que você
+              inseriu.</p>
+            <ul class="order-summary mb-0 list-unstyled">
+              <li class="order-summary-item"><span>Subtotal </span><span>R$ {{pedido.valorTotal}}</span>
+              </li>
+              <li class="order-summary-item"><span>Presente </span><span>R$ 0</span></li>
+              <li class="order-summary-item"><span>Frete </span><span>R$ 10.00</span></li>
+              <li class="order-summary-item border-0">
+                <span>Total</span>
+                <strong class="order-summary-total">R$ {{pedido.valorTotal}}</strong>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

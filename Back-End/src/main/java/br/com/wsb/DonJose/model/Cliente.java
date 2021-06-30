@@ -20,7 +20,7 @@ public class Cliente {
 
 	@Column(name = "nome", nullable = false)
 	private String nome;
-
+		
 	@Column(name = "celular", nullable = false)
 	@Size(max = 11)
 	private String celular;
@@ -36,16 +36,18 @@ public class Cliente {
 	@Column(name = "senha")
 	private String senha;
 	
-	@Column(name = "dataNascimento")
+	
+	@Column(name = "dataNascimento",nullable = false)
 	private String dataNascimento;
 
+	@Column(name = "foto")
 	private String foto;
 
 	@Column(name = "logradouro")
 	@ApiModelProperty(hidden = true)
 	private String logradouro;
 
-
+	
 	@Column(name = "numero")
 	private String numero;
 
@@ -65,9 +67,8 @@ public class Cliente {
 	@ApiModelProperty(hidden = true)
 	private String uf;
 
-	@Column(name = "cep")
-	@Pattern(regexp = "[0-9]{5}-[0-9]{3}")
-	@NotNull
+	@Column(name = "cep",nullable = false)
+	@Pattern(regexp = "[0-9]{5}[0-9]{3}")
 	private String cep;
 
 	@OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
@@ -80,6 +81,33 @@ public class Cliente {
 	@JsonIgnoreProperties("cliente")
 	private Carrinho carrinho;
 
+	//viaCEP
+	public Cliente() {
+	}
+
+	public Cliente(String logradouro,String numero,String complemento,String bairro,String localidade,String uf,String cep) {
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.localidade = localidade;
+		this.uf = uf;
+		this.cep = cep;
+	}
+	
+	@Override
+    public String toString() {
+        return "Cliente{" +
+                "cep='" + cep + '\'' +
+                ", logradouro='" + logradouro + '\'' +
+                ", complemento='" + complemento + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", estado='" + localidade + '\'' +
+                ", numero='" + numero + '\'' +
+                '}';
+    }
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -215,6 +243,7 @@ public class Cliente {
 	public void setCarrinho(Carrinho carrinho) {
 		this.carrinho = carrinho;
 	}
+
 
 	
 }

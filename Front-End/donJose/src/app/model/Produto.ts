@@ -9,6 +9,7 @@ export class Produto{
     public img : String
     public preco : number
     public plu : number
+    public promocao:number
     public estoque : number
     public qtdPedidoProduto: number
     public categoria: Categoria

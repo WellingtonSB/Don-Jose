@@ -1,92 +1,285 @@
-<section class="section product-detail">
-  <div class="details container">
-    <div class="left">
-      <div class="main">
-        <img src="{{produto.img}}" alt={{produto.nome}} />
+<section class="product-details">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="row">
+        <div class="col-lg-6">
+          <img class="img-modal" src="{{produto.img}}" alt={{produto.nome}} />
+        </div>
+        <div class="col-lg-6 d-flex align-items-center">
+          <div>
+            <div class="mb-4 mt-4">
+              <div class="col-8">
+                <h2 class="mt-lg-1 ">{{produto.nome}}</h2>
+              </div>
+              <div class="col-2">
+                <span>plu {{produto.plu}}</span>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between mb-4">
+              <ul class="list-inline mb-2 mb-sm-0">
+                <li class="list-inline-item h4 fw-light mb-0">R$ {{produto.preco}}</li>
+                <li class="list-inline-item text-muted fw-light">
+                  <del *ngIf='produto.promocao!=0'>{{produto.promocao}}% de desconto</del>
+                </li>
+              </ul>
+              <div class="d-flex align-items-center">
+                <ul class="list-inline me-2 mb-0">
+                  <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
+                  <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
+                  <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
+                  <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
+                  <li class="list-inline-item me-0"><i class="fa fa-star text-gray-300"></i></li>
+                </ul><span class="text-muted text-uppercase text-sm">2 avaliações</span>
+              </div>
+            </div>
+            <p class="mb-4 text-muted">{{produto.descricao}}
+            </p>
+            <form action="#">
+              <div class="row">
+                <div class="col-sm-6 col-lg-12 detail-option mb-3">
+                  <h6 class="detail-option-heading">Tamanho <span>(obrigatorio)</span></h6>
+                  <label class="btn btn-sm btn-outline-secondary detail-option-btn-label " for="size_0"> 2kg
+                    <input class="input-invisible " type="radio" name="size" value="value_0" id="size_0" required>
+                  </label>
+                  <label class="btn btn-sm btn-outline-secondary detail-option-btn-label" for="size_1"> 5kg
+                    <input class="input-invisible" type="radio" name="size" value="value_1" id="size_1" required>
+                  </label>
+                  <label class="btn btn-sm btn-outline-secondary detail-option-btn-label" for="size_2"> 15kg
+                    <input class="input-invisible" type="radio" name="size" value="value_2" id="size_2" required>
+                  </label>
+                </div>
+                <div class="col-12 col-lg-6 detail-option mb-5">
+                  <label class="detail-option-heading fw-bold">Quantidade <span>({{produto.estoque}}
+                      disp.)</span></label>
+                  <input [(ngModel)]='produto.qtdPedidoProduto' class="form-control detail-quantity" name="items"
+                    type="number" value="1">
+                </div>
+              </div>
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <button class="btn btn-dark btn-lg mb-1" type="submit" (click)='comprarAgora(produto.id, idPedido)'>
+                    <i class="fa fa-shopping-cart me-2"></i>
+                    Comprar</button>
+                </li>
+                <li class="list-inline-item"><a class="btn btn-outline-secondary mb-1"  (click)='adicionaItemCarrinho(produto.id, idCarrinho)'> <i class="far fa-heart me-2"></i>Adicionar
+                    ao carrinho</a></li>
+              </ul>
+            </form>
+          </div>
+        </div>
       </div>
-      <div class="thumbnails">
-        <div class="thumbnail">
-          <img src="{{produto.img}}" alt={{produto.nome}} />
-        </div>
-        <div class="thumbnail">
-          <img src="{{produto.img}}" alt={{produto.nome}} />
-        </div>
-        <div class="thumbnail">
-          <img src="{{produto.img}}" alt={{produto.nome}} />
-        </div>
-        <div class="thumbnail">
-          <img src="{{produto.img}}" alt={{produto.nome}} />
-        </div>
-      </div>
-    </div>
-    <div class="right">
-      <h1>{{produto.nome}}</h1>
-      <div class="star">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" fill="currentColor" class="bi bi-star-fill"
-          viewBox="0 0 16 16">
-          <path
-            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" fill="currentColor" class="bi bi-star-fill"
-          viewBox="0 0 16 16">
-          <path
-            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" fill="currentColor" class="bi bi-star-fill"
-          viewBox="0 0 16 16">
-          <path
-            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" fill="currentColor" class="bi bi-star-fill"
-          viewBox="0 0 16 16">
-          <path
-            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-        </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" fill="currentColor" class="bi bi-star-fill"
-          viewBox="0 0 16 16">
-          <path
-            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
-        </svg>
-      </div><br>
-      <div class="price">R$ {{produto.preco}}</div>
-      <h4 *ngIf="produto.estoque !=0">Estoque Disponivel ({{produto.estoque}} unid.)</h4>
-      <h4 *ngIf="produto.estoque == 0">Estoque indisponivel</h4>
-      <form class="form">
-        <button class="addCart" (click)='adicionaItemCarrinho(produto.id, idPedido)'>Adicionar ao carrinho </button><br>
-        <button class="addCart" (click)='comprarAgora(produto.id, idPedido)'>Comprar Agora</button>
-      </form>
-      <h4>Descricao</h4>
-      <p>{{produto.descricao}}</p>
-      <a href="#">Ver os meios de pagamento</a>
     </div>
   </div>
 </section>
 
-<!-- Related Products -->
-
-<section class="section related-products">
-  <div class="title">
-    <h2>Produtos Relacionados</h2>
-    <span>Veja mais algumas de nossas delicias</span>
+<section class="infos">
+  <div class="container">
+    <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist">
+      <li class="nav-item"><a class="nav-link detail-nav-link active" data-bs-toggle="tab" href="#description"
+          role="tab">Descrição</a></li>
+<!--       <li class="nav-item"><a class="nav-link detail-nav-link" data-bs-toggle="tab" href="#additional-information"
+          role="tab">Informações adicionais</a></li> -->
+      <li class="nav-item"><a class="nav-link detail-nav-link" data-bs-toggle="tab" href="#reviews"
+          role="tab">avaliações</a></li>
+    </ul>
+    <div class="tab-content py-4">
+      <div class="tab-pane active px-3" id="description" role="tabpanel">
+        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. LOLUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+          ut aliquip ex ea commodo consequat. LOLDuis aute irure dolor in reprehenderit in voluptate velit esse cillum
+          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+          deserunt mollit anim id est laborum.</p>
+        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. LOLUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+          ut aliquip ex ea commodo consequat. LOLDuis aute irure dolor in reprehenderit in voluptate velit esse cillum
+          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+          deserunt mollit anim id est laborum.</p>
+      </div>
+<!--       <div class="tab-pane" id="additional-information" role="tabpanel">
+        <div class="row">
+          <div class="col-lg-6">
+            <table class="table text-sm">
+              <tbody>
+                <tr>
+                  <th class="text-uppercase fw-normal border-0">Product #</th>
+                  <td class="text-muted border-0">Lorem ipsum dolor sit amet</td>
+                </tr>
+                <tr>
+                  <th class="text-uppercase fw-normal ">Available packaging</th>
+                  <td class="text-muted ">LOLDuis aute irure dolor in reprehenderit</td>
+                </tr>
+                <tr>
+                  <th class="text-uppercase fw-normal ">Weight</th>
+                  <td class="text-muted ">dolor sit amet</td>
+                </tr>
+                <tr>
+                  <th class="text-uppercase fw-normal ">Sunt in culpa qui</th>
+                  <td class="text-muted ">Lorem ipsum dolor sit amet</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-lg-6">
+            <table class="table text-sm">
+              <tbody>
+                <tr>
+                  <th class="text-uppercase fw-normal border-0">Weight</th>
+                  <td class="text-muted border-0">dolor sit amet </td>
+                </tr>
+                <tr>
+                  <th class="text-uppercase fw-normal ">Sunt in culpa qui</th>
+                  <td class="text-muted ">Lorem ipsum dolor sit amet </td>
+                </tr>
+                <tr>
+                  <th class="text-uppercase fw-normal ">Product #</th>
+                  <td class="text-muted ">Lorem ipsum dolor sit amet </td>
+                </tr>
+                <tr>
+                  <th class="text-uppercase fw-normal ">Available packaging</th>
+                  <td class="text-muted ">LOLDuis aute irure dolor in reprehenderit </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div> -->
+      <div class="tab-pane" id="reviews" role="tabpanel">
+        <div class="row">
+          <div class="col-lg-10 col-xl-9">
+            <div class="review d-flex">
+              <div class="flex-shrink-0 text-center me-4 me-xl-5"><img class="review-image"
+                  src="https://d19m59y37dris4.cloudfront.net/sell/2-0/img/person-1.jpg" alt="Han Solo"><span
+                  class="text-uppercase text-muted">Abr 2021</span></div>
+              <div>
+                <h5 class="mt-2 mb-1">Han Solo</h5>
+                <div class="mb-2"><i class="fa fa-xs fa-star text-warning"></i><i
+                    class="fa fa-xs fa-star text-warning"></i><i class="fa fa-xs fa-star text-warning"></i><i
+                    class="fa fa-xs fa-star text-warning"></i><i class="fa fa-xs fa-star text-warning"></i>
+                </div>
+                <p class="text-muted">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure ratione
+                  voluptatibus laudantium debitis ducimus.
+                  Culpa ullam, voluptas adipisci minus consectetur harum illum ducimus ex quod et non aspernatur optio
+                  eligendi.
+                </p>
+              </div>
+            </div>
+            <div class="review d-flex">
+              <div class="flex-shrink-0 text-center me-4 me-xl-5"><img class="review-image"
+                  src="https://d19m59y37dris4.cloudfront.net/sell/2-0/img/person-2.jpg" alt="Luke Skywalker"><span
+                  class="text-uppercase text-muted">Jan 2021</span></div>
+              <div>
+                <h5 class="mt-2 mb-1">Luke Skywalker</h5>
+                <div class="mb-2"><i class="fa fa-xs fa-star text-warning"></i><i
+                    class="fa fa-xs fa-star text-warning"></i><i class="fa fa-xs fa-star text-warning"></i><i
+                    class="fa fa-xs fa-star text-warning"></i><i class="fa fa-xs fa-star text-gray-200"></i>
+                </div>
+                <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Sequi possimus nihil ipsum aspernatur repudiandae tenetur praesentium aliquid atque assumenda
+                  voluptatibus.
+                  Ipsam quae eius, possimus porro delectus deserunt dolorum nemo ex.. </p>
+              </div>
+            </div>
+            <div class="review d-flex">
+              <div class="flex-shrink-0 text-center me-4 me-xl-5"><img class="review-image"
+                  src="https://d19m59y37dris4.cloudfront.net/sell/2-0/img/person-3.jpg" alt="Princess Leia"><span
+                  class="text-uppercase text-muted">Dez 2020</span></div>
+              <div>
+                <h5 class="mt-2 mb-1">Princess Leia</h5>
+                <div class="mb-2"><i class="fa fa-xs fa-star text-warning"></i><i
+                    class="fa fa-xs fa-star text-warning"></i><i class="fa fa-xs fa-star text-warning"></i><i
+                    class="fa fa-xs fa-star text-gray-200"></i><i class="fa fa-xs fa-star text-gray-200"></i>
+                </div>
+                <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex dicta, praesentium
+                  cumque molestiae nihil culpa necessitatibus adipisci atque inventore alias.
+                  Eius, illo a quaerat amet nisi error dolores voluptatum labore.. </p>
+              </div>
+            </div>
+            <div class="review d-flex">
+              <div class="flex-shrink-0 text-center me-4 me-xl-5"><img class="review-image"
+                  src="https://d19m59y37dris4.cloudfront.net/sell/2-0/img/person-4.jpg" alt="Jabba Hut"><span
+                  class="text-uppercase text-muted">Dec 2018</span></div>
+              <div>
+                <h5 class="mt-2 mb-1">Jabba Hut</h5>
+                <div class="mb-2"><i class="fa fa-xs fa-star text-warning"></i><i
+                    class="fa fa-xs fa-star text-warning"></i><i class="fa fa-xs fa-star text-warning"></i><i
+                    class="fa fa-xs fa-star text-warning"></i><i class="fa fa-xs fa-star text-warning"></i>
+                </div>
+                <p class="text-muted">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Sit nobis, accusamus laudantium aspernatur fugiat quas consequuntur sapiente quam unde. Aliquid
+                  accusamus tenetur voluptatibus, ab optio porro inventore. Non, ipsa numquam!. </p>
+              </div>
+            </div>
+            <div class="py-5 px-3">
+              <h5 class="text-uppercase mb-4">Deixe sua avaliação!</h5>
+              <form class="form" id="contact-form" method="post" action="contact.php">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="mb-4">
+                      <label class="form-label" for="name">Nome *</label>
+                      <input class="form-control" type="text" name="name" id="name" placeholder="Digite seu nome"
+                        required="required">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="mb-4">
+                      <label class="form-label" for="rating">Sua nota *</label>
+                      <select class="custom-select focus-shadow-0" name="rating" id="rating">
+                        <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; (5/5)</option>
+                        <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734; (4/5)</option>
+                        <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734; (3/5)</option>
+                        <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734; (2/5)</option>
+                        <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734; (1/5)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label class="form-label" for="email">Email *</label>
+                  <input class="form-control" type="email" name="email" id="email" placeholder="Digite seu  email"
+                    required="required">
+                </div>
+                <div class="mb-4">
+                  <label class="form-label" for="review">Avaliação *</label>
+                  <textarea class="form-control" rows="4" name="review" id="review" placeholder="Sua avaliação"
+                    required="required"></textarea>
+                </div>
+                <button class="btn btn-outline-dark" type="submit">Publicar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="product-layout container">
-    <div class="product" *ngFor='let item of listaDeProdutos'>
-      <div class="img-container">
-        <img src="{{item.img}}" alt="{{item.nome}}" />
-        <div class="addCart">
-          <a (click)='adicionaItemCarrinho(item.id, idPedido)'><i class="fas fa-shopping-cart"></i></a>
-        </div>
-        <ul class="side-icons">
-          <span><i class="far fa-heart"></i></span>
-          <span [routerLink]="['/produtos-detalhe',item.id]"><i class="fas fa-sliders-h"></i></span>
-        </ul>
+</section>
+
+<section class="my">
+  <div class="container">
+    <header class="text-center">
+      <h6 class="text-uppercase mb-5">Você tambem pode gostar...</h6>
+    </header>
+    <div class="row">
+      <!-- product-->
+      <div class="col-lg-3 col-md-4 col-6" *ngFor='let prod of listaDeProdutos| slice:0:4;'>
+          <div class="product">
+            <div class="product-image">
+              <div class="ribbon ribbon-info" *ngIf='prod.promocao!=0'>{{prod.promocao}}% de desconto</div>
+              <img class="img-fluid" src="{{prod.img}}" alt="{{prod.nome}}" />
+              <div class="product-hover-overlay"><a class="product-hover-overlay-link" [routerLink]="['/produtos-detalhe',prod.id]" ></a>
+                <div class="product-hover-overlay-buttons"><a class="btn btn-dark btn-buy" [routerLink]="['/produtos-detalhe',prod.id]" ><i
+                      class="fa-search fa"></i><span class="btn-buy-label ms-2">Ver</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="py-2">
+              <p class="text-muted text-sm mb-1">{{prod.categoria.nome}}</p>
+              <h3 class="h6 text-uppercase mb-1"><a class="text-dark" [routerLink]="['/produtos-detalhe',prod.id]">{{prod.nome}}</a></h3><span
+                class="text-muted">R$ {{prod.preco}}</span>
+            </div>
+          </div>
       </div>
-      <div class="bottom">
-        <a href="">{{item.nome}}</a>
-        <div class="price">
-          <span>R$ {{item.preco}}</span>
-        </div>
-      </div>
+      <!-- /product-->
     </div>
   </div>
 </section>

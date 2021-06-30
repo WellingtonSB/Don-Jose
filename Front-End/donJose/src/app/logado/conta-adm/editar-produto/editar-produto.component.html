@@ -30,8 +30,8 @@
                                     style="width: 1050px;">
                                     <colgroup>
                                         <col name="el-table_10_column_46" width="48">
-                                        <col name="el-table_10_column_47" width="114">
-                                        <col name="el-table_10_column_48" width="331">
+                                        <col name="el-table_10_column_47" width="331">
+
                                         <col name="el-table_10_column_49" width="331">
                                         <col name="el-table_10_column_50" width="82">
                                         <col name="el-table_10_column_51" width="82">
@@ -50,10 +50,7 @@
                                                 class="el-table_10_column_47 is-leaf text-center">
                                                 <div class="cell">Nome</div>
                                             </th>
-                                            <th colspan="1" rowspan="1"
-                                                class="el-table_10_column_48 is-leaf text-center">
-                                                <div class="cell">Descricao</div>
-                                            </th>
+
                                             <th colspan="1" rowspan="1"
                                                 class="el-table_10_column_49 is-leaf text-center">
                                                 <div class="cell">Imagem</div>
@@ -88,8 +85,7 @@
                                     style="width: 1050px;" *ngFor='let prod of listaDeProdutos'>
                                     <colgroup>
                                         <col name="el-table_10_column_46" width="48">
-                                        <col name="el-table_10_column_47" width="114">
-                                        <col name="el-table_10_column_48" width="331">
+                                        <col name="el-table_10_column_47" width="331">
                                         <col name="el-table_10_column_49" width="331">
                                         <col name="el-table_10_column_50" width="82">
                                         <col name="el-table_10_column_51" width="82">
@@ -107,10 +103,9 @@
                                             <td rowspan="1" colspan="1" class="el-table_10_column_47 text-center">
                                                 <div class="cell">{{prod.nome}}</div>
                                             </td>
-                                            <td rowspan="1" colspan="1" class="el-table_10_column_48 text-wrap text-center">
-                                                <div class="cell">{{prod.descricao}}</div>
-                                            </td>
-                                            <td rowspan="1" colspan="1" class="el-table_10_column_49 text-wrap text-center">
+
+                                            <td rowspan="1" colspan="1"
+                                                class="el-table_10_column_49 text-wrap text-center">
                                                 <div class="cell">{{prod.img}}</div>
                                             </td>
                                             <td rowspan="1" colspan="1" class="el-table_10_column_50 text-center">
@@ -175,6 +170,9 @@
                                                 <label>Estoque</label>
                                                 <input type="text" class="form-control mb-2" name="estoque"
                                                     placeholder="Estoque" [(ngModel)]="produto.estoque">
+                                                <label>Promocao</label>
+                                                <input type="text" class="form-control mb-2" name="estoque"
+                                                    placeholder="Promocao" [(ngModel)]="produto.promocao">
                                                 <label>Categoria</label>
                                                 <select [(ngModel)]='idCategoria' class="form-control texto-input"
                                                     name="categoria" id="categoria" (change)='findByIdCategoria()'>
@@ -196,19 +194,22 @@
                                             <div class="form-group" *ngIf='editar!=false'>
                                                 <label>Nome</label>
                                                 <input type="text" class="form-control mb-2" name="nome"
-                                                    placeholder="Nome do produto" [(ngModel)]="produto.nome">
+                                                    placeholder="Nome do produto" value="{{produto.nome}}" [(ngModel)]="produto.nome">
                                                 <label>Descrição</label>
                                                 <input type="text" class="form-control mb-2" name="descricao"
-                                                    placeholder="Descrição do produto" [(ngModel)]="produto.descricao">
+                                                    placeholder="Descrição do produto" value="{{produto.descricao}}" [(ngModel)]="produto.descricao">
                                                 <label>Imagem</label>
                                                 <input type="text" class="form-control mb-2" name="imagem"
-                                                    placeholder="Url do imagem do produto" [(ngModel)]="produto.img">
+                                                    placeholder="Url do imagem do produto" [(ngModel)]="produto.img" value="{{produto.img}}">
                                                 <label>Preco</label>
                                                 <input type="text" class="form-control mb-2" name="nome"
-                                                    placeholder="Preço" [(ngModel)]="produto.preco">
+                                                    placeholder="Preço" [(ngModel)]="produto.preco" value="{{produto.preco}}">
                                                 <label>Estoque</label>
                                                 <input type="text" class="form-control mb-2" name="estoque"
-                                                    placeholder="Estoque" [(ngModel)]="produto.estoque">
+                                                    placeholder="Estoque" [(ngModel)]="produto.estoque" value="{{produto.estoque}}">
+                                                <label>Promocao</label>
+                                                <input type="text" class="form-control mb-2" name="estoque"
+                                                    placeholder="Promoção" [(ngModel)]="produto.promocao" value="{{produto.promocao}}">
                                                 <label>Categoria</label>
                                                 <select [(ngModel)]='idCategoria' class="form-control texto-input"
                                                     name="categoria" id="categoria" (change)='findByIdCategoria()'>

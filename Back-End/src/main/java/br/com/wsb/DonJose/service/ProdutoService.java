@@ -24,6 +24,7 @@ public class ProdutoService {
 	double a = 0;
 	int posicao = 0; 
 
+	
 	public Produto cadastrarProduto(Produto produto) {
 		List<Produto> produtos = produtoRepository.findAll();
 		int last = produtos.size() - 1;
@@ -46,7 +47,7 @@ public class ProdutoService {
 
 		if(produtoExistente.isPresent() && pedidoExistente.isPresent() && produtoExistente.get().getEstoque() == 0) {
 			System.out.println("estoque vazio!");
-			
+			return null;
 		}
 		
 		
@@ -195,6 +196,10 @@ public class ProdutoService {
 
 	}
 
+	
+	
+	
+	
 	public List<Produto> pesquisaPorIdDeProdutoCarrinho(long idCarrinho, String nome) {
 		Optional<Carrinho> carrinhoExistente = carrinhoRepository.findById(idCarrinho);
 

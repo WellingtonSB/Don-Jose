@@ -35,6 +35,7 @@ public class Categoria {
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date data = new java.sql.Date(System.currentTimeMillis());
 	
+	private int totalProdutos;
 	
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("categoria")
@@ -72,4 +73,13 @@ public class Categoria {
 		this.data = data;
 	}
 
+	public int getTotalProdutos() {
+		return totalProdutos;
+	}
+
+	public void setTotalProdutos(int totalProdutos) {
+		this.totalProdutos = totalProdutos;
+	}
+	
+	
 }

@@ -2,9 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { CarrinhoComponent } from './logado/carrinho/carrinho.component';
-import { ContaComponent } from './logado/conta/conta.component';
+import { ContaComponent } from './logado/conta-adm/conta.component';
 
 import { DetalhesProdutosComponent } from './logado/detalhes-produtos/detalhes-produtos.component';
+import { FinalizarPedidoComponent } from './logado/pagamento/finalizar-pedido/finalizar-pedido.component';
+import { FinishComponent } from './logado/pagamento/finish/finish.component';
+import { FormaPagamentoComponent } from './logado/pagamento/forma-pagamento/forma-pagamento.component';
+import { PagamentoComponent } from './logado/pagamento/pagamento.component';
 import { ProdutosComponent } from './logado/produtos/produtos.component';
 import { SingInComponent } from './sing-in/sing-in.component';
 import { SingUpComponent } from './sing-up/sing-up.component';
@@ -18,7 +22,12 @@ const routes: Routes = [
   { path: 'products', component: ProdutosComponent },
   { path: 'carrinho', component: CarrinhoComponent },
   { path: 'produtos-detalhe/:id', component: DetalhesProdutosComponent },
-  { path: 'conta', component: ContaComponent }
+  { path: 'conta', component: ContaComponent },
+  { path: 'pagamento/:id', component: PagamentoComponent, },
+  { path: 'forma-pagamento/:id', component: FormaPagamentoComponent },
+  { path: 'finalizar-pagamento/:id', component: FinalizarPedidoComponent},
+  { path: 'pagamento-realizado/:id',component:FinishComponent}
+
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 package br.com.wsb.DonJose.model;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,14 +12,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Digits;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -39,12 +41,13 @@ public class Pedido {
 	
 	private int numeroPedido;
 	
+	@Digits(integer = 5, fraction = 2)
 	private double valorTotal;
 	
 	private int qtdProduto;
 	
 	@ManyToMany(mappedBy = "pedidos", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnoreProperties({"nome", "descricao", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "carrinho"})
+	@JsonIgnoreProperties({"nome", "descricao", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "carrinho","promocao"})
 	private List<Produto> produtos = new ArrayList<>();
 
 	@OneToOne
@@ -117,6 +120,5 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
-	
 	
 }

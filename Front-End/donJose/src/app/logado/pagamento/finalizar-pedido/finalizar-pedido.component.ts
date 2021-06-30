@@ -6,15 +6,12 @@ import { PedidoService } from 'src/app/service/pedido.service';
 import { ProdutoService } from 'src/app/service/produto.service';
 import { environment } from 'src/environments/environment.prod';
 
-
-
 @Component({
-  selector: 'app-carrinho',
-  templateUrl: './carrinho.component.html',
-  styleUrls: ['./carrinho.component.css']
+  selector: 'app-finalizar-pedido',
+  templateUrl: './finalizar-pedido.component.html',
+  styleUrls: ['./finalizar-pedido.component.css']
 })
-export class CarrinhoComponent implements OnInit {
-
+export class FinalizarPedidoComponent implements OnInit {
 
   idCarrinho = environment.carrinho
   idPedido = environment.pedidos
@@ -72,34 +69,6 @@ export class CarrinhoComponent implements OnInit {
     this.pedidoService.findByIdPedido(environment.pedidos).subscribe((resp: Pedido) => {
       this.pedido = resp;
     })
-  }
-
-  removerDoCarrinho(idProduto: number, idPedido: number) {
-    this.pedidoService.removerItemDoCarrinho(idProduto, idPedido).subscribe(() => {
-      //alert('Item removido do carrinho!');
-      this.findByIdProdutosCarrinho();
-      this.findByIdPedido();
-    })
-  }
-
-
-  totalProdutos(idProduto: number, idPedido: number) {
-    
-    this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
-      this.pedido.qtdProduto = this.pedido.qtdProduto + 1
-      this.totalPrd()
-      this.findByIdProdutosCarrinho();
-      this.findByIdPedido();
-    })
-  }
-
-  totalPrd(){
-    this.valorCarrinho = 0
-  
-    for(let item of this.listaDeProdutos){
-      this.valorCarrinho = this.valorCarrinho + item.preco
-    }
-  }
+  } 
 
 }
-

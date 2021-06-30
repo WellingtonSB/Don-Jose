@@ -44,6 +44,7 @@ export class ProdutosComponent implements OnInit {
   findAllByProdutos() {
     this.produtoService.findAllByProdutos().subscribe((resp: Produto[]) => {
       this.listaDeProdutos = resp;
+      
     })
   }
 
@@ -57,6 +58,7 @@ export class ProdutosComponent implements OnInit {
   findByIdProduto(id: number) {
     this.produtoService.findByIdProduto(id).subscribe((resp: Produto) => {
       this.produto = resp;
+      console.log(id)
     })
   }
 
@@ -64,7 +66,6 @@ export class ProdutosComponent implements OnInit {
   findByIdCategoria() {
     this.categoriaService.findByIdCategoria(this.idCategoria).subscribe((resp: Categoria) => {
       this.categoria = resp;
-
     })
 
   }
@@ -73,28 +74,35 @@ export class ProdutosComponent implements OnInit {
   findAllByNomeProdutos(nome: string) {
     this.produtoService.findAllByNomeProdutos(nome).subscribe((resp: Produto[]) => {
       this.listaDeProdutos = resp;
-
     })
 
   }
 
-  comprarProduto(idProduto: number, idPedido: number){
-    this.produtoService.compraProduto(idProduto,idPedido).subscribe(()=>{
-      this.router.navigate(['/carrinho'])
-    })
+  comprarAgora(idProduto: number, idPedido: number) {
+    if (localStorage.getItem('token') != null) {
+      this.produtoService.compraProduto(idProduto,idPedido).subscribe(()=>{
+        this.router.navigate(['/carrinho'])
+        this.findAllByProdutos();
+      })
+    } else {
+      this.router.navigate(['/login'])
+    }
   }
 
 
-  /* ADICIONA PRODUTOS AO CARRINHO DO USUARIO */
-  adicionaItemCarrinho(idProduto: number, idPedido: number) {
-    this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
-      alert('Produto adicionado ao carrinho!');
-
-      this.findAllByProdutos();
-
-    })
-
+  
+  adicionaItemCarrinho(idProduto: number, idCarrinho: number) {
+    if (localStorage.getItem('token') != null) {
+      this.produtoService.adicionaItemCarrinho(idProduto, idCarrinho).subscribe(() => {
+        alert('Produto adicionado ao carrinho!');
+        this.findAllByProdutos();
+      })
+    } else {
+      this.router.navigate(['/login'])
+    }
   }
+
+
 
 }
 

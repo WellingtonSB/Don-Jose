@@ -11,6 +11,7 @@ export class Cliente {
     public senha: string
     public dataNascimento:string
     public foto: string
+    
     /* ViaCep */
     public cep: string
     public logradouro: string

@@ -72,4 +72,10 @@ export class PedidoService {
     return this.http.delete<Pedido>(`${this.endereco}/pedidos/produto_pedido/produtos/${idProduto}/pedidos/${idPedido}`, this.autorizacao);
   }
 
+  adicionarItemAoCarrinho(idProduto: number, idCarrinho: number): Observable<Produto> {
+    return this.http.put<Produto>(`${this.endereco}/pedidos/produto_lista/pedido/${idProduto}/carrinho/${idCarrinho}`, this.autorizacao);
+  }
+
+
+  
 }

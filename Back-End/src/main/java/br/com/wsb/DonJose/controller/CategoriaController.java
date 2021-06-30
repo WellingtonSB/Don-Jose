@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.wsb.DonJose.model.Categoria;
 import br.com.wsb.DonJose.repository.CategoriaRepository;
+import io.swagger.annotations.ApiOperation;
 
 
 @RestController
@@ -27,12 +28,14 @@ public class CategoriaController {
 	@Autowired
 	private CategoriaRepository repository;
 	
+	@ApiOperation(value = "Busca por todas as categorias ")
 	@GetMapping
 	public ResponseEntity<List<Categoria>> findAllCategorias() {
 			
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
+	@ApiOperation(value = "Busca por uma categoria especifica via ID")
 	@GetMapping("/{id}")
 	public ResponseEntity<Categoria> findByIdCategoria(@PathVariable long id) {
 		
@@ -41,23 +44,27 @@ public class CategoriaController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
+	@ApiOperation(value = "Busca por uma categoria especifica via nome")
 	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<Categoria>> GetByNome(@PathVariable String nome) {
 		return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
 	}
 	
+	@ApiOperation(value = "Cria uma nova categoria")
 	@PostMapping
 	public ResponseEntity<Categoria> postCategoria(@RequestBody Categoria categoria) {
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(categoria));
 	}
 	
+	@ApiOperation(value = "Atualiza uma categoria ")
 	@PutMapping
 	public ResponseEntity<Categoria> putCategoria(@RequestBody Categoria categoria) {
 		
 		return ResponseEntity.ok(repository.save(categoria));
 	}
 	
+	@ApiOperation(value = "Exclui uma categoria")
 	@DeleteMapping("/{id}")
 	public void deleteCategoria(@PathVariable long id) {
 		

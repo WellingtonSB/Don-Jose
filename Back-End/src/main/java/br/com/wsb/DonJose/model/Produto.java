@@ -28,6 +28,7 @@ public class Produto {
 	private String img;
 
 	@NotNull
+	@Digits(integer = 5, fraction = 2)
 	private double preco;
 
 	private long plu;
@@ -37,6 +38,8 @@ public class Produto {
 
 	private int qtdPedidoProduto;
 
+	private double promocao;
+	
 	@ManyToOne
 	@JsonIgnoreProperties("produtos")
 	private Categoria categoria;
@@ -137,6 +140,14 @@ public class Produto {
 
 	public void setCarrinho(List<Carrinho> carrinho) {
 		this.carrinho = carrinho;
+	}
+
+	public double getPromocao() {
+		return promocao;
+	}
+
+	public void setPromocao(double promocao) {
+		this.promocao = promocao;
 	}
 
 	

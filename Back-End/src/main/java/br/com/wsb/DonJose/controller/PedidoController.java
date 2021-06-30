@@ -19,6 +19,7 @@ import br.com.wsb.DonJose.model.Pedido;
 import br.com.wsb.DonJose.model.Produto;
 import br.com.wsb.DonJose.repository.PedidoRepository;
 import br.com.wsb.DonJose.service.ProdutoService;
+import io.swagger.annotations.ApiOperation;
 
 
 
@@ -33,12 +34,14 @@ public class PedidoController {
 	@Autowired
 	private ProdutoService service;
 	
+	@ApiOperation(value = "Busca todos os pedidos")
 	@GetMapping
 	public ResponseEntity<List<Pedido>> findAllByPedidos() {
 		
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
+	@ApiOperation(value = "Busca por um pedido especifico via ID")
 	@GetMapping("/{id}")
 	public ResponseEntity<Pedido> findByIdPedido(@PathVariable long id) {
 		
@@ -47,34 +50,41 @@ public class PedidoController {
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
+	@ApiOperation(value = "Busca por um pedido especifico via numero do pedido")
 	@GetMapping("/numeroPedido/{numeroPedido}")
 	public ResponseEntity<List<Pedido>>FindByNumeroPedido(@PathVariable int numeroPedido){
 		return ResponseEntity.ok(repository.findByNumeroPedido(numeroPedido));
 	}
 	
+	@ApiOperation(value = "Busca por produtos contidos dentro do carrinho")
 	@GetMapping("/meuspedidos/{idPedido}")
 	public ResponseEntity<List<Produto>> findAllByProdutosCarrinho(@PathVariable long idPedido) {
 		
 		return ResponseEntity.ok(service.pesquisaPorProdutoNoCarrinho(idPedido));
 	}
 	
+	@ApiOperation(value = "Cria um novo pedido")
 	@PostMapping
 	public ResponseEntity<Pedido> postPedido(@RequestBody Pedido pedido) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(pedido));
 	}
 	
-	@PutMapping
-	public ResponseEntity<Pedido> putPedido(@RequestBody Pedido pedido) {
-		
-		return ResponseEntity.ok(repository.save(pedido));
+	@ApiOperation(value = "Adiciona um produto há um carrinho, criando um pedido ")
+	@PutMapping("/produto_lista/pedido/{idProduto}/carrinho/{idCarrinho}")
+	public ResponseEntity<Produto> adicionarProdutonoCarrinho(@PathVariable long idProduto,
+			@PathVariable long idCarrinho) {
+
+		return ResponseEntity.ok(service.adicionarProdutoNoCarrinho(idProduto, idCarrinho));
 	}
 	
+	@ApiOperation(value = "Deleta o pedido")
 	@DeleteMapping("/{id}")
 	public void deletePedido(@PathVariable long id) {
 		
 		repository.deleteById(id);
 	}
 	
+	@ApiOperation(value = "Demove um produto especifico do pedido")
 	@DeleteMapping("/produto_pedido/produtos/{idProduto}/pedidos/{idPedido}")
 	public void putProduto(@PathVariable long idProduto, @PathVariable long idPedido) {
 		

@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment.prod';
 export class DetalhesProdutosComponent implements OnInit {
 
   produto: Produto = new Produto()
+  idProduto: number
   listaDeProdutos: Produto[]
 
   categoria: Categoria = new Categoria()
@@ -36,22 +37,40 @@ export class DetalhesProdutosComponent implements OnInit {
 
   ngOnInit() {
     window.scroll(0, 0)
-    let id = this.route.snapshot.params['id'];
-    this.findAllByProdutos();
-    this.findByIdProduto(id)
+    this.idProduto = this.route.snapshot.params['id'];
+    this.findByIdProduto();
+    this.findAllCategoria();
   }
 
-  findByIdProduto(id: number) {
-    this.produtoService.findByIdProduto(id).subscribe((resp: Produto) => {
+
+  findByIdProduto() {
+    this.produtoService.findByIdProduto(this.idProduto).subscribe((resp: Produto) => {
       this.produto = resp
     })
   }
-
 
   findAllByProdutos() {
     this.produtoService.findAllByProdutos().subscribe((resp: Produto[]) => {
       this.listaDeProdutos = resp;
     })
+  }
+
+  findAllCategoria() {
+    this.categoriaService.findAllCategorias().subscribe((resp: Categoria[]) => {
+      this.listaDeCategoria = resp;
+      this.findAllByProdutos();
+    })
+  }
+
+  comprarAgora(idProduto: number, idPedido: number) {
+    if (localStorage.getItem('token') != null) {
+      this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
+        this.router.navigate(['/carrinho'])
+        this.findAllByProdutos();
+      })
+    } else {
+      this.router.navigate(['/login'])
+    }
   }
 
   adicionaItemCarrinho(idProduto: number, idCarrinho: number) {
@@ -65,16 +84,10 @@ export class DetalhesProdutosComponent implements OnInit {
     }
   }
 
-  comprarAgora(idProduto: number, idCarrinho: number) {
-    if (localStorage.getItem('token') != null) {
-      this.produtoService.adicionaItemCarrinho(idProduto, idCarrinho).subscribe(() => {
-        this.router.navigate(['/carrinho'])
-        this.findAllByProdutos();
-      })
-    } else {
-      this.router.navigate(['/login'])
-    }
-  }
+  /*  att(){
+     document.location.reload();
+   } */
+
 }
 
 
