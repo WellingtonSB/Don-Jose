@@ -68,7 +68,14 @@ export class FinalizarPedidoComponent implements OnInit {
   findByIdPedido() {
     this.pedidoService.findByIdPedido(environment.pedidos).subscribe((resp: Pedido) => {
       this.pedido = resp;
+      this.pedido.valorTotal = this.pedido.valorTotal + this.pedido.frete
     })
   } 
 
+  comprarProduto(pedido: Pedido){
+    this.pedidoService.putPedido(pedido).subscribe((resp: Pedido)=>{
+      this.pedido = resp;
+      this.pedido.status = 'Pedido criado'
+    })
+  }
 }

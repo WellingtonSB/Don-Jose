@@ -27,24 +27,4 @@ export class ClienteService {
     return this.http.get<Cliente[]>(`${this.api}/clientes`, this.autorizacao);
   }
 
-  findByIdListaDeDesejos(id: number): Observable<Carrinho> {
-
-    return this.http.get<Carrinho>(`${this.api}/carrinho/${id}`, this.autorizacao);
-  }
-
-  findAllByProdutosListaDeDesejos(id: number): Observable<Produto[]> {
-
-    return this.http.get<Produto[]>(`${this.api}/carrinho/carrinho/${id}`, this.autorizacao);
-  }
-
-  findAllByListaDeDesejos(): Observable<Carrinho[]> {
-
-    return this.http.get<Carrinho[]>(`${this.api}/carrinho`, this.autorizacao);
-  }
-
-  removerItemListaDeDesejos(idProduto: number, idCarrinho: number): Observable<Produto[]> {
-
-    return this.http.delete<Produto[]>(`${this.api}/carrinho/produto_lista/carrinho/${idProduto}/carrinho/${idCarrinho}`, this.autorizacao);
-  }
-
 }

@@ -88,13 +88,13 @@ public class ProdutoController {
 	}
 	
 	//ajustar logica, criar uma lista de desejos
-	@ApiOperation(value = "Adiciona o produto no carrinho(necessita de autorizacao por parte do cliente para processeguir com a compra)")
+	/*@ApiOperation(value = "Adiciona o produto no carrinho(necessita de autorizacao por parte do cliente para processeguir com a compra)")
 	@PutMapping("/produto_lista/produtos/{idProduto}/carrinho/{idCarrinho}")
 	public ResponseEntity<Produto> adicionarProdutonoCarrinho(@PathVariable long idProduto,
 			@PathVariable long idCarrinho) {
 
 		return ResponseEntity.ok(service.adicionarProdutoNoCarrinho(idProduto, idCarrinho));
-	}
+	}*/
 	
 	
 	@ApiOperation(value = "Deleta um produto")

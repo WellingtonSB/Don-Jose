@@ -44,7 +44,7 @@ export class ProdutosComponent implements OnInit {
   findAllByProdutos() {
     this.produtoService.findAllByProdutos().subscribe((resp: Produto[]) => {
       this.listaDeProdutos = resp;
-      
+
     })
   }
 
@@ -80,7 +80,7 @@ export class ProdutosComponent implements OnInit {
 
   comprarAgora(idProduto: number, idPedido: number) {
     if (localStorage.getItem('token') != null) {
-      this.produtoService.compraProduto(idProduto,idPedido).subscribe(()=>{
+      this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
         this.router.navigate(['/carrinho'])
         this.findAllByProdutos();
       })
@@ -89,11 +89,9 @@ export class ProdutosComponent implements OnInit {
     }
   }
 
-
-  
-  adicionaItemCarrinho(idProduto: number, idCarrinho: number) {
+  adicionaItemCarrinho(idProduto: number, idPedido: number) {
     if (localStorage.getItem('token') != null) {
-      this.produtoService.adicionaItemCarrinho(idProduto, idCarrinho).subscribe(() => {
+      this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
         alert('Produto adicionado ao carrinho!');
         this.findAllByProdutos();
       })

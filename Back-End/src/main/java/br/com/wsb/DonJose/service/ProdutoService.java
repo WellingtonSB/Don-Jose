@@ -1,5 +1,6 @@
 package br.com.wsb.DonJose.service;
 
+import java.time.LocalTime;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,6 @@ public class ProdutoService {
 
 	double a = 0;
 	int posicao = 0; 
-
 	
 	public Produto cadastrarProduto(Produto produto) {
 		List<Produto> produtos = produtoRepository.findAll();
@@ -41,22 +41,21 @@ public class ProdutoService {
 	}
 
 	public Produto compraProduto(long idProduto, long idPedido) {
-
+		
 		Optional<Produto> produtoExistente = produtoRepository.findById(idProduto);
 		Optional<Pedido> pedidoExistente = pedidoRepository.findById(idPedido);
 
 		if(produtoExistente.isPresent() && pedidoExistente.isPresent() && produtoExistente.get().getEstoque() == 0) {
 			System.out.println("estoque vazio!");
-			return null;
+			return null;//melhorar logica
 		}
 		
 		
-		if (produtoExistente.isPresent() && pedidoExistente.isPresent() && produtoExistente.get().getEstoque() >= 0
-				&& !(pedidoExistente.get().getProdutos().isEmpty())) {
+		if (produtoExistente.isPresent() && pedidoExistente.isPresent() && produtoExistente.get().getEstoque() >= 0 && !(pedidoExistente.get().getProdutos().isEmpty())) {
 
+			
 			produtoExistente.get().getPedidos().add(pedidoExistente.get());
 			
-
 			int contador = 0;
 
 			long[] vetor = new long[pedidoExistente.get().getProdutos().size()];
@@ -64,25 +63,34 @@ public class ProdutoService {
 			for(int i = 0; i < pedidoExistente.get().getProdutos().size(); i++) {
 
 				vetor[i] = pedidoExistente.get().getProdutos().get(i).getId();
-
+					
 				if (vetor[i] == produtoExistente.get().getId()) {
 					contador++;
-
 				}
-
 			}
 
 			pedidoExistente.get().setValorTotal(pedidoExistente.get().getValorTotal() - (produtoExistente.get().getPreco() * contador));
 
+			//re-ver utilidade
 			contador++;
 			
-			pedidoExistente.get().setNumeroPedido(pedidoExistente.get().getNumeroPedido()+1);
 			produtoExistente.get().setQtdPedidoProduto(contador);
+			
+			pedidoExistente.get().setNumeroPedido(pedidoExistente.get().getNumeroPedido()+1);		
 
 			produtoExistente.get().setEstoque(produtoExistente.get().getEstoque() - 1);
 
-			pedidoExistente.get().setValorTotal(pedidoExistente.get().getValorTotal()
-					+ (produtoExistente.get().getPreco() * produtoExistente.get().getQtdPedidoProduto()));
+			if(produtoExistente.get().getPromocao()!= 0) {
+				pedidoExistente.get().setValorTotal(pedidoExistente.get().getFrete()+pedidoExistente.get().getValorTotal()+(produtoExistente.get().getPreco() * produtoExistente.get().getQtdPedidoProduto()));
+				System.out.println("chamou o valor frete");
+				pedidoRepository.save(pedidoExistente.get());
+
+			}else {
+				pedidoExistente.get().setValorTotal(pedidoExistente.get().getValorTotal()+(produtoExistente.get().getPreco() * produtoExistente.get().getQtdPedidoProduto()));
+				System.out.println("nao chamou o valor frete");
+				pedidoRepository.save(pedidoExistente.get());
+			}
+		
 
 			produtoRepository.save(produtoExistente.get());
 			pedidoRepository.save(pedidoExistente.get());
@@ -98,20 +106,25 @@ public class ProdutoService {
 
 			produtoExistente.get().setEstoque(produtoExistente.get().getEstoque() - 1);
 
-			pedidoExistente.get().setValorTotal(pedidoExistente.get().getValorTotal()
-					+ (produtoExistente.get().getPreco() * produtoExistente.get().getQtdPedidoProduto()));
+			if(produtoExistente.get().getPromocao()!= 0) {
+				pedidoExistente.get().setValorTotal(pedidoExistente.get().getFrete()+pedidoExistente.get().getValorTotal()+(produtoExistente.get().getPreco() * produtoExistente.get().getQtdPedidoProduto()));
+				System.out.println("chamou o valor frete");
+			}else {
+				pedidoExistente.get().setValorTotal(pedidoExistente.get().getValorTotal()+(produtoExistente.get().getPreco() * produtoExistente.get().getQtdPedidoProduto()));
+				System.out.println("nao chamou o valor frete");
+			}
 
 			produtoRepository.save(produtoExistente.get());
 			pedidoRepository.save(pedidoExistente.get());
+
 			pedidoRepository.save(pedidoExistente.get()).getValorTotal();
 
 			return produtoRepository.save(produtoExistente.get());
-
 		}
-
 		return null;
 	}
 
+	
 	public void deletarProduto(long idProduto, long idPedido) {
 		
 		Optional<Produto> produtoExistente = produtoRepository.findById(idProduto);
@@ -133,9 +146,7 @@ public class ProdutoService {
 
 				if (vetor[i] == produtoExistente.get().getId()) {
 					contador++;
-
 				}
-
 			}
 
 			produtoExistente.get().setQtdPedidoProduto(contador - 1);
@@ -154,12 +165,12 @@ public class ProdutoService {
 			produtoRepository.save(produtoExistente.get());
 			pedidoRepository.save(pedidoExistente.get());
 			pedidoRepository.save(pedidoExistente.get()).getValorTotal();
-
 		}
 
 	}
 
-	public Produto adicionarProdutoNoCarrinho(long idProduto, long idCarrinho) {
+	
+	/*public Produto adicionarProdutoNoCarrinho(long idProduto, long idCarrinho) {
 		Optional<Produto> produtoExistente = produtoRepository.findById(idProduto);
 		Optional<Carrinho> carrinhoExistente = carrinhoRepository.findById(idCarrinho);
 
@@ -171,9 +182,7 @@ public class ProdutoService {
 			produtoRepository.save(produtoExistente.get());
 
 			return produtoRepository.save(produtoExistente.get());
-
 		}
-
 		return null;
 
 	}
@@ -196,10 +205,6 @@ public class ProdutoService {
 
 	}
 
-	
-	
-	
-	
 	public List<Produto> pesquisaPorIdDeProdutoCarrinho(long idCarrinho, String nome) {
 		Optional<Carrinho> carrinhoExistente = carrinhoRepository.findById(idCarrinho);
 
@@ -211,13 +216,9 @@ public class ProdutoService {
 
 				return produtoRepository.findAllByNomeContainingIgnoreCase(nome);
 			}
-
 		}
-
 		return null;
-
 	}
-	
 	
 	public List<Produto> pesquisaPorProdutoCarrinho(long idListaDeDesejo) {
 		Optional<Carrinho> carrinhoExistente = carrinhoRepository.findById(idListaDeDesejo);
@@ -228,9 +229,10 @@ public class ProdutoService {
 			return carrinhoRepository.save(carrinhoExistente.get()).getProdutos();
 		}
 		return null;
+	}*/
 
-	}
-
+	
+	
 	public List<Produto> pesquisaPorProdutoNoCarrinho(long idPedido) {
 		Optional<Pedido> pedidoExistente = pedidoRepository.findById(idPedido);
 
@@ -241,4 +243,16 @@ public class ProdutoService {
 		return null;
 	}
 
+	public Produto tempoPromocao(Produto produto) {
+		
+		//promocao com duracao de 1hr
+		LocalTime promocaoRelampago = LocalTime.MAX.plusHours(1);	
+		//promocao com duracao de 1 dia
+		LocalTime promocaoDiaria = LocalTime.MAX.plusHours(24);
+		//promocao com duracao especifica
+		LocalTime promocaoAgendada = LocalTime.now();//ajustar para between
+		
+		return produtoRepository.save(produto);
+	}
+	
 }

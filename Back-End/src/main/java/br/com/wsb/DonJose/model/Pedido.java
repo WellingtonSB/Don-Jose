@@ -41,9 +41,13 @@ public class Pedido {
 	
 	private int numeroPedido;
 	
+	
 	@Digits(integer = 5, fraction = 2)
 	private double valorTotal;
-	
+		
+	@Digits(integer = 5, fraction = 2)
+	private double frete=10;
+		
 	private int qtdProduto;
 	
 	@ManyToMany(mappedBy = "pedidos", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -120,5 +124,13 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
-	
+	public double getFrete() {
+		return frete;
+	}
+
+	public void setFrete(double frete) {
+		this.frete = frete;
+	}
+
+
 }

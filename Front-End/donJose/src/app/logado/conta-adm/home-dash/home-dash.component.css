@@ -1,15 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 
-:root {
-    --bs-font-sans-serif: "Inter", sans-serif;
-    --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
 
 *,
 *::before,
 *::after {
     box-sizing: border-box;
+    font-size: 12px;
 }
+
 
 @media (prefers-reduced-motion: no-preference) {
     :root {
@@ -18,8 +16,6 @@
 }
 
 .main {
-    font-family: var(--bs-font-sans-serif);
-    font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     color: #374151;
@@ -205,7 +201,6 @@ pre,
 code,
 kbd,
 samp {
-    font-family: var(--bs-font-monospace);
     font-size: 1em;
     direction: ltr /* rtl:ignore */;
     unicode-bidi: bidi-override;
@@ -3667,21 +3662,21 @@ textarea.form-control-lg {
 
 .btn-primary {
     color: #ffffff;
-    background-color: #1F2937;
-    border-color: #1F2937;
+    background-color: #c59d5f;
+    border-color: #c59d5f;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(17, 24, 39, 0.075);
 }
 
 .btn-primary:hover {
     color: #ffffff;
-    background-color: #1a232f;
-    border-color: #19212c;
+    background-color: #c59d5f;
+    border-color: #c59d5f;
 }
 
 .btn-check:focus + .btn-primary, .btn-primary:focus {
     color: #ffffff;
-    background-color: #1a232f;
-    border-color: #19212c;
+    background-color: #c59d5f;
+    border-color: #c59d5f;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(17, 24, 39, 0.075), 0 0 0 0.18rem rgba(65, 73, 85, 0.5);
 }
 
@@ -3689,8 +3684,8 @@ textarea.form-control-lg {
   .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active,
   .show > .btn-primary.dropdown-toggle {
     color: #ffffff;
-    background-color: #19212c;
-    border-color: #171f29;
+    background-color: #c59d5f;
+    border-color: #c59d5f;
 }
 
 .btn-check:checked + .btn-primary:focus,
@@ -3701,12 +3696,12 @@ textarea.form-control-lg {
 
 .btn-primary:disabled, .btn-primary.disabled {
     color: #ffffff;
-    background-color: #1F2937;
-    border-color: #1F2937;
+    background-color: #c59d5f;
+    border-color: #c59d5f;
 }
 
 .btn-secondary {
-    color: #1F2937;
+    color: #c59d5f;
     background-color: #f0bc74;
     border-color: #f0bc74;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(17, 24, 39, 0.075);
@@ -11344,10 +11339,6 @@ textarea.form-control-lg {
     word-break: break-word !important;
 }
 
-/* rtl:end:remove */
-.font-monospace {
-    font-family: var(--bs-font-monospace) !important;
-}
 
 .user-select-all {
     -webkit-user-select: all !important;

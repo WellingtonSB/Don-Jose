@@ -1,24 +1,24 @@
 <section>
   <div class="container">
-    <div class="row">
-      <div class="col-lg-8">
-        <ul class="custom-nav nav nav-pills mb-5">
-          <li class="nav-item w-50">
-            <a class="nav-link text-sm disabled" [routerLink]="['/pagamento',pedido.id]">
-              Endereço
-            </a>
-          </li>
-          <li class="nav-item w-25">
-            <a class="nav-link text-sm active" [routerLink]="['/forma-pagamento',pedido.id]">
-              Forma de pagamento
-            </a>
-          </li>
-          <li class="nav-item w-25">
-            <a class="nav-link text-sm disabled" [routerLink]="['/finalizar-pagamento',pedido.id]">
-              Resumo da compra
-            </a>
-          </li>
-        </ul>
+      <div class="row">
+          <div class="col-lg-8">
+              <ul class="custom-nav nav nav-pills mb-5">
+                  <li class="nav-item w-50">
+                      <a class="nav-link  text-sm disabled" [routerLink]="['/pagamento',pedido.id]">
+                          Endereço
+                      </a>
+                  </li>
+                  <li class="nav-item w-25">
+                      <a class="nav-link att text-sm " [routerLink]="['/forma-pagamento',pedido.id]">
+                          Forma de pagamento
+                      </a>
+                  </li>
+                  <li class="nav-item w-25">
+                      <a class="nav-link text-sm disabled"[routerLink]="['/finalizar-pagamento',pedido.id]">
+                          Pedido
+                      </a>
+                  </li>
+              </ul>
         <div class="mb-5">
           <div id="accordion" role="tablist">
             <div class="block mb-3">
@@ -90,7 +90,7 @@
         </div>
         <div class="mb-5 d-flex justify-content-between flex-column flex-lg-row"><a class="btn btn-link text-muted"
             href="checkout2.html"> <i class="fa fa-angle-left me-2"></i>Voltar</a><a
-            class="btn btn-dark" [routerLink]="['/finalizar-pagamento',pedido.id]">Continue to order review<i
+            class="btn btn-dark" [routerLink]="['/finalizar-pagamento',pedido.id]">Resumo da compra<i
               class="fa fa-angle-right ms-2"></i></a></div>
       </div>
       <div class="col-lg-4">
@@ -105,7 +105,7 @@
               <li class="order-summary-item"><span>Subtotal </span><span>R$ {{pedido.valorTotal}}</span>
               </li>
               <li class="order-summary-item"><span>Presente </span><span>R$ 0</span></li>
-              <li class="order-summary-item"><span>Frete </span><span>R$ 10.00</span></li>
+              <li class="order-summary-item"><span>Frete </span><span>R$ {{pedido.frete}}</span></li>
               <li class="order-summary-item border-0">
                 <span>Total</span>
                 <strong class="order-summary-total">R$ {{pedido.valorTotal}}</strong>

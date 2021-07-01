@@ -8,3 +8,17 @@
    max-height: 600px;
    padding-right: 15px;
 }
+
+.nome-cat{
+    font-weight: 400;
+    color: rgb(0, 0, 0);
+}
+
+.navegacao{
+    padding-top: 75px;
+}
+
+.page-link{
+    border: 0px;
+}
+

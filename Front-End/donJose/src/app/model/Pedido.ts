@@ -6,6 +6,7 @@ export class Pedido{
     public data : Date
     public valorTotal: number
     public qtdProduto: number
+    public frete:number
     public numeroPedido:number
     public status:string
     public cliente: Cliente

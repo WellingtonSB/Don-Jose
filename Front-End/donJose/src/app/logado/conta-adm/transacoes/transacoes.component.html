@@ -16,8 +16,9 @@
                     <th class="border-gray-200">Status</th>
                 </tr>
             </thead>
+
+            <!-- Item -->
             <tbody *ngFor='let pedido of listaDePedidos'>
-                <!-- Item -->
                 <tr>
                     <td>
                         <a class="fw-bold " (click)='findByIdPedido(pedido.id)'>
@@ -28,13 +29,15 @@
                     <td><span class="fw-normal">{{pedido.data}}</span></td>
                     <td><span class="fw-bold">R$ {{pedido.valorTotal}}</span></td>
                     <td>
-                        <span *ngIf="pedido.status=='Criado' "class="fw-bold text-danger" >R$ {{pedido.status}}</span>
-                        <span *ngIf="pedido.status=='Em andamento'" class="fw-bold text-warning" >R$ {{pedido.status}}</span>
-                        <span *ngIf="pedido.status=='Finalizado'" class="fw-bold text-success" >R$ {{pedido.status}}</span>
+                        <span *ngIf="pedido.status=='Criado' " class="fw-bold text-danger">R$ {{pedido.status}}</span>
+                        <span *ngIf="pedido.status=='Em andamento'" class="fw-bold text-warning">R$
+                            {{pedido.status}}</span>
+                        <span *ngIf="pedido.status=='Finalizado'" class="fw-bold text-success">R$
+                            {{pedido.status}}</span>
                     </td>
                 </tr>
-                <!-- Item -->
             </tbody>
+            <!-- Item -->
         </table>
 
         <div
@@ -66,10 +69,10 @@
             </nav>
             <div class="fw-normal small mt-4 mt-lg-0">Monstrando <b>5</b> de <b>25.</b></div>
         </div>
-    </div >
+    </div>
 
 
-    <!-- ***************************************** -->
+    <!-- Modal -->
     <div class="card" *ngIf='mostrarTransacao!=false'>
         <div class="classe row g-5 ">
             <div class="col-md-5 col-lg-4 order-md-last">
@@ -92,10 +95,10 @@
                     </li>
                 </ul>
 
-                <h3 class="d-flex justify-content-between align-items-center text-dark pt-3">Status do pedido 
-                    <h5 *ngIf="pedido.status=='Criado' "class="fw-bold text-danger" >R$ {{pedido.status}}</h5>
-                    <h5 *ngIf="pedido.status=='Em andamento'" class="fw-bold text-warning" >R$ {{pedido.status}}</h5>
-                    <h5 *ngIf="pedido.status=='Finalizado'" class="fw-bold text-success" >R$ {{pedido.status}}</h5>
+                <h3 class="d-flex justify-content-between align-items-center text-dark pt-3">Status do pedido
+                    <h5 *ngIf="pedido.status=='Criado' " class="fw-bold text-danger">R$ {{pedido.status}}</h5>
+                    <h5 *ngIf="pedido.status=='Em andamento'" class="fw-bold text-warning">R$ {{pedido.status}}</h5>
+                    <h5 *ngIf="pedido.status=='Finalizado'" class="fw-bold text-success">R$ {{pedido.status}}</h5>
                 </h3>
             </div>
 
@@ -173,13 +176,12 @@
                             <label class="form-check-label" for="paypal">PayPal</label>
                         </div>
                         <div class="form-check">
-                            <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required
+                            <input id="pix" name="paymentMethod" type="radio" class="form-check-input" required
                                 disabled="">
-                            <label class="form-check-label" for="paypal">Pix</label>
+                            <label class="form-check-label" for="pix">Pix</label>
                         </div>
                     </div>
                     <hr class="my-4">
-                    <!--  <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button> -->
                 </form>
             </div>
         </div>

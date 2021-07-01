@@ -64,7 +64,6 @@ export class ProdutoService {
   }
 
   deleteProduto(id: number): Observable<Produto> {
-
     return this.http.delete<Produto>(`${this.endereco}/produtos/${id}`, this.autorizacao);
   }
 

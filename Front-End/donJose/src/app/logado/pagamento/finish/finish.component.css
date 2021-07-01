@@ -2,6 +2,18 @@
   font-size: 15px;
 }
 
+h1{
+  font-weight: 700;
+  font-size: 50px;
+}
 .hero {
   padding-top: 150px;
+}
+
+.btn-outline-dark,
+.bi-check-lg,
+.bg-primary-light {
+  color: #ffffff;
+  background-color: #c59d5f;
+  border-color: #c59d5f;
 }

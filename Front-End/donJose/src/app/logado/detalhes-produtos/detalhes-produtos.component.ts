@@ -73,9 +73,9 @@ export class DetalhesProdutosComponent implements OnInit {
     }
   }
 
-  adicionaItemCarrinho(idProduto: number, idCarrinho: number) {
+  adicionaItemCarrinho(idProduto: number, idPedido: number) {
     if (localStorage.getItem('token') != null) {
-      this.produtoService.adicionaItemCarrinho(idProduto, idCarrinho).subscribe(() => {
+      this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
         alert('Produto adicionado ao carrinho!');
         this.findAllByProdutos();
       })

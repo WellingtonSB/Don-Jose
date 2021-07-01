@@ -9,7 +9,7 @@
                             <h4 class="card-title">Categorias</h4>
                         </div>
                         <div class="col text-end">
-                            <a (click)='cadastrarProdutos()' class="btn  btn-primary">Adicionar Produto</a>
+                            <a (click)='cadastrarProdutos()' class="btn  btn-colors">Adicionar Produto</a>
                         </div>
                     </div>
                     <p class="category">Cuidado! Ao alterar a categoria, os produtos linkados à ela também sofrerão
@@ -31,7 +31,6 @@
                                     <colgroup>
                                         <col name="el-table_10_column_46" width="48">
                                         <col name="el-table_10_column_47" width="331">
-
                                         <col name="el-table_10_column_49" width="331">
                                         <col name="el-table_10_column_50" width="82">
                                         <col name="el-table_10_column_51" width="82">
@@ -122,10 +121,10 @@
                                             </td>
                                             <td rowspan="1" colspan="1" class="el-table_10_column_53 text-center ">
                                                 <div class="cell">
-                                                    <a class="btn btn-simple btn-warning btn-xs btn-icon edit ">
+                                                    <a class="btn btn-simple btn-warning btn-xs btn-icon edit "(click)='findByIdProduto(prod.id)'>
                                                         <i class="fas fa-pen" (click)='findByIdProduto(prod.id)'></i>
                                                     </a>
-                                                    <a class="btn btn-simple btn-danger btn-xs btn-icon remove">
+                                                    <a class="btn btn-simple btn-danger btn-xs btn-icon remove" (click)='deleteProduto(prod.id)'>
                                                         <i class="far fa-trash-alt"
                                                             (click)='deleteProduto(prod.id)'></i>
                                                     </a>
@@ -181,12 +180,13 @@
                                                 </select>
 
                                                 <div class="mt-5">
-                                                    <a class="btn btn-simple btn-danger btn-xs btn-icon edit mr-5 ">
-                                                        <i class="fas fa-ban" (click)='cancelar()'> Cancelar</i>
+                                                    <a class="btn btn-simple btn-colors btn-xs btn-icon edit mr-5 "
+                                                        (click)='cancelar()'>
+                                                        Cancelar
                                                     </a>
-                                                    <a class="btn btn-simple btn-success btn-xs btn-icon remove">
-                                                        <i class="fas fa-check " (click)='postProduto()'> Cadastrar</i>
-
+                                                    <a class="btn btn-simple btn-colors btn-xs btn-icon remove"
+                                                        (click)='postProduto()'>
+                                                        Cadastrar
                                                     </a>
                                                 </div>
 
@@ -194,22 +194,28 @@
                                             <div class="form-group" *ngIf='editar!=false'>
                                                 <label>Nome</label>
                                                 <input type="text" class="form-control mb-2" name="nome"
-                                                    placeholder="Nome do produto" value="{{produto.nome}}" [(ngModel)]="produto.nome">
+                                                    placeholder="Nome do produto" value="{{produto.nome}}"
+                                                    [(ngModel)]="produto.nome">
                                                 <label>Descrição</label>
                                                 <input type="text" class="form-control mb-2" name="descricao"
-                                                    placeholder="Descrição do produto" value="{{produto.descricao}}" [(ngModel)]="produto.descricao">
+                                                    placeholder="Descrição do produto" value="{{produto.descricao}}"
+                                                    [(ngModel)]="produto.descricao">
                                                 <label>Imagem</label>
                                                 <input type="text" class="form-control mb-2" name="imagem"
-                                                    placeholder="Url do imagem do produto" [(ngModel)]="produto.img" value="{{produto.img}}">
+                                                    placeholder="Url do imagem do produto" [(ngModel)]="produto.img"
+                                                    value="{{produto.img}}">
                                                 <label>Preco</label>
                                                 <input type="text" class="form-control mb-2" name="nome"
-                                                    placeholder="Preço" [(ngModel)]="produto.preco" value="{{produto.preco}}">
+                                                    placeholder="Preço" [(ngModel)]="produto.preco"
+                                                    value="{{produto.preco}}">
                                                 <label>Estoque</label>
                                                 <input type="text" class="form-control mb-2" name="estoque"
-                                                    placeholder="Estoque" [(ngModel)]="produto.estoque" value="{{produto.estoque}}">
+                                                    placeholder="Estoque" [(ngModel)]="produto.estoque"
+                                                    value="{{produto.estoque}}">
                                                 <label>Promocao</label>
                                                 <input type="text" class="form-control mb-2" name="estoque"
-                                                    placeholder="Promoção" [(ngModel)]="produto.promocao" value="{{produto.promocao}}">
+                                                    placeholder="Promoção" [(ngModel)]="produto.promocao"
+                                                    value="{{produto.promocao}}">
                                                 <label>Categoria</label>
                                                 <select [(ngModel)]='idCategoria' class="form-control texto-input"
                                                     name="categoria" id="categoria" (change)='findByIdCategoria()'>
@@ -217,12 +223,13 @@
                                                         {{item.nome}}</option>
                                                 </select>
                                                 <div class="mt-5">
-                                                    <a class="btn btn-simple btn-danger btn-xs btn-icon edit mr-5 ">
-                                                        <i class="fas fa-ban" (click)='cancelar()'> Cancelar</i>
+                                                    <a class="btn btn-simple btn-colors btn-xs btn-icon edit mr-5 "
+                                                        (click)='cancelar()'>
+                                                        Cancelar
                                                     </a>
-                                                    <a class="btn btn-simple btn-success btn-xs btn-icon remove">
-                                                        <i class="fas fa-check dark" (click)='putProduto()'>
-                                                            Atualizar</i>
+                                                    <a class="btn btn-simple btn-colors btn-xs btn-icon remove "
+                                                        (click)='putProduto()'>
+                                                        Atualizar
                                                     </a>
                                                 </div>
                                             </div>

@@ -27,7 +27,7 @@ export class FormaPagamentoComponent implements OnInit {
   listaDeProdutos: Produto[]
   memoria: Produto[] = []
   memoriaV: Produto[] = []
-
+ 
   idCarrinho = environment.pedidos
 
   valorPedido:number
@@ -44,6 +44,7 @@ export class FormaPagamentoComponent implements OnInit {
 
   ngOnInit() {
     this.findByIdPedido();
+    this.findByIdProdutosCarrinho();
     if (localStorage.getItem('token') == null) {
       this.router.navigate(['/login']);
     }
@@ -51,7 +52,7 @@ export class FormaPagamentoComponent implements OnInit {
       createOrder: (data: any, actions: any) => {
         return actions.order.create({
           purchase_units: [{
-            description: 'Produtos de Hortifruti Made In Roça',
+            description: "Trazer os dados do pedido",
             amount: {
               currency_code: 'BRL',
               value: this.valorPedido
@@ -76,7 +77,43 @@ export class FormaPagamentoComponent implements OnInit {
   findByIdPedido() {
     this.pedidoService.findByIdPedido(environment.pedidos).subscribe((resp: Pedido) => {
       this.pedido = resp
-      this.valorPedido = this.pedido.valorTotal
+      this.valorPedido = this.pedido.valorTotal+this.pedido.frete
     })
   }
+
+  
+  findByIdProdutosCarrinho() {
+    this.pedidoService.findAllByProdutosPedidos(environment.pedidos).subscribe((resp: Produto[]) => {
+      this.listaDeProdutos = resp;
+      let contador: number = 0;
+      let refe: number[] = [this.listaDeProdutos.length]
+
+      for (let i = 0; i < this.listaDeProdutos.length; i++) {
+        refe[i] = this.listaDeProdutos[i].id
+        for (let item of this.listaDeProdutos) {
+          if (refe[i] == item.id) {
+            contador++
+          }
+          this.listaDeProdutos[i].qtdPedidoProduto = contador;
+        }
+        this.memoria = this.listaDeProdutos;
+        contador = 0;
+      }
+    })
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

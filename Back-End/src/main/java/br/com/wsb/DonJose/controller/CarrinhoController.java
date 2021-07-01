@@ -46,13 +46,13 @@ public class CarrinhoController {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 
-	@ApiOperation(value = "Busca por um produto contido no carrinho via Nome")
+	/*@ApiOperation(value = "Busca por um produto contido no carrinho via Nome")
 	@GetMapping("/carrinho/{idCarrinho}/nome/{nome}")
 	public ResponseEntity<List<Produto>> findAllByNomeProdutoCarrinho(@PathVariable long idCarrinho,
 			@PathVariable String nome) {
 
 		return ResponseEntity.ok(service.pesquisaPorIdDeProdutoCarrinho(idCarrinho, nome));
-	}
+	}*/
 
 	@ApiOperation(value = "Procura por produtos contidos em um carrinho via ID ")
 	@GetMapping("/carrinho/{idCarrinho}")
@@ -74,13 +74,13 @@ public class CarrinhoController {
 		return ResponseEntity.ok(repository.save(carrinho));
 	}
 
-	@ApiOperation(value = "Remove um item especifico do carrinho via ID ")
+	/*@ApiOperation(value = "Remove um item especifico do carrinho via ID ")
 	@DeleteMapping("/produto_lista/produtos/{idProduto}/carrinho/{idCarrinho}")
 	public ResponseEntity<Produto> removeProdutoDoCarrinho(@PathVariable long idProduto,
 			@PathVariable long idCarrinho) {
 
 		return ResponseEntity.ok(service.removeProdutoDoCarrinho(idProduto, idCarrinho));
-	}
+	}*/
 
 	@ApiOperation(value = "Remove um produto/carrinho ")
 	@DeleteMapping("/{id}")

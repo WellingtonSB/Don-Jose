@@ -24,20 +24,20 @@
           <div *ngIf='item.estoque!=0'>
             <div class="product">
               <div class="product-image">
-                <div class="ribbon ribbon-info" *ngIf='item.promocao!=0'>{{item.promocao}}% de desconto</div>
+                <div class="ribbon ribbon-warning" *ngIf='item.promocao!=0'>{{item.promocao}}% de desconto</div>
                 <img class="img-fluid" src="{{item.img}}" alt="product" />
                 <div class="product-hover-overlay"><a class="product-hover-overlay-link"
                     [routerLink]="['/produtos-detalhe',item.id]"></a>
                   <div class="product-hover-overlay-buttons">
-                    <a class="btn btn-outline-dark btn-product-left d-none d-sm-inline-block"
+                    <a class="btn btn-outline-warning btn-product-left d-none d-sm-inline-block"
                       (click)='comprarAgora(item.id, idPedido)'>
                       <i class="fa fa-shopping-cart"></i>
                     </a>
-                    <a class="btn btn-dark btn-buy" [routerLink]="['/produtos-detalhe',item.id]">
+                    <a class="btn btn-warning btn-buy" [routerLink]="['/produtos-detalhe',item.id]">
                       <i class="fa-search fa"></i>
                       <span class="btn-buy-label ms-2">Ver</span>
                     </a>
-                    <a class="btn btn-outline-dark btn-product-right d-none d-sm-inline-block" href="#"
+                    <a class="btn btn-outline-warning btn-product-right d-none d-sm-inline-block" href="#"
                       data-bs-toggle="modal" data-bs-target="#exampleModal" (click)='findByIdProduto(item.id)'>
                       <i class="fa fa-expand-arrows-alt"></i>
                     </a>
@@ -59,17 +59,13 @@
       </div>
 
       <!-- Pagination-->
-      <nav class="d-flex justify-content-center mb-5 mt-3" aria-label="page navigation">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span
-                aria-hidden="true">Prev</span><span class="sr-only">Previous</span></a></li>
-          <li class="page-item"><a class="page-link" href="#">1 </a></li>
-          <li class="page-item"><a class="page-link" href="#">2 </a></li>
-          <li class="page-item"><a class="page-link" href="#">3 </a></li>
-          <li class="page-item"><a class="page-link" href="#">4 </a></li>
-          <li class="page-item"><a class="page-link" href="#">5 </a></li>
-          <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span
-                aria-hidden="true">Next</span><span class="sr-only">Next </span></a></li>
+      <nav class="navegacao">
+        <ul class="pagination pagination-lg justify-content-center text-decoration-underline">
+          <li class="page-item "><a class="page-link text-dark" href="#">Anterior</a></li>
+          <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
+          <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+          <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+          <li class="page-item"><a class="page-link text-dark" href="#">Próximo</a></li>
         </ul>
       </nav>
     </div>
@@ -86,13 +82,13 @@
           <div class="nav nav-pills flex-column mt-4 mt-lg-0" role="menu">
             <div class="sidebar-menu-item mb-2 active" data-bs-toggle="collapse" data-bs-target="#subcategories_0"
               aria-expanded="true" aria-controls="subcategories_0" role="menuitem">
-              <a class="nav-link ">
-                <span>{{cat.nome}}</span><span class="sidebar-badge ms-2">2</span>
+              <a class="nome-cat nav-link">
+                <span >{{cat.nome}}</span><span class="sidebar-badge ms-2 bg-warning">2</span>
               </a>
             </div>
             <div class="collapse show" id="subcategories_0">
               <div class="nav nav-pills flex-column ms-3">
-                <a class="nav-link mb-2">Trazer produtos</a>
+                <a class="nome-cat nav-link mb-2">Trazer produtos</a>
               </div>
             </div>
           </div>
@@ -106,12 +102,18 @@
             <div class="mb-1">
               <div class="form-check">
                 <input class="form-check-input" id="brand0" type="checkbox" name="clothes-brand" checked>
+                <label class="form-check-label" for="brand0">Todos <small>(50)</small></label>
+              </div>
+            </div>
+            <div class="mb-1">
+              <div class="form-check">
+                <input class="form-check-input" id="brand0" type="checkbox" name="clothes-brand">
                 <label class="form-check-label" for="brand0">Chocolate <small>(18)</small></label>
               </div>
             </div>
             <div class="mb-1">
               <div class="form-check">
-                <input class="form-check-input" id="brand1" type="checkbox" name="clothes-brand" checked>
+                <input class="form-check-input" id="brand1" type="checkbox" name="clothes-brand" >
                 <label class="form-check-label" for="brand1">Baunilha <small>(30)</small></label>
               </div>
             </div>
@@ -132,7 +134,7 @@
       </div>
 
       <div class="sidebar-block px-3 px-lg-0 me-lg-4"> <a class="d-lg-none block-toggler" data-bs-toggle="collapse"
-          href="#sizeFilterMenu" aria-expanded="false" aria-controls="sizeFilterMenu">Filter by size</a>
+          href="#sizeFilterMenu" aria-expanded="false" aria-controls="sizeFilterMenu"></a>
         <!-- Size filter menu-->
         <div class="expand-lg collapse" id="sizeFilterMenu">
           <h6 class="sidebar-heading d-none d-lg-block">Tamanho </h6>
@@ -140,25 +142,31 @@
             <div class="mb-1">
               <div class="form-check">
                 <input class="form-check-input" id="size0" type="radio" name="size" checked>
-                <label class="form-check-label" for="size0">Grande</label>
+                <label class="form-check-label" for="size0">Todos</label>
               </div>
             </div>
             <div class="mb-1">
               <div class="form-check">
-                <input class="form-check-input" id="size1" type="radio" name="size">
-                <label class="form-check-label" for="size1">Medio</label>
+                <input class="form-check-input" id="size1" type="radio" name="size" >
+                <label class="form-check-label" for="size1">Grande</label>
               </div>
             </div>
             <div class="mb-1">
               <div class="form-check">
                 <input class="form-check-input" id="size2" type="radio" name="size">
-                <label class="form-check-label" for="size2">Pequeno</label>
+                <label class="form-check-label" for="size2">Medio</label>
               </div>
             </div>
             <div class="mb-1">
               <div class="form-check">
                 <input class="form-check-input" id="size3" type="radio" name="size">
-                <label class="form-check-label" for="size3">Por encomenda</label>
+                <label class="form-check-label" for="size3">Pequeno</label>
+              </div>
+            </div>
+            <div class="mb-1">
+              <div class="form-check">
+                <input class="form-check-input" id="size4" type="radio" name="size">
+                <label class="form-check-label" for="size4">Por encomenda</label>
               </div>
             </div>
           </form>
@@ -179,7 +187,7 @@
         </svg>
       </button>
       <div class="modal-body">
-        <div class="ribbon ribbon-info" *ngIf='produto.promocao!=0'>{{produto.promocao}}% de desconto</div>
+        <div class="ribbon ribbon-warning" *ngIf='produto.promocao!=0'>{{produto.promocao}}% de desconto</div>
         <div class="row">
           <div class="col-lg-6">
             <img class="img-modal" src="{{produto.img}}" alt={{produto.nome}} />
@@ -204,10 +212,10 @@
                 </ul>
                 <div class="d-flex align-items-center">
                   <ul class="list-inline me-2 mb-0">
-                    <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
-                    <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
-                    <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
-                    <li class="list-inline-item me-0"><i class="fa fa-star text-primary"></i></li>
+                    <li class="list-inline-item me-0"><i class="fa fa-star text-warning"></i></li>
+                    <li class="list-inline-item me-0"><i class="fa fa-star text-warning"></i></li>
+                    <li class="list-inline-item me-0"><i class="fa fa-star text-warning"></i></li>
+                    <li class="list-inline-item me-0"><i class="fa fa-star text-warning"></i></li>
                     <li class="list-inline-item me-0"><i class="fa fa-star text-gray-300"></i></li>
                   </ul><span class="text-muted text-uppercase text-sm">2 avaliações</span>
                 </div>
@@ -218,13 +226,13 @@
                 <div class="row">
                   <div class="col-sm-6 col-lg-12 detail-option mb-3">
                     <h6 class="detail-option-heading">Tamanho <span>(obrigatorio)</span></h6>
-                    <label class="btn btn-sm btn-outline-secondary detail-option-btn-label" for="size_0"> 2kg
+                    <label class="btn btn-sm btn-outline-warning detail-option-btn-label text-dark" for="size_0"> 2kg
                       <input class="input-invisible" type="radio" name="size" value="value_0" id="size_0" required>
                     </label>
-                    <label class="btn btn-sm btn-outline-secondary detail-option-btn-label" for="size_1"> 5kg
+                    <label class="btn btn-sm btn-outline-warning detail-option-btn-label text-dark" for="size_1"> 5kg
                       <input class="input-invisible" type="radio" name="size" value="value_1" id="size_1" required>
                     </label>
-                    <label class="btn btn-sm btn-outline-secondary detail-option-btn-label" for="size_2"> 15kg
+                    <label class="btn btn-sm btn-outline-warning detail-option-btn-label text-dark" for="size_2"> 15kg
                       <input class="input-invisible" type="radio" name="size" value="value_2" id="size_2" required>
                     </label>
                   </div>
@@ -237,12 +245,12 @@
                 </div>
                 <ul class="list-inline">
                   <li class="list-inline-item">
-                    <button class="btn btn-dark btn-lg mb-1" type="submit" (click)='comprarAgora(produto.id, idPedido)'>
+                    <button class="btn btn-warning btn-lg mb-1" type="submit" (click)='comprarAgora(produto.id, idPedido)'>
                       <i class="fa fa-shopping-cart me-2"></i>
                       Comprar</button>
                   </li>
-                  <li class="list-inline-item"><a class="btn btn-outline-secondary mb-1"
-                      (click)='adicionaItemCarrinho(produto.id, idCarrinho)'> <i class="far fa-heart me-2"></i>Adicionar
+                  <li class="list-inline-item"><a class="btn btn-outline-warning mb-1"
+                      (click)='adicionaItemCarrinho(produto.id, idPedido)'> <i class="far fa-heart me-2"></i>Adicionar
                       ao carrinho</a></li>
                 </ul>
               </form>

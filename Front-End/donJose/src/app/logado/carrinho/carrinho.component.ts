@@ -84,7 +84,6 @@ export class CarrinhoComponent implements OnInit {
 
 
   totalProdutos(idProduto: number, idPedido: number) {
-    
     this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
       this.pedido.qtdProduto = this.pedido.qtdProduto + 1
       this.totalPrd()
@@ -98,6 +97,7 @@ export class CarrinhoComponent implements OnInit {
   
     for(let item of this.listaDeProdutos){
       this.valorCarrinho = this.valorCarrinho + item.preco
+      
     }
   }
 

@@ -5,3 +5,15 @@
 section {
   padding-top: 150px;
 }
+
+.btn-dark{
+  color: #ffffff;
+  background-color: #c59d5f;
+  border-color: #c59d5f;
+}
+
+.att{
+  color: #ffffff;
+  background-color: #c59d5f;
+  border-color: #c59d5f;
+}

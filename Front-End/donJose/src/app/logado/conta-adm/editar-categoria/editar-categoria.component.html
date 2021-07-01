@@ -122,12 +122,12 @@
                                             <div class="form-group" *ngIf='addCat!=false'>
                                                 <label >Nome</label>
                                                 <input type="text" class="form-control" name="nome" placeholder="Digite a nome da categoria" [(ngModel)]="categoria.nome" >
-                                                <button class="btn btn2  btn-success" (click)='postCategoria()'>Cadastrar</button>
+                                                <button class="btn btn2  btn-primary" (click)='postCategoria()'>Cadastrar</button>
                                             </div>
                                             <div class="form-group" *ngIf='editar!=false'>
                                                 <label >Nome</label>
                                                 <input  type="text" class="form-control" name="nome" placeholder="Digite o novo nome" [(ngModel)]="categoria.nome" >
-                                                <button class="btn btn2  btn-success" (click)='putCategoria()'>Atualizar</button>
+                                                <button class="btn btn2  btn-primary" (click)='putCategoria()'>Atualizar</button>
                                             </div>
                                         </div>
                                     </div>

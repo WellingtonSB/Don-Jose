@@ -43,6 +43,7 @@ export class PagamentoComponent implements OnInit {
   findByIdPedido() {
     this.pedidoService.findByIdPedido(environment.pedidos).subscribe((resp: Pedido) => {
       this.pedido = resp;
+  
     })
   }
 

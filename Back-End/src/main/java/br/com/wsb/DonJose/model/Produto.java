@@ -46,7 +46,7 @@ public class Produto {
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "produto_pedido", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "pedido_id"))
-	@JsonIgnoreProperties({ "data", "valorTotal", "produtos", "cliente", "qtdProduto","numeroPedido","status"})
+	@JsonIgnoreProperties({ "data", "valorTotal", "produtos", "cliente", "qtdProduto","numeroPedido","status","frete"})
 	private List<Pedido> pedidos = new ArrayList<>();
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

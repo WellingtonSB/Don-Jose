@@ -5,7 +5,19 @@ section{
   padding-top: 150px;
 }
 
+.mt-lg-1{
+  font-size: 30px;
+  font-weight: 800;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 /* .img-fluid{
   height: 249px;
   width: 500px;
 } */
+
+.bg-primary-light {
+  color: #ffffff;
+  background-color: #c59d5f;
+  border-color: #c59d5f;
+}
