@@ -1,0 +1,71 @@
+<section>
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-8">
+                <div class="cart">
+                    <div class="cart-wrapper">
+                        <div class="cart-header text-center">
+                            <div class="row">
+                                <div class="col-5">Item</div>
+                                <div class="col-2">Preço</div>
+                                <div class="col-2">Quantidade</div>
+                                <div class="col-2">Total</div>
+                                <div class="col-1"></div>
+                            </div>
+                        </div>
+                        <div class="cart-body">
+                            <!-- Product-->
+                            <div class="cart-item" *ngFor='let item of listaDeProdutos'>
+                                <div class="row d-flex align-items-center text-center">
+                                    <div class="col-5">
+                                        <div class="d-flex align-items-center"><a href="detail.html"><img
+                                                    class="cart-item-img" src="{{item.img}}" alt="{{item.nome}}"></a>
+                                            <div class="cart-title text-start"><a class="text-uppercase text-dark"
+                                                    [routerLink]="['/produtos-detalhe',item.id]"><strong>{{item.nome}}</strong></a><br><span
+                                                    class="text-muted text-sm">Tamanho: Grande</span><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">R$ {{item.preco}}</div>
+                                    <div class="col-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="btn btn-items btn-items-decrease" (click)='removerDoCarrinho(item.id, pedido.id)'>-</div>
+                                            <input class="form-control text-center input-items" type="text" [(ngModel)]='item.qtdPedidoProduto' value="{{item.qtdPedidoProduto}}">
+                                            <div class="btn btn-items btn-items-increase" (click)='totalProdutos(item.id, idCarrinho)' >+</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 text-center">R$ {{valorCarrinho}}</div>
+                                    <div class="col-1 text-center"><a class="cart-remove" (click)='removerDoCarrinho(item.id, pedido.id)'><i
+                                                class="fa fa-times"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-5 d-flex justify-content-between flex-column flex-lg-row"><a
+                        class="btn btn-link text-muted" href="category.html"><i class="fa fa-chevron-left"></i>
+                        Continuar comprando</a><a class="btn btn-dark" [routerLink]="['/pagamento',pedido.id]">Finalizar pedido <i
+                            class="fa fa-chevron-right"></i> </a></div>
+            </div>
+            <div class="col-lg-4">
+                <div class="block mb-5">
+                    <div class="block-header">
+                        <h6 class="text-uppercase mb-0">Resumo da compra</h6>
+                    </div>
+                    <div class="block-body bg-light pt-1">
+                        <p class="text-sm">O envio e os custos adicionais são calculados com base nos valores que você
+                            inseriu.</p>
+                        <ul class="order-summary mb-0 list-unstyled">
+                            <li class="order-summary-item"><span>Subtotal </span><span>R$ {{pedido.valorTotal}}</span>
+                            </li>
+                            <li class="order-summary-item"><span>Presente </span><span>R$ 0</span></li>
+                            <li class="order-summary-item"><span>Frete </span><span>R$ {{pedido.frete}}</span></li>
+                            <li class="order-summary-item border-0"><span>Total</span><strong
+                                    class="order-summary-total">R$ {{pedido.valorTotal}}</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

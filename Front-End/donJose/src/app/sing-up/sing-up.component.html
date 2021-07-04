@@ -1,0 +1,42 @@
+<html>
+
+<body>
+    <div class="container">
+        <form action="#">
+            <div class="title">Cadastrar</div>
+            <div class="input-box underline" for="nome">
+                <input  [(ngModel)]='cliente.nome' type="text" placeholder="Nome" required name="nome" id="nome" >
+                <div class="underline"></div>
+            </div>
+            <div class="input-box underline" for="usuario">
+                <input [(ngModel)]='cliente.usuario' type="email" placeholder="Email" required name="usuario" id="usuario">
+                <div class="underline"></div>
+            </div>
+
+            <div class="input-box underline" for="dataNascimento">
+                <input [(ngModel)]='cliente.dataNascimento' type="date" placeholder="Data de Nascimento" required name="dataNascimento" id="dataNascimento">
+                <div class="underline"></div>
+            </div> 
+
+            <div class="input-box underline" for="cep">
+                <input [(ngModel)]='cliente.cep' type="text" placeholder="CEP" required name="cep" id="cep">
+                <div class="underline"></div>
+            </div> 
+
+            <div class="input-box" for="senha">
+                <input (input)='confirmSenha($event)' type="password" placeholder="Senha" required name="senha" id="senha">
+                <div class="underline"></div>
+            </div>            
+            <div class="input-box" for="confirmSenha">
+                <input [(ngModel)]='cliente.senha' type="password" placeholder="Confirmar senha" required name="confirmSenha" id="confirmSenha">
+                <div class="underline"></div>
+            </div>
+            <div class="input-box button">
+                <input type="submit" name="" value="Continue" (click)='cadastrar()' >
+            </div>
+        </form>
+        <div class="option">Já possui conta? <a routerLink="/login">Entrar</a></div>
+    </div>
+</body>
+
+</html>

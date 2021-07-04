@@ -1,0 +1,246 @@
+<div class="content">
+    <div class="container-fluid">
+        <div>
+            <div class="card mb-4">
+
+                <div class="card-header align-items-center">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="card-title">Categorias</h4>
+                        </div>
+                        <div class="col text-end">
+                            <a (click)='cadastrarProdutos()' class="btn  btn-colors">Adicionar Produto</a>
+                        </div>
+                    </div>
+                    <p class="category">Cuidado! Ao alterar a categoria, os produtos linkados à ela também sofrerão
+                        alterações</p>
+                </div>
+                <div class="card-content row">
+                    <div class="col-sm-12">
+                        <div class="el-table el-table--fit el-table--enable-row-hover el-table--enable-row-transition">
+                            <div class="hidden-columns">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div class="el-table__header-wrapper">
+                                <table cellspacing="0" cellpadding="0" border="0" class="el-table__header"
+                                    style="width: 1050px;">
+                                    <colgroup>
+                                        <col name="el-table_10_column_46" width="48">
+                                        <col name="el-table_10_column_47" width="331">
+                                        <col name="el-table_10_column_49" width="331">
+                                        <col name="el-table_10_column_50" width="82">
+                                        <col name="el-table_10_column_51" width="82">
+                                        <col name="el-table_10_column_52" width="82">
+                                        <col name="el-table_10_column_53" width="82">
+                                        <col name="el-table_10_column_54" width="114">
+                                        <col name="gutter" width="0">
+                                    </colgroup>
+                                    <thead class="has-gutter">
+                                        <tr class="">
+                                            <th colspan="1" rowspan="1"
+                                                class="el-table_10_column_46 is-leaf text-center">
+                                                <div class="cell">#</div>
+                                            </th>
+                                            <th colspan="1" rowspan="1"
+                                                class="el-table_10_column_47 is-leaf text-center">
+                                                <div class="cell">Nome</div>
+                                            </th>
+
+                                            <th colspan="1" rowspan="1"
+                                                class="el-table_10_column_49 is-leaf text-center">
+                                                <div class="cell">Imagem</div>
+                                            </th>
+                                            <th colspan="1" rowspan="1"
+                                                class="el-table_10_column_50 is-leaf text-center">
+                                                <div class="cell">Preço/un</div>
+                                            </th>
+                                            <th colspan="1" rowspan="1"
+                                                class="el-table_10_column_51 is-leaf text-center">
+                                                <div class="cell">Plu</div>
+                                            </th>
+                                            <th colspan="1" rowspan="1"
+                                                class="el-table_10_column_52 is-leaf text-center">
+                                                <div class="cell">Estoque</div>
+                                            </th>
+                                            <th colspan="1" rowspan="1"
+                                                class="el-table_10_column_53 is-leaf text-center">
+                                                <div class="cell">Categoria</div>
+                                            </th>
+                                            <th colspan="1" rowspan="1"
+                                                class="el-table_10_column_54 is-leaf text-center">
+                                                <div class="cell">Edit/Delete</div>
+                                            </th>
+                                            <th class="gutter" style="width: 0px; display: none;"></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="el-table__body-wrapper is-scrolling-none">
+                                <table cellspacing="0" cellpadding="0" border="0" class="el-table__body"
+                                    style="width: 1050px;" *ngFor='let prod of listaDeProdutos'>
+                                    <colgroup>
+                                        <col name="el-table_10_column_46" width="48">
+                                        <col name="el-table_10_column_47" width="331">
+                                        <col name="el-table_10_column_49" width="331">
+                                        <col name="el-table_10_column_50" width="82">
+                                        <col name="el-table_10_column_51" width="82">
+                                        <col name="el-table_10_column_52" width="82">
+                                        <col name="el-table_10_column_53" width="82">
+                                        <col name="el-table_10_column_54" width="114">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr class="el-table__row">
+                                            <td rowspan="1" colspan="1" class="el-table_10_column_46 text-center ">
+                                                <div class="cell">
+                                                    <div>{{prod.id}}</div>
+                                                </div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_10_column_47 text-center">
+                                                <div class="cell">{{prod.nome}}</div>
+                                            </td>
+
+                                            <td rowspan="1" colspan="1"
+                                                class="el-table_10_column_49 text-wrap text-center">
+                                                <div class="cell">{{prod.img}}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_10_column_50 text-center">
+                                                <div class="cell">{{prod.preco}}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_10_column_51 text-center">
+                                                <div class="cell">{{prod.plu}}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_10_column_52 text-center">
+                                                <div class="cell">{{prod.estoque}}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_10_column_52 text-center">
+                                                <div class="cell">{{prod.categoria.nome}}</div>
+                                            </td>
+                                            <td rowspan="1" colspan="1" class="el-table_10_column_53 text-center ">
+                                                <div class="cell">
+                                                    <a class="btn btn-simple btn-warning btn-xs btn-icon edit "(click)='findByIdProduto(prod.id)'>
+                                                        <i class="fas fa-pen" (click)='findByIdProduto(prod.id)'></i>
+                                                    </a>
+                                                    <a class="btn btn-simple btn-danger btn-xs btn-icon remove" (click)='deleteProduto(prod.id)'>
+                                                        <i class="far fa-trash-alt"
+                                                            (click)='deleteProduto(prod.id)'></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="el-table__column-resize-proxy" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-4" *ngIf='addProd!=false || editar!=false '>
+                <div class="card-header">
+                    <h4 class="card-title" *ngIf='addProd!=false'>Cadastrar no produto</h4>
+                    <h4 class="card-title" *ngIf='editar!=false'>Editar produto</h4>
+
+                </div>
+                <div class="card-content row table-full-width">
+                    <div class="col-sm-12">
+                        <div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group" *ngIf='addProd!=false'>
+                                                <label>Nome</label>
+                                                <input type="text" class="form-control mb-2" name="nome"
+                                                    placeholder="Nome do produto" [(ngModel)]="produto.nome">
+                                                <label>Descrição</label>
+                                                <input type="text" class="form-control mb-2" name="descricao"
+                                                    placeholder="Descrição do produto" [(ngModel)]="produto.descricao">
+                                                <label>Imagem</label>
+                                                <input type="text" class="form-control mb-2" name="imagem"
+                                                    placeholder="Url do imagem do produto" [(ngModel)]="produto.img">
+                                                <label>Preco</label>
+                                                <input type="text" class="form-control mb-2" name="nome"
+                                                    placeholder="Preço" [(ngModel)]="produto.preco">
+                                                <label>Estoque</label>
+                                                <input type="text" class="form-control mb-2" name="estoque"
+                                                    placeholder="Estoque" [(ngModel)]="produto.estoque">
+                                                <label>Promocao</label>
+                                                <input type="text" class="form-control mb-2" name="estoque"
+                                                    placeholder="Promocao" [(ngModel)]="produto.promocao">
+                                                <label>Categoria</label>
+                                                <select [(ngModel)]='idCategoria' class="form-control texto-input"
+                                                    name="categoria" id="categoria" (change)='findByIdCategoria()'>
+                                                    <option *ngFor='let item of listaDeCategoria' value="{{item.id}}">
+                                                        {{item.nome}}</option>
+                                                </select>
+
+                                                <div class="mt-5">
+                                                    <a class="btn btn-simple btn-colors btn-xs btn-icon edit mr-5 "
+                                                        (click)='cancelar()'>
+                                                        Cancelar
+                                                    </a>
+                                                    <a class="btn btn-simple btn-colors btn-xs btn-icon remove"
+                                                        (click)='postProduto()'>
+                                                        Cadastrar
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group" *ngIf='editar!=false'>
+                                                <label>Nome</label>
+                                                <input type="text" class="form-control mb-2" name="nome"
+                                                    placeholder="Nome do produto" value="{{produto.nome}}"
+                                                    [(ngModel)]="produto.nome">
+                                                <label>Descrição</label>
+                                                <input type="text" class="form-control mb-2" name="descricao"
+                                                    placeholder="Descrição do produto" value="{{produto.descricao}}"
+                                                    [(ngModel)]="produto.descricao">
+                                                <label>Imagem</label>
+                                                <input type="text" class="form-control mb-2" name="imagem"
+                                                    placeholder="Url do imagem do produto" [(ngModel)]="produto.img"
+                                                    value="{{produto.img}}">
+                                                <label>Preco</label>
+                                                <input type="text" class="form-control mb-2" name="nome"
+                                                    placeholder="Preço" [(ngModel)]="produto.preco"
+                                                    value="{{produto.preco}}">
+                                                <label>Estoque</label>
+                                                <input type="text" class="form-control mb-2" name="estoque"
+                                                    placeholder="Estoque" [(ngModel)]="produto.estoque"
+                                                    value="{{produto.estoque}}">
+                                                <label>Promocao</label>
+                                                <input type="text" class="form-control mb-2" name="estoque"
+                                                    placeholder="Promoção" [(ngModel)]="produto.promocao"
+                                                    value="{{produto.promocao}}">
+                                                <label>Categoria</label>
+                                                <select [(ngModel)]='idCategoria' class="form-control texto-input"
+                                                    name="categoria" id="categoria" (change)='findByIdCategoria()'>
+                                                    <option *ngFor='let item of listaDeCategoria' value="{{item.id}}">
+                                                        {{item.nome}}</option>
+                                                </select>
+                                                <div class="mt-5">
+                                                    <a class="btn btn-simple btn-colors btn-xs btn-icon edit mr-5 "
+                                                        (click)='cancelar()'>
+                                                        Cancelar
+                                                    </a>
+                                                    <a class="btn btn-simple btn-colors btn-xs btn-icon remove "
+                                                        (click)='putProduto()'>
+                                                        Atualizar
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

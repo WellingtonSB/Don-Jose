@@ -1,0 +1,67 @@
+<body id="body">
+    <div class="container">
+        <nav class="navbar">
+            <div class="nav_icon">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+            <div class="navbar__left">
+                <a class="active_link" href="#">Admin</a>
+            </div>
+        </nav>
+
+        <main>
+            <app-home-dash *ngIf='home == true'></app-home-dash>
+            <app-editar-produto *ngIf='editarProduto == true'></app-editar-produto>
+            <app-editar-categoria *ngIf='editarCategoria == true'></app-editar-categoria>
+            <app-perfil *ngIf='perfil == true'></app-perfil>
+            <app-promocao *ngIf='promocao == true'></app-promocao>
+            <app-transacoes *ngIf='transacoes == true'> </app-transacoes>
+        </main>
+
+        <div id="sidebar">
+            <div class="sidebar__title">
+                <div class="sidebar__img">
+                    <img src="https://i.imgur.com/vSiePBL.png" alt="logo" />
+                </div>
+                <i class="fa fa-times" id="sidebarIcon" aria-hidden="true"></i>
+            </div>
+
+            <div class="sidebar__menu">
+                <div class="sidebar__link active_menu_link" (click)='dashHome()'>
+                    <i class="fa fa-home"></i>
+                    <a>Dashboad</a>
+                </div>
+                <h2>ADM</h2>
+                <div class="sidebar__link" (click)='dashPerfil()'>
+                    <i class="fa fa-user-secret" aria-hidden="true"></i>
+                    <a>Perfil</a>
+                </div>
+                <div class="sidebar__link" (click)='dashEditarCategoria()'>
+                    <i class="fa fa-wrench"></i>
+                    <a>Editar categorias</a>
+                </div>
+                <div class="sidebar__link" (click)='dashEditarProduto()'>
+                    <i class="fa fa-wrench"></i>
+                    <a>Editar Produtos</a>
+                </div>
+                <div class="sidebar__link" (click)='dashTransacoes()'>
+                    <i class="far fa-credit-card"></i>
+                    <a>Transações</a>
+                </div>
+                <h2>LEAVE</h2>
+                <div class="sidebar__link">
+                    <i class="fa fa-question"></i>
+                    <a href="#">Chat</a>
+                </div>
+                <div class="sidebar__link" (click)='dashPromocao()'>
+                    <i class="fa fa-calendar-check-o"></i>
+                    <a>Editar Promoções</a>
+                </div>
+                <div class="sidebar__logout" (click)='sair()'>
+                    <i class="fa fa-power-off"></i>
+                    <a>Sair</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

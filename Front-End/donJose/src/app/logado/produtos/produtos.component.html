@@ -1,0 +1,263 @@
+<div class="container">
+  <div class="row">
+    <!-- Grid -->
+    <div class="products-grid col-xl-9 col-lg-8 order-lg-2">
+      <header class="product-grid-header">
+        <div class="me-3 mb-3">
+          Monstrando <strong>1-12 </strong>de <strong>20 </strong>produtos</div>
+        <div class="me-3 mb-3"><span class="me-2">Mostrar</span><a class="product-grid-header-show" href="#">12
+          </a><a class="product-grid-header-show " href="#">24 </a><a class="product-grid-header-show " href="#">Todos
+          </a>
+        </div>
+        <div class="mb-3 d-flex align-items-center"><span class="d-inline-block me-2">Mostra por</span>
+          <select class="form-select w-auto border-0">
+            <option value="orderby_0">Todos</option>
+            <option value="orderby_1">?</option>
+            <option value="orderby_2">?</option>
+            <option value="orderby_3">?</option>
+          </select>
+        </div>
+      </header>
+      <div class="row">
+        <!-- product-->
+        <div class="col-xl-4 col-6" *ngFor='let item of listaDeProdutos| slice:0:12;'>
+          <div *ngIf='item.estoque!=0'>
+            <div class="product">
+              <div class="product-image">
+                <div class="ribbon ribbon-warning" *ngIf='item.promocao!=0'>{{item.promocao}}% de desconto</div>
+                <img class="img-fluid" src="{{item.img}}" alt="product" />
+                <div class="product-hover-overlay"><a class="product-hover-overlay-link"
+                    [routerLink]="['/produtos-detalhe',item.id]"></a>
+                  <div class="product-hover-overlay-buttons">
+                    <a class="btn btn-outline-warning btn-product-left d-none d-sm-inline-block"
+                      (click)='comprarAgora(item.id, idPedido)'>
+                      <i class="fa fa-shopping-cart"></i>
+                    </a>
+                    <a class="btn btn-warning btn-buy" [routerLink]="['/produtos-detalhe',item.id]">
+                      <i class="fa-search fa"></i>
+                      <span class="btn-buy-label ms-2">Ver</span>
+                    </a>
+                    <a class="btn btn-outline-warning btn-product-right d-none d-sm-inline-block" href="#"
+                      data-bs-toggle="modal" data-bs-target="#exampleModal" (click)='findByIdProduto(item.id)'>
+                      <i class="fa fa-expand-arrows-alt"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="py-2">
+                <p class="text-muted text-sm mb-1">{{item.categoria.nome}}</p>
+                <h3 class="h6 text-uppercase mb-1"><a class="text-dark"
+                    [routerLink]="['/produtos-detalhe',item.id]">{{item.nome}}</a></h3><span class="text-muted">R$
+                  {{item.preco}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- /product-->
+
+      </div>
+
+      <!-- Pagination-->
+      <nav class="navegacao">
+        <ul class="pagination pagination-lg justify-content-center text-decoration-underline">
+          <li class="page-item "><a class="page-link text-dark" href="#">Anterior</a></li>
+          <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
+          <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+          <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+          <li class="page-item"><a class="page-link text-dark" href="#">Próximo</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- / Grid End-->
+
+    <!-- Sidebar-->
+    <div class="sidebar col-xl-3 col-lg-4 order-lg-1">
+      <div class="sidebar-block px-3 px-lg-0 me-lg-4">
+        <hr>
+        <h6 class="sidebar-heading d-none d-lg-block">Categorias</h6>
+        <a class="d-lg-none block-toggler" data-bs-toggle="collapse" href="#categoriesMenu" aria-expanded="false"
+          aria-controls="categoriesMenu"></a>
+        <div class="expand-lg collapse" id="categoriesMenu" *ngFor='let cat of listaDeCategoria'>
+          <div class="nav nav-pills flex-column mt-4 mt-lg-0" role="menu">
+            <div class="sidebar-menu-item mb-2 active" data-bs-toggle="collapse" data-bs-target="#subcategories_0"
+              aria-expanded="true" aria-controls="subcategories_0" role="menuitem">
+              <a class="nome-cat nav-link">
+                <span >{{cat.nome}}</span><span class="sidebar-badge ms-2 bg-warning">2</span>
+              </a>
+            </div>
+            <div class="collapse show" id="subcategories_0">
+              <div class="nav nav-pills flex-column ms-3">
+                <a class="nome-cat nav-link mb-2">Trazer produtos</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-block px-3 px-lg-0 me-lg-4"><a class="d-lg-none block-toggler" data-bs-toggle="collapse"
+          href="#brandFilterMenu" aria-expanded="true" aria-controls="brandFilterMenu"></a>
+        <div class="expand-lg collapse show" id="brandFilterMenu">
+          <h6 class="sidebar-heading d-none d-lg-block">Sabores</h6>
+          <form class="mt-4 mt-lg-0" action="#">
+            <div class="mb-1">
+              <div class="form-check">
+                <input class="form-check-input" id="brand0" type="checkbox" name="clothes-brand" checked>
+                <label class="form-check-label" for="brand0">Todos <small>(50)</small></label>
+              </div>
+            </div>
+            <div class="mb-1">
+              <div class="form-check">
+                <input class="form-check-input" id="brand0" type="checkbox" name="clothes-brand">
+                <label class="form-check-label" for="brand0">Chocolate <small>(18)</small></label>
+              </div>
+            </div>
+            <div class="mb-1">
+              <div class="form-check">
+                <input class="form-check-input" id="brand1" type="checkbox" name="clothes-brand" >
+                <label class="form-check-label" for="brand1">Baunilha <small>(30)</small></label>
+              </div>
+            </div>
+            <div class="mb-1">
+              <div class="form-check">
+                <input class="form-check-input" id="brand2" type="checkbox" name="clothes-brand">
+                <label class="form-check-label" for="brand2">Limão <small>(120)</small></label>
+              </div>
+            </div>
+            <div class="mb-1">
+              <div class="form-check">
+                <input class="form-check-input" id="brand3" type="checkbox" name="clothes-brand">
+                <label class="form-check-label" for="brand3">Morango <small>(70)</small></label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="sidebar-block px-3 px-lg-0 me-lg-4"> <a class="d-lg-none block-toggler" data-bs-toggle="collapse"
+          href="#sizeFilterMenu" aria-expanded="false" aria-controls="sizeFilterMenu"></a>
+        <!-- Size filter menu-->
+        <div class="expand-lg collapse" id="sizeFilterMenu">
+          <h6 class="sidebar-heading d-none d-lg-block">Tamanho </h6>
+          <form class="mt-4 mt-lg-0" action="#">
+            <div class="mb-1">
+              <div class="form-check">
+                <input class="form-check-input" id="size0" type="radio" name="size" checked>
+                <label class="form-check-label" for="size0">Todos</label>
+              </div>
+            </div>
+            <div class="mb-1">
+              <div class="form-check">
+                <input class="form-check-input" id="size1" type="radio" name="size" >
+                <label class="form-check-label" for="size1">Grande</label>
+              </div>
+            </div>
+            <div class="mb-1">
+              <div class="form-check">
+                <input class="form-check-input" id="size2" type="radio" name="size">
+                <label class="form-check-label" for="size2">Medio</label>
+              </div>
+            </div>
+            <div class="mb-1">
+              <div class="form-check">
+                <input class="form-check-input" id="size3" type="radio" name="size">
+                <label class="form-check-label" for="size3">Pequeno</label>
+              </div>
+            </div>
+            <div class="mb-1">
+              <div class="form-check">
+                <input class="form-check-input" id="size4" type="radio" name="size">
+                <label class="form-check-label" for="size4">Por encomenda</label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--Sidebar end-->
+  </div>
+</div>
+
+<!--Modal    -->
+<div class="modal fade quickview" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <button class="close modal-close" type="button" data-bs-dismiss="modal" aria-label="Close">
+        <svg class="svg-icon w-100 h-100 svg-icon-light align-middle">
+          <use xlink:href="#close-1"> </use>
+        </svg>
+      </button>
+      <div class="modal-body">
+        <div class="ribbon ribbon-warning" *ngIf='produto.promocao!=0'>{{produto.promocao}}% de desconto</div>
+        <div class="row">
+          <div class="col-lg-6">
+            <img class="img-modal" src="{{produto.img}}" alt={{produto.nome}} />
+          </div>
+          <div class="col-lg-6 d-flex align-items-center">
+            <div>
+              <div class="mb-4 mt-4">
+                <div class="col-8">
+                  <h2 class="mt-lg-1 ">{{produto.nome}}</h2>
+                </div>
+                <div class="col-2">
+                  <span>plu {{produto.plu}}</span>
+                </div>
+              </div>
+
+              <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between mb-4">
+                <ul class="list-inline mb-2 mb-sm-0">
+                  <li class="list-inline-item h4 fw-light mb-0">R$ {{produto.preco}}</li>
+                  <li class="list-inline-item text-muted fw-light">
+                    <del>R$ 50.00</del>
+                  </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                  <ul class="list-inline me-2 mb-0">
+                    <li class="list-inline-item me-0"><i class="fa fa-star text-warning"></i></li>
+                    <li class="list-inline-item me-0"><i class="fa fa-star text-warning"></i></li>
+                    <li class="list-inline-item me-0"><i class="fa fa-star text-warning"></i></li>
+                    <li class="list-inline-item me-0"><i class="fa fa-star text-warning"></i></li>
+                    <li class="list-inline-item me-0"><i class="fa fa-star text-gray-300"></i></li>
+                  </ul><span class="text-muted text-uppercase text-sm">2 avaliações</span>
+                </div>
+              </div>
+              <p class="mb-4 text-muted">{{produto.descricao}}
+              </p>
+              <form action="#">
+                <div class="row">
+                  <div class="col-sm-6 col-lg-12 detail-option mb-3">
+                    <h6 class="detail-option-heading">Tamanho <span>(obrigatorio)</span></h6>
+                    <label class="btn btn-sm btn-outline-warning detail-option-btn-label text-dark" for="size_0"> 2kg
+                      <input class="input-invisible" type="radio" name="size" value="value_0" id="size_0" required>
+                    </label>
+                    <label class="btn btn-sm btn-outline-warning detail-option-btn-label text-dark" for="size_1"> 5kg
+                      <input class="input-invisible" type="radio" name="size" value="value_1" id="size_1" required>
+                    </label>
+                    <label class="btn btn-sm btn-outline-warning detail-option-btn-label text-dark" for="size_2"> 15kg
+                      <input class="input-invisible" type="radio" name="size" value="value_2" id="size_2" required>
+                    </label>
+                  </div>
+
+                  <div class="col-12 col-lg-6 detail-option mb-5">
+                    <label class="detail-option-heading fw-bold">Quantidade <span>({{produto.estoque}}
+                        disp.)</span></label>
+                    <input class="form-control detail-quantity" name="items" type="number" value="1">
+                  </div>
+                </div>
+                <ul class="list-inline">
+                  <li class="list-inline-item">
+                    <button class="btn btn-warning btn-lg mb-1" type="submit" (click)='comprarAgora(produto.id, idPedido)'>
+                      <i class="fa fa-shopping-cart me-2"></i>
+                      Comprar</button>
+                  </li>
+                  <li class="list-inline-item"><a class="btn btn-outline-warning mb-1"
+                      (click)='adicionaItemCarrinho(produto.id, idPedido)'> <i class="far fa-heart me-2"></i>Adicionar
+                      ao carrinho</a></li>
+                </ul>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

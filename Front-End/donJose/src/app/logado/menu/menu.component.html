@@ -1,0 +1,28 @@
+<header>
+    <div class="container">
+        <nav class="nav-pri">
+            <div class="menu-toggle">
+                <i class=" fa-bars"></i>
+                <i class="fa-times"></i>
+            </div>
+            <a routerLink ="/home"class="logo"><img src="https://i.imgur.com/vSiePBL.png" alt="Logo"></a>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a routerLink="/graficos" class="nav-link active">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/products" class="nav-link">Produtos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">Contato</a>
+                </li>
+                <li class="nav-item" *ngIf='menuCliente()!=false '>
+                    <a routerLink="/conta" class="nav-link" >Perfil</a>
+                </li>
+                <li class="nav-item" *ngIf='menuCliente()!=false '>
+                    <a class="nav-link" (click)='authService.logOut()'>Sair</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

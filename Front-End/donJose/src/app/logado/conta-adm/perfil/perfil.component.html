@@ -1,0 +1,193 @@
+<div class="wrapper ">
+  <div class="main-panel">
+
+    <div class="content">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card card-user">
+            <div class="card-body">
+              <div class="author">
+                <div class="text-center">
+                  <img src={{usuario.foto}} class="rounded-circle mx-auto d-block" alt="{{usuario.nome}}" width="150"
+                    height="150">
+                  <h5 class="title pt-5">{{usuario.nome}}</h5>
+                </div>
+                <p class="description text-center">
+                  {{usuario.email}}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card mt-3">
+            <div class="card-header">
+              <h4 class="card-title">Membros Don José</h4>
+            </div>
+            <div class="card-body">
+              <ul class="list-unstyled team-members">
+                <li>
+                  <div class="row">
+                    <div class="col-md-2 col-2">
+                      <div class="avatar">
+                        <img src={{usuario.foto}} class="rounded-circle" alt="{{usuario.nome}}" width="25" height="25">
+                      </div>
+                    </div>
+                    <div class="col-md-7 col-7">
+                      Souza
+                      <br />
+                      <span class="text-muted"><small>Offline</small></span>
+                    </div>
+                    <div class="col-md-3 col-3 text-right">
+
+
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col-md-2 col-2">
+                      <div class="avatar">
+                        <img src={{usuario.foto}} class="rounded-circle" alt="{{usuario.nome}}" width="25" height="25">
+                      </div>
+                    </div>
+                    <div class="col-md-7 col-7">
+                      Wellington
+                      <br />
+                      <span class="text-success"><small>Online</small></span>
+                    </div>
+                    <div class="col-md-3 col-3 text-right">
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col-md-2 col-2">
+                      <div class="avatar">
+                        <img src={{usuario.foto}} class="rounded-circle" alt="{{usuario.nome}}" width="25" height="25">
+                      </div>
+                    </div>
+                    <div class="col-ms-7 col-7">
+                      José
+                      <br />
+                      <span class="text-danger"><small>Ocupado</small></span>
+                    </div>
+                    <div class="col-md-3 col-3 text-right">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card card-user">
+            <div class="card-header">
+              <h5 class="card-title">Editar perfil</h5>
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="row">
+                  <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                      <label>Nome</label>
+                      <input [(ngModel)]='usuario.nome' name="nome" type="text" class="form-control" placeholder="Nome"
+                        value={{usuario.nome}}>
+                    </div>
+                  </div>
+                  <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email </label>
+                      <input [(ngModel)]='usuario.email' name="email" type="email" class="form-control"
+                        placeholder="Email" value="{{usuario.email}}">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                      <label>Celular</label>
+                      <input [(ngModel)]='usuario.celular' name="celular" type="text" class="form-control"
+                        placeholder="Celular" value={{usuario.celular}}>
+                    </div>
+                  </div>
+                  <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Data de nascimento</label>
+                      <input [(ngModel)]='usuario.dataNascimento' name="dataNascimento" type="email"
+                        class="form-control" placeholder="Data de nascimento" value="{{usuario.dataNascimento}}">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 pr-1">
+                    <div class="form-group">
+                      <label>CPF</label>
+                      <input type="text" name="cep" class="form-control" value="{{usuario.cpf}}" disabled="">
+                    </div>
+                  </div>
+                  <div class="col-md-9 pl-1">
+                    <div class="form-group">
+                      <label>Foto</label>
+                      <input [(ngModel)]='usuario.foto' name="foto" type="text" class="form-control"
+                        placeholder="url foto">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 pr-1">
+                    <div class="form-group">
+                      <label>Cidade</label>
+                      <input [(ngModel)]='usuario.localidade' name="localidade" type="text" class="form-control"
+                        placeholder="Cidade" value="{{usuario.localidade}}">
+                    </div>
+                  </div>
+                  <div class="col-md-4 px-1">
+                    <div class="form-group">
+                      <label>Rua</label>
+                      <input [(ngModel)]='usuario.logradouro' name="logradouro" type="text" class="form-control"
+                        placeholder="Rua" value="{{usuario.logradouro}}">
+                    </div>
+                  </div>
+                  <div class="col-md-4 pl-1">
+                    <div class="form-group">
+                      <label>CEP</label>
+                      <input [(ngModel)]='usuario.cep' name="cep" type="text" class="form-control" placeholder="CEP"
+                        value="{{usuario.cep}}">
+                    </div>
+                  </div>
+                  <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                      <label>Senha</label>
+                      <input [(ngModel)]='usuario.senha' name="senha" type="password" class="form-control"
+                        placeholder="Senha">
+                    </div>
+                  </div>
+                  <div class="col-md-6 pl-1">
+                    <div class="form-group">
+                      <label>Confirmar senha</label>
+                      <input type="password" name="password" class="form-control" placeholder="Confirmar senha"
+                        (input)='confirmeSenha($event)'>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row pt-3">
+                  <div class="col-md-2 ">
+                    <div class="col text-end">
+                      <a class="btn btn-sm">Cancelar</a>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div class="col text-end">
+                      <a class="btn btn-sm " (click)='atualizar()'>Atualizar</a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
