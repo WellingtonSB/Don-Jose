@@ -15,7 +15,6 @@ export class PerfilComponent implements OnInit {
   confirmarSenha: string;
 
   nome = environment.nome;
-  email = environment.email;
   foto = environment.foto
   idUsuario = environment.id;
 
@@ -36,7 +35,7 @@ export class PerfilComponent implements OnInit {
     this.authService.findByIdCliente(id).subscribe((resp: Cliente) => {
       this.usuario = resp;
       console.log("Nome: " + this.usuario.nome);
-      console.log("carrinho: " + this.usuario.carrinho.id);
+      console.log("listaDeDesejos: " + this.usuario.listaDeDesejos.id);
     })
   }
 
@@ -56,13 +55,10 @@ export class PerfilComponent implements OnInit {
 
         environment.id = 0;
         environment.nome = '';
-        environment.email = '';
-        environment.senha = '';
         environment.foto = '';
-        environment.tipo = '';
         environment.token = '';
         environment.pedidos = 0;
-        environment.carrinho = 0;
+        environment.listaDeDesejos = 0;
 
 
         this.router.navigate(['/login']);

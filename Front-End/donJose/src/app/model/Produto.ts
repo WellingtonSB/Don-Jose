@@ -1,5 +1,5 @@
-import { Carrinho } from "./Carrinho"
 import { Categoria } from "./Categoria"
+import { ListaDeDesejos } from "./ListaDeDesejos"
 import { Pedido } from "./Pedido"
 
 export class Produto{
@@ -14,5 +14,5 @@ export class Produto{
     public qtdPedidoProduto: number
     public categoria: Categoria
     public pedidos : Pedido []
-    public carrinho : Carrinho[]
+    public listaDeDesejos: ListaDeDesejos[]
 }

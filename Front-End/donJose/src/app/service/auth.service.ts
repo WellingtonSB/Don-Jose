@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Cliente } from '../model/Cliente';
 import { ClienteLogin } from '../model/ClienteLogin';
+import { EmailDTO } from '../model/EmailDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -33,13 +34,17 @@ export class AuthService {
     return this.http.post<ClienteLogin>(`${this.endereco}/clientes/logar`, clienteLogin);
   }
 
+  resetarSenha(email: EmailDTO){
+    return this.http.post<EmailDTO>( `${this.endereco}/clientes/esqueciasenha`, email)
+  }
+
   cadastrar(cliente: Cliente): Observable<Cliente> {
     return this.http.post<Cliente>(`${this.endereco}/clientes/cadastrar`, cliente);
   }
 
   adminstrador(){
     let autorizado:boolean = false;
-    if(environment.email=='adm@gmail.com'){
+    if(environment.usuario=='adm@gmail.com'){
       autorizado= true
     }
     return autorizado
@@ -50,13 +55,10 @@ export class AuthService {
   logOut() {
     environment.id = 0;
     environment.nome = '';
-    environment.email = '';
-    environment.senha = '';
     environment.foto = '';
-    environment.tipo = '';
     environment.token = '';
     environment.pedidos = 0;
-    environment.carrinho = 0;
+    environment.listaDeDesejos = 0;
 
     /* ARMAZENA O TOKEN DO USUARIO NO LOCAL STORAGE */
     localStorage.removeItem('token');

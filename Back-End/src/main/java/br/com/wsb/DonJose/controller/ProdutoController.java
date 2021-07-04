@@ -79,22 +79,18 @@ public class ProdutoController {
 		return ResponseEntity.ok(repository.save(produto));
 	}
 
-	@ApiOperation(value = "Adiciona o produto no carrinho(compra diretamente)")
+	@ApiOperation(value = "Adiciona o produto no carrinho (compra diretamente)")
 	@PutMapping("/produto_pedido/produtos/{idProduto}/pedidos/{idPedido}")
-	public ResponseEntity<Produto> comprarProduto(@PathVariable long idProduto,
-			@PathVariable long idPedido) {
-
+	public ResponseEntity<Produto> putProduto(@PathVariable long idProduto, @PathVariable long idPedido) {
 		return ResponseEntity.ok(service.compraProduto(idProduto, idPedido));
 	}
 	
-	//ajustar logica, criar uma lista de desejos
-	/*@ApiOperation(value = "Adiciona o produto no carrinho(necessita de autorizacao por parte do cliente para processeguir com a compra)")
-	@PutMapping("/produto_lista/produtos/{idProduto}/carrinho/{idCarrinho}")
-	public ResponseEntity<Produto> adicionarProdutonoCarrinho(@PathVariable long idProduto,
-			@PathVariable long idCarrinho) {
-
-		return ResponseEntity.ok(service.adicionarProdutoNoCarrinho(idProduto, idCarrinho));
-	}*/
+	@ApiOperation(value = "Adiciona o produto na lista de desejos (compra diretamente)")
+	@PutMapping("/produto_lista/produtos/{idProduto}/listaDesejos/{idListaDeDesejo}")
+	public ResponseEntity<Produto> adicionaProdutoListaDeDesejos(@PathVariable long idProduto, @PathVariable long idListaDeDesejo) {
+		
+		return ResponseEntity.ok(service.adicionarProdutoListaDeDesejo(idProduto, idListaDeDesejo));
+	}
 	
 	
 	@ApiOperation(value = "Deleta um produto")

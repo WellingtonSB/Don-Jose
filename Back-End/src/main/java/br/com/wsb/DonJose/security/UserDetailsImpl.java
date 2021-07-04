@@ -1,35 +1,33 @@
 package br.com.wsb.DonJose.security;
 
-import java.util.*;
+import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.wsb.DonJose.model.Cliente;
 
-public class UserDetailsImplementation implements UserDetails {
+public class UserDetailsImpl implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
 	private String userName;
+
 	private String password;
 
-	private List<GrantedAuthority> authorities;
-
-	public UserDetailsImplementation(Cliente cliente) {
-		this.userName = cliente.getEmail();
-		this.password = cliente.getSenha();
-
+	public UserDetailsImpl(Cliente usuario) {
+		// TODO Auto-generated constructor stub
+		this.userName = usuario.getUsuario();
+		this.password = usuario.getSenha();
 	}
 
-	public UserDetailsImplementation() {
-
+	public UserDetailsImpl() {
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return authorities;
+		return null;
 	}
 
 	@Override
@@ -67,5 +65,6 @@ public class UserDetailsImplementation implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
+
 
 }

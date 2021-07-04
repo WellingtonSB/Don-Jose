@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment.prod";
 import { ClienteLogin } from "../model/ClienteLogin";
+import { EmailDTO } from "../model/EmailDTO";
 import { AuthService } from "../service/auth.service";
 
 @Component({
@@ -12,11 +13,11 @@ import { AuthService } from "../service/auth.service";
 export class SingInComponent implements OnInit {
 
   clienteLogin: ClienteLogin = new ClienteLogin();
-
-
-  /* ARMAZENA O TOKEN DO USUARIO */
+  emailDTO: EmailDTO = new EmailDTO();
   tokenUsuario: string;
+  recusenha:boolean =false
 
+ 
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -33,37 +34,63 @@ export class SingInComponent implements OnInit {
 
       environment.token = this.clienteLogin.token
       environment.nome = this.clienteLogin.nome
-      /*  environment.foto = this.clienteLogin.foto */
-      environment.email = this.clienteLogin.email
-      environment.carrinho = this.clienteLogin.carrinho.id
+      environment.usuario = this.clienteLogin.usuario
+      environment.foto = this.clienteLogin.foto 
+      environment.listaDeDesejos = this.clienteLogin.listaDeDesejos.id
       environment.pedidos = this.clienteLogin.pedidos.id
       environment.id = this.clienteLogin.id
 
-      /* ARMAZENA O TOKEN DO USUARIO NA VARIAVEL */
       this.tokenUsuario = this.clienteLogin.token
 
-      /* ARMAZENA O TOKEN DO USUARIO NO LOCAL STORAGE */
       localStorage.setItem('token', this.tokenUsuario);
 
       /* teste... apagar depois */
       console.log("ID: " + environment.id);
       console.log("Token: " + environment.token);
-      console.log("E-mail: " + environment.email);
       console.log("Nome: " + environment.nome);
       console.log("Foto: " + environment.foto);
       console.log("Pedido ID: " + environment.pedidos);
-      console.log("Carrinho ID: " + environment.carrinho);
+      console.log("Lista de desejos ID: " + environment.listaDeDesejos);
 
-
-      if (environment.email == 'adm@gmail.com') {
+      //remover
+      if (environment.usuario == 'adm@gmail.com') {
         this.router.navigate(['/conta'])
-      }else{
+      } else {
         this.router.navigate(['/products'])
-      }   
+      }
 
 
     })
   }
 
+  senhaRecuperar(){
+    this.recusenha = true
+  }
+  esqueciSenha(){
+    this.recusenha = false
+    this.auth.resetarSenha(this.emailDTO).subscribe((resp: EmailDTO) =>{
+      this.emailDTO = resp
+  
+      let atraso=500; //1 segundo
+      setTimeout(function(){
+        window.location.reload()
+      },atraso);
+  
+      
+      alert('A nova senha foi enviada para o seu email')
+    
+  
+  
+      
+    }, erro => {
+      if(erro.status == 500){
+        alert('Email não encontrado.')
+      }
+      else if(erro.status == 400){
+        alert('Formato de e-mail inválido')
+      }
+    
+    })
+  }
 
 }

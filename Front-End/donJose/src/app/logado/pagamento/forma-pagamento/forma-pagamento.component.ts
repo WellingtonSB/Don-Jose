@@ -17,7 +17,6 @@ export class FormaPagamentoComponent implements OnInit {
 
   
   nome = environment.nome
-  email = environment.email
 
   pedido: Pedido = new Pedido()
   listaDePedidos: Pedido[]

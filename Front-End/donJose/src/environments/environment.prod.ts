@@ -4,12 +4,10 @@ export const environment = {
   port: '8080',
   id: 0,
   nome: '',
-  email: '',
-  senha: '',
+  usuario:'',
   foto: '',
-  tipo: '',
   token: '',
   pedidos: 0,
-  carrinho: 0
+  listaDeDesejos: 0
 };
 

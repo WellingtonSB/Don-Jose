@@ -2,11 +2,13 @@ package br.com.wsb.DonJose.model;
 
 public class ClienteLogin {
 
-	private long id;
+private long id;
 	
 	private String token;
 	
 	private String nome;
+	
+	private String usuario;
 	
 	private String celular;
 
@@ -36,7 +38,7 @@ public class ClienteLogin {
 	
 	private Pedido pedidos;
 
-	private Carrinho carrinho;
+	private ListaDeDesejos listaDeDesejos;
 
 	public long getId() {
 		return id;
@@ -60,6 +62,14 @@ public class ClienteLogin {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getCelular() {
@@ -174,13 +184,14 @@ public class ClienteLogin {
 		this.pedidos = pedidos;
 	}
 
-	public Carrinho getCarrinho() {
-		return carrinho;
+	public ListaDeDesejos getListaDeDesejos() {
+		return listaDeDesejos;
 	}
 
-	public void setCarrinho(Carrinho carrinho) {
-		this.carrinho = carrinho;
+	public void setListaDeDesejos(ListaDeDesejos listaDeDesejos) {
+		this.listaDeDesejos = listaDeDesejos;
 	}
-
+	
+	
 	
 }

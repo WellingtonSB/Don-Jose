@@ -1,10 +1,25 @@
 package br.com.wsb.DonJose.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -20,20 +35,25 @@ public class Cliente {
 
 	@Column(name = "nome", nullable = false)
 	private String nome;
-		
-	@Column(name = "celular", nullable = false)
-	@Size(max = 11)
-	private String celular;
 
-	@Column(name = "email", nullable = false, unique = true)
+	@Column(name = "usuario", nullable = false)
+	@Email
+	@Size(min = 3, max = 50)
+	private String usuario;
+	
+	@Column(name = "email")
 	@Email
 	private String email;
 
+	@Column(name = "celular")
+	@Size(max = 11)
+	private String celular;
+	
 	@Column(name = "cpf", unique = true)
 	@CPF
 	private String cpf;
 
-	@Column(name = "senha")
+	@Column(name = "senha", nullable = false)
 	private String senha;
 	
 	
@@ -79,35 +99,8 @@ public class Cliente {
 	@OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	@JsonIgnoreProperties("cliente")
-	private Carrinho carrinho;
+	private ListaDeDesejos listaDeDesejos;
 
-	//viaCEP
-	public Cliente() {
-	}
-
-	public Cliente(String logradouro,String numero,String complemento,String bairro,String localidade,String uf,String cep) {
-		this.logradouro = logradouro;
-		this.numero = numero;
-		this.complemento = complemento;
-		this.bairro = bairro;
-		this.localidade = localidade;
-		this.uf = uf;
-		this.cep = cep;
-	}
-	
-	@Override
-    public String toString() {
-        return "Cliente{" +
-                "cep='" + cep + '\'' +
-                ", logradouro='" + logradouro + '\'' +
-                ", complemento='" + complemento + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", estado='" + localidade + '\'' +
-                ", numero='" + numero + '\'' +
-                '}';
-    }
-	
-	
 	public long getId() {
 		return id;
 	}
@@ -122,6 +115,14 @@ public class Cliente {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getCelular() {
@@ -236,14 +237,37 @@ public class Cliente {
 		this.pedidos = pedidos;
 	}
 
-	public Carrinho getCarrinho() {
-		return carrinho;
+	public ListaDeDesejos getListaDeDesejos() {
+		return listaDeDesejos;
 	}
 
-	public void setCarrinho(Carrinho carrinho) {
-		this.carrinho = carrinho;
+	public void setListaDeDesejos(ListaDeDesejos listaDeDesejos) {
+		this.listaDeDesejos = listaDeDesejos;
 	}
 
+	//viaCEP
+	public Cliente() {
+	}
 
+	public Cliente(String logradouro,String numero,String complemento,String bairro,String localidade,String uf,String cep) {
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.localidade = localidade;
+		this.uf = uf;
+		this.cep = cep;
+	}
 	
+	@Override
+    public String toString() {
+        return "Cliente{" +
+                "cep='" + cep + '\'' +
+                ", logradouro='" + logradouro + '\'' +
+                ", complemento='" + complemento + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", estado='" + localidade + '\'' +
+                ", numero='" + numero + '\'' +
+                '}';
+    }
 }

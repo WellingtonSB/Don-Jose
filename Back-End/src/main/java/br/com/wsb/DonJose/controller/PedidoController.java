@@ -1,5 +1,4 @@
 package br.com.wsb.DonJose.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,13 +68,6 @@ public class PedidoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(pedido));
 	}
 	
-	/*@ApiOperation(value = "Adiciona um produto há um carrinho, criando um pedido ")
-	@PutMapping("/produto_lista/pedido/{idProduto}/carrinho/{idCarrinho}")
-	public ResponseEntity<Produto> adicionarProdutonoCarrinho(@PathVariable long idProduto,
-			@PathVariable long idCarrinho) {
-
-		return ResponseEntity.ok(service.adicionarProdutoNoCarrinho(idProduto, idCarrinho));
-	}*/
 	
 	@ApiOperation(value = "Deleta o pedido")
 	@DeleteMapping("/{id}")

@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { OrderModule } from 'ngx-order-pipe';
 import { HomeComponent } from './home/home.component';
 import { SingUpComponent } from './sing-up/sing-up.component';
 import { SingInComponent } from './sing-in/sing-in.component';
@@ -24,6 +25,7 @@ import { FormaPagamentoComponent } from './logado/pagamento/forma-pagamento/form
 import { FinalizarPedidoComponent } from './logado/pagamento/finalizar-pedido/finalizar-pedido.component';
 import { FinishComponent } from './logado/pagamento/finish/finish.component';
 import { PedidosComponent } from './logado/conta-cliente/pedidos/pedidos.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 
@@ -58,8 +60,14 @@ import { PedidosComponent } from './logado/conta-cliente/pedidos/pedidos.compone
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    OrderModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

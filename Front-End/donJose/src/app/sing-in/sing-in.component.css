@@ -17,6 +17,11 @@ html, body{
   background: #ff80bf;
 
 }
+
+.butoooo{
+  background: none;
+  border: none;
+}
 .container{
   background: #fff;
   max-width: 350px;

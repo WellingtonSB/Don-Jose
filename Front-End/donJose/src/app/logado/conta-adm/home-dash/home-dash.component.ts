@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 
 import { Router } from '@angular/router';
-import { Carrinho } from 'src/app/model/Carrinho';
 import { Cliente } from 'src/app/model/Cliente';
 import { Pedido } from 'src/app/model/Pedido';
 import { Produto } from 'src/app/model/Produto';
@@ -19,17 +18,10 @@ import { environment } from 'src/environments/environment.prod';
 export class HomeDashComponent implements OnInit {
 
   nome = environment.nome;
-  email = environment.email;
   idUsuario = environment.id;
   idPedido = environment.pedidos;
 
-  meuCarrinho: Carrinho = new Carrinho();
-  listaCarrinho: Carrinho[];
-  idListaCarrinho = environment.carrinho;
-
   produto: Produto = new Produto();
-  listaDeDesejos: Produto[];
-  listaDeProdutoMemoria: Produto[];
 
   usuario: Cliente = new Cliente();
 

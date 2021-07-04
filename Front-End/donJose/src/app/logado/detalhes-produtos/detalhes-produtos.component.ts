@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Carrinho } from 'src/app/model/Carrinho';
 import { Categoria } from 'src/app/model/Categoria';
+import { ListaDeDesejos } from 'src/app/model/ListaDeDesejos';
 import { Produto } from 'src/app/model/Produto';
 import { CategoriaService } from 'src/app/service/categoria.service';
 import { ProdutoService } from 'src/app/service/produto.service';
@@ -14,18 +14,18 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class DetalhesProdutosComponent implements OnInit {
 
-  produto: Produto = new Produto()
-  idProduto: number
-  listaDeProdutos: Produto[]
+  produto: Produto = new Produto();
+  listaDeProdutos: Produto[];
+  idProduto:number
 
-  categoria: Categoria = new Categoria()
-  idCategoria: number
-  listaDeCategoria: Categoria[]
+  idListaDeDesejos = environment.listaDeDesejos;
+  idPedido = environment.pedidos;
 
-  carrinho: Carrinho = new Carrinho()
-  idCarrinho = environment.carrinho
+  categoria: Categoria = new Categoria();
+  listaDeCategoria: Categoria[];
+  idCategoria: number;
 
-  idPedido = environment.pedidos
+  listaDeDesejos: ListaDeDesejos = new ListaDeDesejos();
 
   constructor(
     private router: Router,
@@ -62,7 +62,7 @@ export class DetalhesProdutosComponent implements OnInit {
     })
   }
 
-  comprarAgora(idProduto: number, idPedido: number) {
+  /* comprarAgora(idProduto: number, idPedido: number) {
     if (localStorage.getItem('token') != null) {
       this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
         this.router.navigate(['/carrinho'])
@@ -83,11 +83,31 @@ export class DetalhesProdutosComponent implements OnInit {
       this.router.navigate(['/login'])
     }
   }
-
-  /*  att(){
+  att(){
      document.location.reload();
    } */
 
+
+   adicionaItemListaDeDesejos(idProduto: number, idLista: number) {
+    this.produtoService.adicionaItemListaDeDesejos(idProduto, idLista).subscribe(() => {
+      alert('Produto adicionado a lista de desejos!');
+
+      this.findAllByProdutos();
+
+    })
+
+  }
+
+  /* ADICIONA PRODUTOS AO CARRINHO DO USUARIO */
+  adicionaItemCarrinho(idProduto: number, idCarrinho: number) {
+    this.produtoService.adicionaItemCarrinho(idProduto, idCarrinho).subscribe(() => {
+      alert('Produto adicionado ao carrinho!');
+
+      this.findAllByProdutos();
+
+    })
+
+  }
 }
 
 

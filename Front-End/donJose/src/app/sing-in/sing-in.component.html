@@ -1,22 +1,41 @@
 <html>
-  <body>
-    <div class="container">
-      <form action="#">
-        <div class="title">Entrar</div>
-        <div class="input-box underline" for="usuario">
-          <input [(ngModel)]='clienteLogin.email' type="email" id="usuario" placeholder="Usuário" required name="usuario" >
-          <div class="underline"></div>
-        </div>
-        <div class="input-box" for="senha">
-          <input [(ngModel)]='clienteLogin.senha' type="password" id="senha" placeholder="Senha" required name="senha" >
-          <div class="underline"></div>
-        </div>
-        <div class="input-box button">
-          <input (click)='entrar()' type="submit" name="" value="Continue">
-        </div>
-      </form>
-        <div class="option">Não possui conta?<a routerLink="/cadastrar">cadastra-se</a></div>
-    </div>
-  </body>
+
+<body>
+  <div class="container">
+    <form action="#" *ngIf='recusenha!=true' >
+      <div class="title">Entrar</div>
+      <div class="input-box underline" for="usuario">
+        <input [(ngModel)]='clienteLogin.usuario' type="email" id="usuario" placeholder="Usuário" required
+          name="usuario">
+        <div class="underline"></div>
+      </div>
+      <div class="input-box" for="senha">
+        <input [(ngModel)]='clienteLogin.senha' type="password" id="senha" placeholder="Senha" required name="senha">
+        <div class="underline"></div>
+      </div>
+      <div class="input-box button">
+        <input (click)='entrar()' type="submit" name="" value="Continue">
+      </div>
+    </form>
+
+    <form action="#" *ngIf='recusenha!=false'>
+      <div class="title">Recuperar senha:</div>
+      <div class="input-box underline" for="emailDTO">
+        <input [(ngModel)]="emailDTO.email" (keyup.enter)="esqueciSenha()" type="email" id="emailDTO" placeholder="Email cadastrado" required
+          name="usuario">
+        <div class="underline"></div>
+      </div>
+      <div class="input-box button">
+        <input (click)='esqueciSenha()' type="submit" name="" value="Enviar">
+      </div>
+    </form>
+    <p class="text-center mb-1" style=" margin-top:-5px; font-size:small">
+      <button class="butoooo" (click)='senhaRecuperar()' *ngIf='recusenha!=true'>Esqueceu a senha?</button>
+    </p> 
+    <div class="option" *ngIf='recusenha!=true'>Não possui conta? <a routerLink="/cadastrar">cadastra-se</a></div>
+  </div>
+</body>
+
 </html>
+
 

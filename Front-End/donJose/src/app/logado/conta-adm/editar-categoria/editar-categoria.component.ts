@@ -96,7 +96,6 @@ export class EditarCategoriaComponent implements OnInit {
 
   }
 
-  /* EXCLUI UM DADO DE CATEGORIA NA BASE DE DADOS POR MEIO DO ID */
   deleteCategoria(id: number) {
     this.categoriaService.deleteCategoria(id).subscribe(() => {
       alert('Categoria excluida com sucesso!');

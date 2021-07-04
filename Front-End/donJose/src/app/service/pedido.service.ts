@@ -22,24 +22,30 @@ export class PedidoService {
 
   ) { }
 
-
   findAllByPedidos(): Observable<Pedido[]> {
+
     return this.http.get<Pedido[]>(`${this.endereco}/pedidos`, this.autorizacao);
   }
 
 
   findByIdPedido(id: number): Observable<Pedido> {
+
     return this.http.get<Pedido>(`${this.endereco}/pedidos/${id}`, this.autorizacao);
   }
 
+  findAllByNumeroPedido(numeroPedido:number):Observable<Pedido>{
+    return this.http.get<Pedido>(`${this.endereco}/pedidos/numeroPedido/${numeroPedido}`, this.autorizacao)
+  }
+  
 
   findAllByProdutosPedidos(idPedido: number): Observable<Produto[]> {
+
     return this.http.get<Produto[]>(`${this.endereco}/pedidos/meuspedidos/${idPedido}`, this.autorizacao);
   }
 
+  postPedido(pedido: Pedido): Observable<Pedido> { 
 
-  findAllByNumeroPedido(numeroPedido:number):Observable<Pedido>{
-    return this.http.get<Pedido>(`${this.endereco}/pedidos/numeroPedido/${numeroPedido}`, this.autorizacao)
+    return this.http.post<Pedido>(`${this.endereco}/pedidos`, pedido, this.autorizacao);
   }
 
   putPedido(pedido: Pedido): Observable<Pedido> {
@@ -61,9 +67,8 @@ export class PedidoService {
 
     return this.http.delete<Pedido>(`${this.endereco}/pedidos/produto_pedido/produtos/${idProduto}/pedidos/${idPedido}`, this.autorizacao);
   }
-
-  adicionarItemAoCarrinho(idProduto: number, idCarrinho: number): Observable<Produto> {
-    return this.http.put<Produto>(`${this.endereco}/pedidos/produto_lista/pedido/${idProduto}/carrinho/${idCarrinho}`, this.autorizacao);
-  }
   
 }
+
+
+

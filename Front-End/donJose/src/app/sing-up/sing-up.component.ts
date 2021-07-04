@@ -10,7 +10,7 @@ import { AuthService } from '../service/auth.service';
 })
 export class SingUpComponent implements OnInit {
 
-  cliente:Cliente= new Cliente
+  cliente:Cliente= new Cliente()
   confirmarSenha:string
   
   constructor(

@@ -1,6 +1,4 @@
 package br.com.wsb.DonJose.model;
-
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,12 +44,12 @@ public class Pedido {
 	private double valorTotal;
 		
 	@Digits(integer = 5, fraction = 2)
-	private double frete=10;
+	private double frete;
 		
 	private int qtdProduto;
 	
 	@ManyToMany(mappedBy = "pedidos", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnoreProperties({"nome", "descricao", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "carrinho","promocao"})
+	@JsonIgnoreProperties({"nome", "descricao", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "listaDesejos","promocao"})
 	private List<Produto> produtos = new ArrayList<>();
 
 	@OneToOne

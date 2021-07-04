@@ -2,14 +2,13 @@ package br.com.wsb.DonJose.model;
 
 import java.util.*;
 
-
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
 
 @Entity
-@Table(name="carrinho")
-public class Carrinho {
+@Table(name="lista_de_desejos")
+public class ListaDeDesejos {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +17,11 @@ public class Carrinho {
 	@OneToOne
     @MapsId
     @JoinColumn(name = "cliente_id")
-	@JsonIgnoreProperties("carrinho")
+	@JsonIgnoreProperties("listaDeDesejos")
 	private Cliente cliente;
 	
-	@ManyToMany(mappedBy = "carrinho", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({"nome", "descricao", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "carrinho","plu","promocao"})
+	@ManyToMany(mappedBy = "listaDesejos", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"nome", "descricao", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "listaDesejos","plu","promocao"})
 	private List<Produto> produtos = new ArrayList<>();
 
 	public long getId() {
@@ -49,4 +48,5 @@ public class Carrinho {
 		this.produtos = produtos;
 	}
 
+	
 }

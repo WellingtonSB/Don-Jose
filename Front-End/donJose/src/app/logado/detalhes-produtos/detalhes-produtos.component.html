@@ -55,11 +55,11 @@
               </div>
               <ul class="list-inline">
                 <li class="list-inline-item">
-                  <button class="btn btn-warning btn-lg mb-1" type="submit" (click)='comprarAgora(produto.id, idPedido)'>
+                  <button class="btn btn-warning btn-lg mb-1" type="submit" (click)='adicionaItemCarrinho(produto.id, idPedido)'>
                     <i class="fa fa-shopping-cart me-2"></i>
                     Comprar</button>
                 </li>
-                <li class="list-inline-item"><a class="btn btn-outline-warning mb-1"  (click)='adicionaItemCarrinho(produto.id, idPedido)'> <i class="far fa-heart me-2"></i>Adicionar
+                <li class="list-inline-item"><a class="btn btn-outline-warning mb-1"  (click)='adicionaItemListaDeDesejos(produto.id, idListaDeDesejos)'> <i class="far fa-heart me-2"></i>Adicionar
                     ao carrinho</a></li>
               </ul>
             </form>

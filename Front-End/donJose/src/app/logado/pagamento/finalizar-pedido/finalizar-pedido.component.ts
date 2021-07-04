@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class FinalizarPedidoComponent implements OnInit {
 
-  idCarrinho = environment.carrinho
+  idCarrinho = environment.listaDeDesejos
   idPedido = environment.pedidos
   
   pedido: Pedido = new Pedido()

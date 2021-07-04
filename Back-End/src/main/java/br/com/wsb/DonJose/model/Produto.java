@@ -4,8 +4,6 @@ import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-import org.hibernate.validator.constraints.URL;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -52,7 +50,7 @@ public class Produto {
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "produto_lista", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "lista_id"))
 	@JsonIgnoreProperties({ "produtos", "cliente" })
-	private List<Carrinho> carrinho = new ArrayList<>();
+	private List<ListaDeDesejos> listaDesejos  = new ArrayList<>();
 
 	public long getId() {
 		return id;
@@ -118,6 +116,14 @@ public class Produto {
 		this.qtdPedidoProduto = qtdPedidoProduto;
 	}
 
+	public double getPromocao() {
+		return promocao;
+	}
+
+	public void setPromocao(double promocao) {
+		this.promocao = promocao;
+	}
+
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -134,21 +140,14 @@ public class Produto {
 		this.pedidos = pedidos;
 	}
 
-	public List<Carrinho> getCarrinho() {
-		return carrinho;
+	public List<ListaDeDesejos> getListaDesejos() {
+		return listaDesejos;
 	}
 
-	public void setCarrinho(List<Carrinho> carrinho) {
-		this.carrinho = carrinho;
+	public void setListaDesejos(List<ListaDeDesejos> listaDesejos) {
+		this.listaDesejos = listaDesejos;
 	}
 
-	public double getPromocao() {
-		return promocao;
-	}
-
-	public void setPromocao(double promocao) {
-		this.promocao = promocao;
-	}
-
+	
 	
 }

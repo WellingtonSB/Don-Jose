@@ -1,6 +1,5 @@
 package br.com.wsb.DonJose.security;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -10,38 +9,41 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
+import br.com.wsb.DonJose.service.EmailService;
+import br.com.wsb.DonJose.service.SmtpEmailService;
 
 @EnableWebSecurity
 public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
-	
+
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-			auth.userDetailsService(userDetailsService);
-		
+		auth.userDetailsService(userDetailsService);
+	}
+
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 	
 	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-		
+	public EmailService emailService() {
+		return new SmtpEmailService();
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		.antMatchers("/**").permitAll()
-		.antMatchers("/clientes/logar").permitAll()
-		.antMatchers("/clientes/cadastrar").permitAll()
-		.anyRequest().authenticated()
-		.and().httpBasic()
-		.and().sessionManagement()
-		.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and().cors()
-		.and().csrf().disable();
-		
+		http.authorizeRequests().
+		antMatchers("/clientes/logar").permitAll().
+		antMatchers("/**").permitAll().
+		antMatchers("/clientes/cadastrar").permitAll().
+		anyRequest().authenticated().and().
+		httpBasic().and().sessionManagement()
+		.sessionCreationPolicy(SessionCreationPolicy.STATELESS).
+		and().cors().and().
+		csrf().disable();
 	}
 }

@@ -14,7 +14,6 @@ import { environment } from 'src/environments/environment.prod';
 export class PagamentoComponent implements OnInit {
 
   nome = environment.nome
-  email = environment.email
 
   pedido: Pedido = new Pedido()
   listaDePedidos: Pedido[]

@@ -18,16 +18,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.wsb.DonJose.model.Cliente;
-import br.com.wsb.DonJose.model.ClienteLogin;
+import br.com.wsb.DonJose.model.EmailDTO;
 import br.com.wsb.DonJose.repository.ClienteRepository;
+import br.com.wsb.DonJose.service.AuthService;
 import br.com.wsb.DonJose.service.CepService;
 import br.com.wsb.DonJose.service.ClienteService;
 import io.swagger.annotations.ApiOperation;
+import br.com.wsb.DonJose.model.ClienteLogin;
+import br.com.wsb.DonJose.model.Cliente;
+import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
 @RequestMapping("/clientes")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "*")
 public class ClienteController {
 
 	@Autowired
@@ -39,6 +42,8 @@ public class ClienteController {
 	@Autowired
 	private CepService cepService;
 	
+	@Autowired 
+	public AuthService authService;
 
 	@ApiOperation(value = "Busca por todos os clientes")
 	@GetMapping
@@ -93,9 +98,12 @@ public class ClienteController {
 
 		repository.deleteById(id);
 	}
-
-	//viaCEP	
+	
+	@PostMapping("/esqueciasenha")
+	public ResponseEntity<Void> forgot(@Valid @RequestBody EmailDTO objDto) throws ObjectNotFoundException {
+		authService.sendNewPassword(objDto.getEmail());
+		return ResponseEntity.noContent().build();
+	}
+	
 	
 }
-	
-

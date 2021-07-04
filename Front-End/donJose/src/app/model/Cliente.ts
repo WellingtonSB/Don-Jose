@@ -1,10 +1,11 @@
-import { Carrinho } from "./Carrinho"
+import { ListaDeDesejos } from "./ListaDeDesejos"
 import { Pedido } from "./Pedido"
 
 
 export class Cliente {
     public id: number
     public nome: string
+    public usuario:string
     public email: string
     public celular: string
     public cpf: string
@@ -22,6 +23,6 @@ export class Cliente {
     public uf: string
 
     /* Relacionamento */
-    public pedidos: Pedido;
-    public carrinho: Carrinho;
+    public pedidos: Pedido
+    public listaDeDesejos: ListaDeDesejos
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Carrinho } from 'src/app/model/Carrinho';
 import { Categoria } from 'src/app/model/Categoria';
+import { ListaDeDesejos } from 'src/app/model/ListaDeDesejos';
 import { Produto } from 'src/app/model/Produto';
 import { AuthService } from 'src/app/service/auth.service';
 import { CategoriaService } from 'src/app/service/categoria.service';
@@ -22,8 +22,8 @@ export class ProdutosComponent implements OnInit {
   idCategoria: number
   listaDeCategoria: Categoria[]
 
-  carrinho: Carrinho = new Carrinho()
-  idCarrinho = environment.carrinho
+  listaDeDesejos: ListaDeDesejos = new ListaDeDesejos()
+  idCarrinho = environment.listaDeDesejos
 
   idPedido = environment.pedidos
 
