@@ -100,10 +100,15 @@ public class ProdutoService {
 
 			if(produtoExistente.get().getPromocao()!= 0) {
 				pedidoExistente.get().setValorTotal(pedidoExistente.get().getFrete()+pedidoExistente.get().getValorTotal()+(produtoExistente.get().getPreco() * produtoExistente.get().getQtdPedidoProduto()));
+<<<<<<< HEAD
 				
 			}else {
 				pedidoExistente.get().setValorTotal(pedidoExistente.get().getValorTotal()+(produtoExistente.get().getPreco() * produtoExistente.get().getQtdPedidoProduto()));
 		
+=======
+			}else {
+				pedidoExistente.get().setValorTotal(pedidoExistente.get().getValorTotal()+(produtoExistente.get().getPreco() * produtoExistente.get().getQtdPedidoProduto()));
+>>>>>>> 4b4938e42f05b8936330e6055cb1738247ff454e
 			}
 
 			produtoRepository.save(produtoExistente.get());
@@ -165,9 +170,13 @@ public class ProdutoService {
 		if(produtoExistente.isPresent() && listaDeDesejoExistente.isPresent() && !(produtoExistente.get().getListaDesejos().contains(listaDeDesejoExistente.get()))) {
 			
 			produtoExistente.get().getListaDesejos().add(listaDeDesejoExistente.get());
+<<<<<<< HEAD
 			
 
 			
+=======
+		
+>>>>>>> 4b4938e42f05b8936330e6055cb1738247ff454e
 			produtoRepository.save(produtoExistente.get());
 			
 			return produtoRepository.save(produtoExistente.get());
