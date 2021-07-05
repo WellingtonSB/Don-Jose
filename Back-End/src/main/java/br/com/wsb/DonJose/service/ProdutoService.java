@@ -100,10 +100,10 @@ public class ProdutoService {
 
 			if(produtoExistente.get().getPromocao()!= 0) {
 				pedidoExistente.get().setValorTotal(pedidoExistente.get().getFrete()+pedidoExistente.get().getValorTotal()+(produtoExistente.get().getPreco() * produtoExistente.get().getQtdPedidoProduto()));
-				System.out.println("chamou o valor frete");
+				
 			}else {
 				pedidoExistente.get().setValorTotal(pedidoExistente.get().getValorTotal()+(produtoExistente.get().getPreco() * produtoExistente.get().getQtdPedidoProduto()));
-				System.out.println("nao chamou o valor frete");
+		
 			}
 
 			produtoRepository.save(produtoExistente.get());
@@ -131,9 +131,6 @@ public class ProdutoService {
 			for(int i = 0; i < pedidoExistente.get().getProdutos().size(); i++) {
 				
 				vetor[i] = pedidoExistente.get().getProdutos().get(i).getId();
-				
-				System.out.println("Posicao do vetor ["+ i +"] = "+ vetor[i]);
-				System.out.println("Produto ID: "+ produtoExistente.get().getId());
 				
 				if(vetor[i] == produtoExistente.get().getId()) {
 					contador++;
@@ -167,16 +164,11 @@ public class ProdutoService {
 		
 		if(produtoExistente.isPresent() && listaDeDesejoExistente.isPresent() && !(produtoExistente.get().getListaDesejos().contains(listaDeDesejoExistente.get()))) {
 			
-			
-			System.out.println("Acessou o produto e lista por id");
-			
 			produtoExistente.get().getListaDesejos().add(listaDeDesejoExistente.get());
 			
-			System.out.println("Adicionou o produto a lista");
+
 			
 			produtoRepository.save(produtoExistente.get());
-			
-			System.out.println("Salvou o produto com o novo dado");
 			
 			return produtoRepository.save(produtoExistente.get());
 			

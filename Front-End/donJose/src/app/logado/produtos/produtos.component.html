@@ -30,7 +30,7 @@
                     [routerLink]="['/produtos-detalhe',item.id]"></a>
                   <div class="product-hover-overlay-buttons">
                     <a class="btn btn-outline-warning btn-product-left d-none d-sm-inline-block"
-                      (click)='comprarAgora(item.id, idPedido)'>
+                    (click)='adicionaItemListaDeDesejos(item.id, idListaDeDesejos)'>
                       <i class="fa fa-shopping-cart"></i>
                     </a>
                     <a class="btn btn-warning btn-buy" [routerLink]="['/produtos-detalhe',item.id]">
@@ -207,7 +207,7 @@
                 <ul class="list-inline mb-2 mb-sm-0">
                   <li class="list-inline-item h4 fw-light mb-0">R$ {{produto.preco}}</li>
                   <li class="list-inline-item text-muted fw-light">
-                    <del>R$ 50.00</del>
+                    <del>R$ {{valorDesconto}}</del>
                   </li>
                 </ul>
                 <div class="d-flex align-items-center">
@@ -245,12 +245,12 @@
                 </div>
                 <ul class="list-inline">
                   <li class="list-inline-item">
-                    <button class="btn btn-warning btn-lg mb-1" type="submit" (click)='comprarAgora(produto.id, idPedido)'>
+                    <button class="btn btn-warning btn-lg mb-1" type="submit" (click)='comprarAgora(produto.id, idListaDeDesejos)'>
                       <i class="fa fa-shopping-cart me-2"></i>
                       Comprar</button>
                   </li>
                   <li class="list-inline-item"><a class="btn btn-outline-warning mb-1"
-                      (click)='adicionaItemCarrinho(produto.id, idPedido)'> <i class="far fa-heart me-2"></i>Adicionar
+                    (click)='adicionaItemListaDeDesejos(produto.id, idListaDeDesejos)'> <i class="far fa-heart me-2"></i>Adicionar
                       ao carrinho</a></li>
                 </ul>
               </form>

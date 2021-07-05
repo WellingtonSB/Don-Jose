@@ -15,17 +15,18 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class ProdutosComponent implements OnInit {
 
-  produto: Produto = new Produto()
-  listaDeProdutos: Produto[]
+  produto: Produto = new Produto();
+  listaDeProdutos: Produto[];
+  idListaDeDesejos = environment.listaDeDesejos;
+  idPedido = environment.pedidos;
 
-  categoria: Categoria = new Categoria()
-  idCategoria: number
-  listaDeCategoria: Categoria[]
+  categoria: Categoria = new Categoria();
+  listaDeCategoria: Categoria[];
+  idCategoria: number;
 
-  listaDeDesejos: ListaDeDesejos = new ListaDeDesejos()
-  idCarrinho = environment.listaDeDesejos
+  listaDeDesejos: ListaDeDesejos = new ListaDeDesejos();
 
-  idPedido = environment.pedidos
+  valorDesconto:number
 
   constructor(
     public router: Router,
@@ -58,7 +59,7 @@ export class ProdutosComponent implements OnInit {
   findByIdProduto(id: number) {
     this.produtoService.findByIdProduto(id).subscribe((resp: Produto) => {
       this.produto = resp;
-      console.log(id)
+      this.valorDesconto = this.produto.preco-(this.produto.promocao/this.produto.preco)
     })
   }
 
@@ -78,29 +79,17 @@ export class ProdutosComponent implements OnInit {
 
   }
 
-  comprarAgora(idProduto: number, idPedido: number) {
-    if (localStorage.getItem('token') != null) {
-      this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
-        this.router.navigate(['/carrinho'])
-        this.findAllByProdutos();
-      })
-    } else {
-      this.router.navigate(['/login'])
-    }
+  adicionaItemListaDeDesejos(idProduto: number, idLista: number) {
+    this.produtoService.adicionaItemListaDeDesejos(idProduto, idLista).subscribe(() => {
+      alert('Produto adicionado ao carrinho!');
+      this.findAllByProdutos();
+    })
   }
 
-  adicionaItemCarrinho(idProduto: number, idPedido: number) {
-    if (localStorage.getItem('token') != null) {
-      this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
-        alert('Produto adicionado ao carrinho!');
-        this.findAllByProdutos();
-      })
-    } else {
-      this.router.navigate(['/login'])
-    }
-  }
-
-
-
+ comprarAgora(idProduto: number, idLista: number) {
+  this.produtoService.adicionaItemListaDeDesejos(idProduto, idLista).subscribe(() => {
+    this.router.navigate(['/carrinho']);
+  })
+}
 }
 
