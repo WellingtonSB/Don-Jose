@@ -33,14 +33,19 @@ export class PedidoService {
     return this.http.get<Pedido>(`${this.endereco}/pedidos/${id}`, this.autorizacao);
   }
 
-  findAllByNumeroPedido(numeroPedido:number):Observable<Pedido>{
-    return this.http.get<Pedido>(`${this.endereco}/pedidos/numeroPedido/${numeroPedido}`, this.autorizacao)
-  }
   
-
   findAllByProdutosPedidos(idPedido: number): Observable<Produto[]> {
 
     return this.http.get<Produto[]>(`${this.endereco}/pedidos/meuspedidos/${idPedido}`, this.autorizacao);
+  }
+
+  findAllByNumeroPedido(numeroPedido:number):Observable<Pedido>{
+    return this.http.get<Pedido>(`${this.endereco}/pedidos/numeroPedido/${numeroPedido}`, this.autorizacao)
+  } 
+
+  finalizarPedido(idProduto: number, idPedido: number): Observable<Pedido> {
+
+    return this.http.post<Pedido>(`${this.endereco}/pedidos/produto_pedido/produtos/${idProduto}/pedidos/${idPedido}`, this.autorizacao);
   }
 
   postPedido(pedido: Pedido): Observable<Pedido> { 

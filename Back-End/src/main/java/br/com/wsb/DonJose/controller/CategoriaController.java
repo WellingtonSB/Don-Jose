@@ -28,6 +28,7 @@ public class CategoriaController {
 	@Autowired
 	private CategoriaRepository repository;
 	
+
 	@ApiOperation(value = "Busca por todas as categorias ")
 	@GetMapping
 	public ResponseEntity<List<Categoria>> findAllCategorias() {
@@ -52,15 +53,16 @@ public class CategoriaController {
 	
 	@ApiOperation(value = "Cria uma nova categoria")
 	@PostMapping
-	public ResponseEntity<Categoria> postCategoria(@RequestBody Categoria categoria) {
+	public ResponseEntity<Categoria> cadastrarPromocao(@RequestBody Categoria categoria) {
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(categoria));
 	}
 	
+	
 	@ApiOperation(value = "Atualiza uma categoria ")
-	@PutMapping
+	@PutMapping("/promocao")
 	public ResponseEntity<Categoria> putCategoria(@RequestBody Categoria categoria) {
-		
+		categoria.setPromocao(true);
 		return ResponseEntity.ok(repository.save(categoria));
 	}
 	

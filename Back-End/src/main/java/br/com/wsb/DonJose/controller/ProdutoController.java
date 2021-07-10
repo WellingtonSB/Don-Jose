@@ -1,8 +1,13 @@
 package br.com.wsb.DonJose.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,6 +24,7 @@ import br.com.wsb.DonJose.model.Produto;
 import br.com.wsb.DonJose.repository.ProdutoRepository;
 import br.com.wsb.DonJose.service.ProdutoService;
 import io.swagger.annotations.ApiOperation;
+
 
 
 
@@ -39,6 +45,38 @@ public class ProdutoController {
 
 		return ResponseEntity.ok(repository.findAll());
 	}
+
+	/*
+	 														(Paginação)
+	  
+	  @ApiOperation(value = "Busca por todos os produtos usando paginacao")
+	@GetMapping("/prods")
+	public ResponseEntity<Page<Produto>>getAllProdutos(@PageableDefault(page=0 , size=5, sort ="id",direction = Sort.Direction.ASC)Pageable pageable){
+		Page<Produto> produtosList = repository.findAll(pageable);
+		if(produtosList.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			for(Produto produto :produtosList) {
+				long id = produto.getId();
+				produto.add(linkTo(methodOn(ProdutoController.class).getOneProduto(id)).withSelfRel());
+			}
+			return new ResponseEntity<>(produtosList,HttpStatus.OK);
+		}
+	}
+
+
+	@GetMapping("/prod/{id}")
+	public ResponseEntity<Produto>getOneProduto(@PathVariable(value="id")long id){
+		Optional<Produto>produto0 = repository.findById(id);
+		if(!produto0.isPresent()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			Object pageable;
+			produto0.get().add(linkTo(methodOn(ProdutoController.class).getAllProdutos(pageable:null)).withRel("Lista de Produtos"));
+			return new ResponseEntity<Produto>(produto0.get(),HttpStatus.OK);
+		}
+	}*/
+
 
 	@ApiOperation(value = "Busca por um produto especifico via ID")
 	@GetMapping("/{id}")
@@ -62,41 +100,39 @@ public class ProdutoController {
 	@ApiOperation(value = "Busca por um produto especifico via nome ")
 	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<Produto>> findAllByNomeProdutos(@PathVariable String nome) {
-
 		return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
 	}
 
 	@ApiOperation(value = "Cria um novo produto")
 	@PostMapping
 	public ResponseEntity<Produto> cadastrarProduto(@RequestBody Produto produto) {		
+		
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.cadastrarProduto(produto));
 	}
 
-	@ApiOperation(value = "Atualiza um produto especifico")
+	@ApiOperation(value = "Atualiza um produto")
 	@PutMapping
-	public ResponseEntity<Produto> putProduto(@RequestBody Produto produto) {
-
+	public ResponseEntity<Produto> putProduto(@RequestBody Produto produto) {	
 		return ResponseEntity.ok(repository.save(produto));
 	}
 
 	@ApiOperation(value = "Adiciona o produto no carrinho (compra diretamente)")
 	@PutMapping("/produto_pedido/produtos/{idProduto}/pedidos/{idPedido}")
 	public ResponseEntity<Produto> putProduto(@PathVariable long idProduto, @PathVariable long idPedido) {
+		
 		return ResponseEntity.ok(service.compraProduto(idProduto, idPedido));
 	}
 	
 	@ApiOperation(value = "Adiciona o produto na lista de desejos (compra diretamente)")
 	@PutMapping("/produto_lista/produtos/{idProduto}/listaDesejos/{idListaDeDesejo}")
-	public ResponseEntity<Produto> adicionaProdutoListaDeDesejos(@PathVariable long idProduto, @PathVariable long idListaDeDesejo) {
-		
+	public ResponseEntity<Produto> adicionaProdutoListaDeDesejos(@PathVariable long idProduto, @PathVariable long idListaDeDesejo) {		
 		return ResponseEntity.ok(service.adicionarProdutoListaDeDesejo(idProduto, idListaDeDesejo));
 	}
-	
 	
 	@ApiOperation(value = "Deleta um produto")
 	@DeleteMapping("/{id}")
 	public void deleteProduto(@PathVariable long id) {
-
+		
 		repository.deleteById(id);
 	}
 

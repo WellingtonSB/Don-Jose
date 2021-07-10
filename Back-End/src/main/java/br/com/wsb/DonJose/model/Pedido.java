@@ -44,12 +44,12 @@ public class Pedido {
 	private double valorTotal;
 		
 	@Digits(integer = 5, fraction = 2)
-	private double frete;
+	private double frete = 10;
 		
 	private int qtdProduto;
 	
 	@ManyToMany(mappedBy = "pedidos", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnoreProperties({"nome", "descricao", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "listaDesejos","promocao"})
+	@JsonIgnoreProperties({"nome", "descricao", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "listaDesejos"})
 	private List<Produto> produtos = new ArrayList<>();
 
 	@OneToOne

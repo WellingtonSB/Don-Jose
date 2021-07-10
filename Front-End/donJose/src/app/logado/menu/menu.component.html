@@ -1,11 +1,11 @@
 <header>
     <div class="container">
-        <nav class="nav-pri">
+        <nav class="nav-pri navbar navbar-expand-lg navbar-sticky navbar-airy  bg-fixed-white">
             <div class="menu-toggle">
                 <i class=" fa-bars"></i>
                 <i class="fa-times"></i>
             </div>
-            <a routerLink ="/home"class="logo"><img src="https://i.imgur.com/vSiePBL.png" alt="Logo"></a>
+            <a routerLink="/home" class="logo"><img src="https://i.imgur.com/vSiePBL.png" alt="Logo"></a>
             <ul class="nav-list">
                 <li class="nav-item">
                     <a routerLink="/graficos" class="nav-link active">Home</a>
@@ -13,16 +13,217 @@
                 <li class="nav-item">
                     <a routerLink="/products" class="nav-link">Produtos</a>
                 </li>
+                <li class="nav-item dropdown" *ngIf='menuCliente()!=false '>
+                    <div class="d-none d-lg-block">
+                        <a class="navbar-icon-link" id="cartdetails" href="cart.html" data-bs-target="#"data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="rgb(248,248,255)" class="bi bi-cart3" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                              </svg>
+                            <div class="navbar-icon-link-badge text-light">3</div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-animated dropdown-menu-end p-4"
+                            aria-labelledby="cartdetails">
+                            <div class="navbar-cart-product-wrapper">
+
+                                <div class="navbar-cart-product" *ngFor="let prod of listaDeDesejos">
+                                    <div class="d-flex align-items-center"  >
+                                        <a href="detail.html">
+                                            <img class="img-fluid navbar-cart-product-image"
+                                                src="{{prod.img}}"
+                                                alt="{{prod.nome}}"></a>
+                                        <div class="w-100"><a class="navbar-cart-product-close" href="#"><i
+                                                    class="fa fa-times"> </i></a>
+                                            <div class="ps-3"> <a class="navbar-cart-product-link"
+                                                    href="detail.html">{{prod.nome}}</a><small
+                                                    class="d-block text-muted">Quantidade: {{prod.qtdPedidoProduto}} </small><strong
+                                                    class="d-block text-sm">R$ {{prod.preco}} </strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="navbar-cart-total">
+                                <span class="text-uppercase text-muted">Total</span><strong
+                                    class="text-uppercase">R$ {{pedido.valorTotal}}</strong></div>
+                            <div class="d-flex justify-content-between">
+                                <a class="btn btn-link text-dark me-3" routerLink="/carrinho">Carrinho
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="rgb(0,0,0)" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                      </svg>
+                                </a>
+                                <a class="btn btn-outline-dark" href="checkout1.html">Finalizar compra</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Contato</a>
+                    <a *ngIf='menuCliente()!=true ' class="nav-link">Contato</a>
+                    <a class="conta-teste" routerLink="/perfil-cliente" *ngIf='menuCliente()!=false '>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="rgb(248,248,255)"
+                            class="bi bi-person-circle " viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                            <path fill-rule="evenodd"d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                        </svg>
+                    </a>
                 </li>
-                <li class="nav-item" *ngIf='menuCliente()!=false '>
-                    <a routerLink="/conta" class="nav-link" >Perfil</a>
-                </li>
-                <li class="nav-item" *ngIf='menuCliente()!=false '>
+                <!-- <li class="nav-item" *ngIf='menuCliente()!=false '>
                     <a class="nav-link" (click)='authService.logOut()'>Sair</a>
-                </li>
+                </li> -->
             </ul>
         </nav>
     </div>
 </header>
+
+<!-- <header class="header">
+    <div class="top-bar">
+        <div class="container-fluid">
+            <div class="row d-flex align-items-center">
+                <div class="col-sm-7 d-none d-sm-block">
+                    <ul class="list-inline topbar-text mb-0">
+                        <li class="list-inline-item pe-3 me-0">
+                            <svg class="svg-icon me-2">
+                                <use xlink:href="#calls-1"> </use>
+                            </svg>020-800-456-747
+                        </li>
+                        <li class="list-inline-item px-3 border-start d-none d-lg-inline-block">Free shipping on orders
+                            over $300</li>
+                    </ul>
+                </div>
+                <div class="col-sm-5 d-flex justify-content-end">
+
+                    <div class="dropdown border-end px-3"><a class="dropdown-toggle topbar-link" id="langsDropdown"
+                            href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-haspopup="true"
+                            aria-expanded="false"><img class="topbar-flag"
+                                src="https://d19m59y37dris4.cloudfront.net/sell/2-0/img/flag/gb.svg"
+                                alt="english">English</a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated"
+                            aria-labelledby="langsDropdown"><a class="dropdown-item text-sm" href="#"><img
+                                    class="topbar-flag"
+                                    src="https://d19m59y37dris4.cloudfront.net/sell/2-0/img/flag/de.svg"
+                                    alt="german">German</a><a class="dropdown-item text-sm" href="#"> <img
+                                    class="topbar-flag"
+                                    src="https://d19m59y37dris4.cloudfront.net/sell/2-0/img/flag/fr.svg"
+                                    alt="french">French</a></div>
+                    </div>
+
+                    <div class="dropdown ps-3 ms-0"><a class="dropdown-toggle topbar-link" id="currencyDropdown"
+                            href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-haspopup="true"
+                            aria-expanded="false"> <i class="fas fa-dollar-sign text-xs align-middle mt-n1 me-2">
+                            </i>USD</a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated"
+                            aria-labelledby="currencyDropdown"><a class="dropdown-item text-sm" href="#"> <i
+                                    class="fas fa-euro-sign text-xs align-middle mt-n1 me-2"> </i>EUR</a><a
+                                class="dropdown-item text-sm" href="#"><i
+                                    class="fas fa-pound-sign text-xs align-middle mt-n1 me-2"> </i>GBP</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-sticky navbar-airy navbar-light bg-fixed-white">
+        <div class="container-fluid">
+<a class="navbar-brand" href="index.html"><img src="https://i.imgur.com/vSiePBL.png"
+                    alt="Logo"></a>
+
+            <div class="nav-item"><a class="navbar-icon-link" href="customer-login.html">
+                    <svg class="svg-icon">
+                        <use xlink:href="#male-user-1"> </use>
+                    </svg><span
+                        class="text-sm ms-2 ms-lg-0 text-uppercase text-sm fw-bold d-none d-sm-inline d-lg-none">Log in
+                    </span></a></div>
+
+            <div class="nav-item dropdown"><a class="navbar-icon-link d-lg-none" href="cart.html">
+                    <svg class="svg-icon">
+                        <use xlink:href="#cart-1"> </use>
+                    </svg><span
+                        class="text-sm ms-2 ms-lg-0 text-uppercase text-sm fw-bold d-none d-sm-inline d-lg-none">View
+                        cart</span></a>
+                <div class="d-none d-lg-block"><a class="navbar-icon-link" id="cartdetails" href="cart.html"
+                        data-bs-target="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg class="svg-icon">
+                            <use xlink:href="#cart-1"> </use>
+                        </svg>
+                        <div class="navbar-icon-link-badge">3 </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-animated dropdown-menu-end p-4"
+                        aria-labelledby="cartdetails">
+                        <div class="navbar-cart-product-wrapper">
+
+                            <div class="navbar-cart-product">
+                                <div class="d-flex align-items-center"><a href="detail.html"><img
+                                            class="img-fluid navbar-cart-product-image"
+                                            src="https://d19m59y37dris4.cloudfront.net/sell/2-0/img/product/product-square-ian-dooley-347968-unsplash.jpg"
+                                            alt="..."></a>
+                                    <div class="w-100"><a class="navbar-cart-product-close" href="#"><i
+                                                class="fa fa-times"> </i></a>
+                                        <div class="ps-3"> <a class="navbar-cart-product-link" href="detail.html">Skull
+                                                Tee</a><small class="d-block text-muted">Quantity: 1 </small><strong
+                                                class="d-block text-sm">$75.00 </strong></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="navbar-cart-product">
+                                <div class="d-flex align-items-center"><a href="detail.html"><img
+                                            class="img-fluid navbar-cart-product-image"
+                                            src="https://d19m59y37dris4.cloudfront.net/sell/2-0/img/product/product-square-kyle-loftus-596319-unsplash.jpg"
+                                            alt="..."></a>
+                                    <div class="w-100"><a class="navbar-cart-product-close" href="#"><i
+                                                class="fa fa-times"> </i></a>
+                                        <div class="ps-3"> <a class="navbar-cart-product-link"
+                                                href="detail.html">Transparent Blouse</a><small
+                                                class="d-block text-muted">Quantity: 1 </small><strong
+                                                class="d-block text-sm">$75.00 </strong></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="navbar-cart-product">
+                                <div class="d-flex align-items-center"><a href="detail.html"><img
+                                            class="img-fluid navbar-cart-product-image"
+                                            src="https://d19m59y37dris4.cloudfront.net/sell/2-0/img/product/product-square-serrah-galos-494312-unsplash.jpg"
+                                            alt="..."></a>
+                                    <div class="w-100"><a class="navbar-cart-product-close" href="#"><i
+                                                class="fa fa-times"> </i></a>
+                                        <div class="ps-3"> <a class="navbar-cart-product-link" href="detail.html">White
+                                                Tee</a><small class="d-block text-muted">Quantity: 1 </small><strong
+                                                class="d-block text-sm">$75.00 </strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="navbar-cart-total"><span class="text-uppercase text-muted">Total</span><strong
+                                class="text-uppercase">$75.00</strong></div>
+
+                        <div class="d-flex justify-content-between"><a class="btn btn-link text-dark me-3"
+                                href="cart.html">View Cart <i class="fa-arrow-right fa"></i></a><a
+                                class="btn btn-outline-dark" href="checkout1.html">Checkout</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="search-area-wrapper">
+        <div class="search-area d-flex align-items-center justify-content-center">
+            <div class="close-btn">
+                <svg class="svg-icon svg-icon-light w-3rem h-3rem">
+                    <use xlink:href="#close-1"> </use>
+                </svg>
+            </div>
+            <form class="search-area-form" action="#">
+                <div class="mb-4 position-relative">
+                    <input class="search-area-input" type="search" name="search" id="search"
+                        placeholder="What are you looking for?">
+                    <button class="search-area-button" type="submit">
+                        <svg class="svg-icon">
+                            <use xlink:href="#search-1"> </use>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</header>
+ -->

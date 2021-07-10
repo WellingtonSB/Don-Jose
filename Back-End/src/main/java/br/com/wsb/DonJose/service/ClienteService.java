@@ -23,13 +23,14 @@ public class ClienteService {
 	private ClienteRepository clienteRepository;
 
 	@Autowired
-	private PedidoRepository pedidoRepository;
-
-	@Autowired
 	private ListaDeDesejosRepository listaDeDesejosRepository;
 	
 	@Autowired
     private CepService cepService;
+	
+
+	@Autowired
+	private PedidoRepository pedidoRepository;
 	
 	
 	public Optional<Cliente> CadastrarCliente(Cliente cliente) {
@@ -52,8 +53,6 @@ public class ClienteService {
 		}
 		cliente.setNumero(infoEndereco.getNumero());
 	
-		
-		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 		String senhaEncoder = encoder.encode(cliente.getSenha());

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Categoria } from 'src/app/model/Categoria';
 import { ListaDeDesejos } from 'src/app/model/ListaDeDesejos';
 import { Produto } from 'src/app/model/Produto';
+import { AuthService } from 'src/app/service/auth.service';
 import { CategoriaService } from 'src/app/service/categoria.service';
 import { ProdutoService } from 'src/app/service/produto.service';
 import { environment } from 'src/environments/environment.prod';
@@ -16,7 +17,7 @@ export class DetalhesProdutosComponent implements OnInit {
 
   produto: Produto = new Produto();
   listaDeProdutos: Produto[];
-  idProduto:number
+  idProduto: number
 
   idListaDeDesejos = environment.listaDeDesejos;
   idPedido = environment.pedidos;
@@ -30,6 +31,7 @@ export class DetalhesProdutosComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private authService: AuthService,
     private categoriaService: CategoriaService,
     private produtoService: ProdutoService
 
@@ -62,51 +64,28 @@ export class DetalhesProdutosComponent implements OnInit {
     })
   }
 
-  /* comprarAgora(idProduto: number, idPedido: number) {
-    if (localStorage.getItem('token') != null) {
-      this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
-        this.router.navigate(['/carrinho'])
+  adicionaItemListaDeDesejos(idProduto: number, idLista: number) {
+    if (this.authService.logado() == true) {
+      this.produtoService.adicionaItemListaDeDesejos(idProduto, idLista).subscribe(() => {
+        alert('Produto adicionado a lista de desejos!');
         this.findAllByProdutos();
       })
     } else {
+      alert("voce precisa estar logado para adicionar ao carirnho")
       this.router.navigate(['/login'])
     }
   }
 
-  adicionaItemCarrinho(idProduto: number, idPedido: number) {
-    if (localStorage.getItem('token') != null) {
-      this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
+  adicionaItemCarrinho(idProduto: number, idCarrinho: number) {
+    if (this.authService.logado() == true) {
+      this.produtoService.adicionaItemCarrinho(idProduto, idCarrinho).subscribe(() => {
         alert('Produto adicionado ao carrinho!');
         this.findAllByProdutos();
       })
     } else {
+      alert("voce precisa estar logado para adicionar ao carirnho")
       this.router.navigate(['/login'])
     }
-  }
-  att(){
-     document.location.reload();
-   } */
-
-
-   adicionaItemListaDeDesejos(idProduto: number, idLista: number) {
-    this.produtoService.adicionaItemListaDeDesejos(idProduto, idLista).subscribe(() => {
-      alert('Produto adicionado a lista de desejos!');
-
-      this.findAllByProdutos();
-
-    })
-
-  }
-
-  /* ADICIONA PRODUTOS AO CARRINHO DO USUARIO */
-  adicionaItemCarrinho(idProduto: number, idCarrinho: number) {
-    this.produtoService.adicionaItemCarrinho(idProduto, idCarrinho).subscribe(() => {
-      alert('Produto adicionado ao carrinho!');
-
-      this.findAllByProdutos();
-
-    })
-
   }
 }
 

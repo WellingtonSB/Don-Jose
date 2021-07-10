@@ -22,7 +22,7 @@ import br.com.wsb.DonJose.service.ProdutoService;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/listaDeDesejo")
+@RequestMapping("/listadesejo")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ListaDeDesejosController {
 
@@ -55,9 +55,10 @@ public class ListaDeDesejosController {
 	
 	@ApiOperation(value = "Procura por produtos contidos em uma  listas de desejo via ID ")
 	@GetMapping("/listaDeDesejo/{idListaDeDesejo}")
-	public ResponseEntity<List<Produto>> findAllByProdutosCarrinho(@PathVariable long idListaDeDesejo) {
+	public ResponseEntity<List<Produto>> findAllByProdutosListaDeDesejos(@PathVariable long idListaDeDesejo) {
 		return ResponseEntity.ok(service.pesquisaPorProdutoNaListaDeDesejos(idListaDeDesejo));
 	}
+	
 
 	@ApiOperation(value = "Cria uma  listas de desejo ")
 	@PostMapping
