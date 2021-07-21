@@ -1,5 +1,6 @@
 package br.com.wsb.DonJose.model;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javax.persistence.*;
@@ -8,7 +9,8 @@ import com.fasterxml.jackson.annotation.*;
 
 @Entity
 @Table(name="lista_de_desejos")
-public class ListaDeDesejos {
+public class ListaDeDesejos implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

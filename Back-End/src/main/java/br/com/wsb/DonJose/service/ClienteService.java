@@ -40,35 +40,23 @@ public class ClienteService {
 			//fazer uma trativa de erro
 			return null;
 		}
-		
-		//viaCEP
-		Cliente infoEndereco = cepService.buscaEnderecoPorCep(cliente.getCep());
-		cliente.setBairro(infoEndereco.getBairro());
-		cliente.setLocalidade(infoEndereco.getLocalidade());
-		cliente.setUf(infoEndereco.getUf());
-		cliente.setLogradouro(infoEndereco.getLogradouro());
-		cliente.setEmail(cliente.getUsuario());
-		if (cliente.getComplemento() == null) {
-			cliente.setComplemento(infoEndereco.getComplemento());
-		}
-		cliente.setNumero(infoEndereco.getNumero());
-	
+			
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 		String senhaEncoder = encoder.encode(cliente.getSenha());
 		cliente.setSenha(senhaEncoder);
 
-		Pedido pedido = new Pedido();
+		//Pedido pedido = new Pedido();
 
 		ListaDeDesejos listaDeDesejos = new ListaDeDesejos();
 
 		clienteRepository.save(cliente);
 
-		pedido.setCliente(cliente);
+		//pedido.setCliente(cliente);
 
 		listaDeDesejos.setCliente(cliente);
 
-		pedidoRepository.save(pedido);
+		//pedidoRepository.save(pedido);
 		listaDeDesejosRepository.save(listaDeDesejos);
 
 		return Optional.of(clienteRepository.save(cliente));
@@ -91,18 +79,9 @@ public class ClienteService {
 
 				user.get().setToken(authHeader);	
 				user.get().setId(cliente.get().getId());
-				user.get().setUf(cliente.get().getUf());
-				user.get().setCpf(cliente.get().getCpf());
-				user.get().setCep(cliente.get().getCep());
-				user.get().setFoto(cliente.get().getFoto());
 				user.get().setNome(cliente.get().getNome());
 				user.get().setEmail(cliente.get().getEmail());
 				user.get().setSenha(cliente.get().getSenha());
-				user.get().setNumero(cliente.get().getNumero());
-				user.get().setBairro(cliente.get().getBairro());
-				user.get().setCelular(cliente.get().getCelular());
-				user.get().setPedidos(cliente.get().getPedidos());
-				user.get().setComplemento(cliente.get().getComplemento());
 				user.get().setListaDeDesejos(cliente.get().getListaDeDesejos());
 				
 				return user;

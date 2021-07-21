@@ -33,7 +33,7 @@ import io.swagger.annotations.ApiOperation;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProdutoController {
 
-	@Autowired
+	/*@Autowired
 	private ProdutoRepository repository;
 
 	@Autowired
@@ -75,7 +75,7 @@ public class ProdutoController {
 			produto0.get().add(linkTo(methodOn(ProdutoController.class).getAllProdutos(pageable:null)).withRel("Lista de Produtos"));
 			return new ResponseEntity<Produto>(produto0.get(),HttpStatus.OK);
 		}
-	}*/
+	}
 
 
 	@ApiOperation(value = "Busca por um produto especifico via ID")
@@ -134,6 +134,6 @@ public class ProdutoController {
 	public void deleteProduto(@PathVariable long id) {
 		
 		repository.deleteById(id);
-	}
+	}*/
 
 }

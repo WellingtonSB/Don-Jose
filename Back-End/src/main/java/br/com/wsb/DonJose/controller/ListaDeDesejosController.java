@@ -46,7 +46,7 @@ public class ListaDeDesejosController {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 
-	@ApiOperation(value = "Procura por uma  listas de desejo específico via nome ")
+	/*@ApiOperation(value = "Procura por uma  listas de desejo específico via nome ")
 	@GetMapping("/listaDeDesejo/{idListaDeDesejo}/nome/{nome}")
 	public ResponseEntity<List<Produto>> findAllByNomeProdutoListaDeDesejos(@PathVariable long idListaDeDesejo, @PathVariable String nome) {
 		
@@ -82,6 +82,6 @@ public class ListaDeDesejosController {
 	@DeleteMapping("/{id}")
 	public void deletarProduto(@PathVariable long id) {
 		repository.deleteById(id);
-	}
+	}*/
 
 }

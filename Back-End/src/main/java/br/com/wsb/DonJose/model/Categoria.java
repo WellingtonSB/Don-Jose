@@ -1,6 +1,7 @@
 package br.com.wsb.DonJose.model;
 
 
+import java.io.Serializable;
 import java.time.*;
 import java.util.*;
 
@@ -14,8 +15,8 @@ import com.fasterxml.jackson.annotation.*;
 
 @Entity
 @Table(name = "categoria")
-public class Categoria {
-	
+public class Categoria implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -38,10 +39,9 @@ public class Categoria {
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date data = new java.sql.Date(System.currentTimeMillis());
-	
-	@OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("categoria")
-	private List<Produto> produtos;
+	 
+	@ManyToMany(mappedBy="categorias")
+	private List<Produto> produtos = new ArrayList<>();
 
 	public long getId() {
 		return id;
@@ -107,8 +107,43 @@ public class Categoria {
 		this.fimPromocao = fimPromocao;
 	}
 
+	public Categoria() {
+		super();
+	}
 
+	public Categoria(long id, @Size(max = 50) String nome, boolean promocao, int porcentagemPromocao,
+			LocalDateTime inicioPromocao, LocalDateTime fimPromocao, Date data) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.promocao = promocao;
+		this.porcentagemPromocao = porcentagemPromocao;
+		this.inicioPromocao = inicioPromocao;
+		this.fimPromocao = fimPromocao;
+		this.data = data;
+	}
 
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Categoria other = (Categoria) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
 	
 }

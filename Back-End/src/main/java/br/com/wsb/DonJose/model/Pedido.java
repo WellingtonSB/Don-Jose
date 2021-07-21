@@ -1,85 +1,52 @@
 package br.com.wsb.DonJose.model;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.Set;
+import java.util.HashSet;
 
-import javax.persistence.ManyToMany;
-
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.Digits;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
 
 @Entity
 @Table(name = "pedido")
-public class Pedido {
-	
+public class Pedido implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private Date data = new java.sql.Date(System.currentTimeMillis());
-	
-	private String status;//criado,em andamento, entregue
-	
+
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	private Date instante;
+
 	private int numeroPedido;
-	
-	
-	@Digits(integer = 5, fraction = 2)
-	private double valorTotal;
-		
+
 	@Digits(integer = 5, fraction = 2)
 	private double frete = 10;
-		
-	private int qtdProduto;
-	
-	@ManyToMany(mappedBy = "pedidos", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JsonIgnoreProperties({"nome", "descricao", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "listaDesejos"})
-	private List<Produto> produtos = new ArrayList<>();
 
-	@OneToOne
-    @MapsId
-    @JoinColumn(name = "cliente_id")
-	@JsonIgnoreProperties("pedidos")
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
+
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
+	private Pagamento pagamento;
+
+	@OneToMany(mappedBy = "id.pedido")
+	private Set<ItemPedido> itens = new HashSet<>();
 
 	public long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public Date getInstante() {
+		return instante;
 	}
 
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
+	public void setInstante(Date instante) {
+		this.instante = instante;
 	}
 
 	public int getNumeroPedido() {
@@ -90,28 +57,12 @@ public class Pedido {
 		this.numeroPedido = numeroPedido;
 	}
 
-	public double getValorTotal() {
-		return valorTotal;
+	public double getFrete() {
+		return frete;
 	}
 
-	public void setValorTotal(double valorTotal) {
-		this.valorTotal = valorTotal;
-	}
-
-	public int getQtdProduto() {
-		return qtdProduto;
-	}
-
-	public void setQtdProduto(int qtdProduto) {
-		this.qtdProduto = qtdProduto;
-	}
-
-	public List<Produto> getProdutos() {
-		return produtos;
-	}
-
-	public void setProdutos(List<Produto> produtos) {
-		this.produtos = produtos;
+	public void setFrete(double frete) {
+		this.frete = frete;
 	}
 
 	public Cliente getCliente() {
@@ -122,13 +73,58 @@ public class Pedido {
 		this.cliente = cliente;
 	}
 
-	public double getFrete() {
-		return frete;
+	public Pagamento getPagamento() {
+		return pagamento;
 	}
 
-	public void setFrete(double frete) {
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+
+	
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemPedido> itens) {
+		this.itens = itens;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Pedido(long id, Date instante, int numeroPedido, @Digits(integer = 5, fraction = 2) double frete,
+			Cliente cliente, Pagamento pagamento) {
+		super();
+		this.id = id;
+		this.instante = instante;
+		this.numeroPedido = numeroPedido;
 		this.frete = frete;
+		this.cliente = cliente;
+		this.pagamento = pagamento;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pedido other = (Pedido) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 
 }

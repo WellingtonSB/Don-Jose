@@ -1,9 +1,15 @@
 package br.com.wsb.DonJose.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,20 +19,20 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import br.com.wsb.DonJose.model.enums.TipoCliente;
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "cliente")
-public class Cliente {
+public class Cliente implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,66 +46,39 @@ public class Cliente {
 	@Email
 	@Size(min = 3, max = 50)
 	private String usuario;
-	
+
 	@Column(name = "email")
 	@Email
 	private String email;
 
-	@Column(name = "celular")
-	@Size(max = 11)
-	private String celular;
-	
 	@Column(name = "cpf", unique = true)
 	@CPF
 	private String cpf;
 
 	@Column(name = "senha", nullable = false)
 	private String senha;
-	
-	
-	@Column(name = "dataNascimento",nullable = false)
+
+	private Integer tipo;
+
+	@Column(name = "dataNascimento", nullable = false)
 	private String dataNascimento;
 
-	@Column(name = "foto")
-	private String foto;
 
-	@Column(name = "logradouro")
-	@ApiModelProperty(hidden = true)
-	private String logradouro;
-
-	
-	@Column(name = "numero")
-	private String numero;
-
-	@Column(name = "complemento")
-	private String complemento;
-
-	@Column(name = "bairro")
-	@ApiModelProperty(hidden = true)
-	private String bairro;
-
-	@Column(name = "localidade")
-	@ApiModelProperty(hidden = true)
-	private String localidade;
-
-	@Column(name = "estado")
-	@Length(min = 2, max = 20)
-	@ApiModelProperty(hidden = true)
-	private String uf;
-
-	@Column(name = "cep",nullable = false)
-	@Pattern(regexp = "[0-9]{5}[0-9]{3}")
-	private String cep;
-
-	@OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	@JsonIgnoreProperties("cliente")
-	private Pedido pedidos;
+	@JsonIgnore
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
 
 	@OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	@JsonIgnoreProperties("cliente")
 	private ListaDeDesejos listaDeDesejos;
+
+	//@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	//private List<Endereco> enderecos = new ArrayList<>();
+
+	@ElementCollection
+	@CollectionTable(name = "TELEFONE")
+	private Set<String> telefones = new HashSet<>();
 
 	public long getId() {
 		return id;
@@ -116,21 +95,13 @@ public class Cliente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public String getUsuario() {
 		return usuario;
 	}
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
-	}
-
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
 	}
 
 	public String getEmail() {
@@ -157,6 +128,14 @@ public class Cliente {
 		this.senha = senha;
 	}
 
+	public TipoCliente getTipo() {
+		return TipoCliente.toEnum(tipo);
+	}
+
+	public void setTipo(TipoCliente tipo) {
+		this.tipo = tipo.getCod();
+	}
+
 	public String getDataNascimento() {
 		return dataNascimento;
 	}
@@ -165,75 +144,11 @@ public class Cliente {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-
-	public String getLogradouro() {
-		return logradouro;
-	}
-
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public String getLocalidade() {
-		return localidade;
-	}
-
-	public void setLocalidade(String localidade) {
-		this.localidade = localidade;
-	}
-
-	public String getUf() {
-		return uf;
-	}
-
-	public void setUf(String uf) {
-		this.uf = uf;
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public Pedido getPedidos() {
+	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
 
-	public void setPedidos(Pedido pedidos) {
+	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
 
@@ -245,29 +160,52 @@ public class Cliente {
 		this.listaDeDesejos = listaDeDesejos;
 	}
 
-	//viaCEP
-	public Cliente() {
+
+	public Set<String> getTelefones() {
+		return telefones;
 	}
 
-	public Cliente(String logradouro,String numero,String complemento,String bairro,String localidade,String uf,String cep) {
-		this.logradouro = logradouro;
-		this.numero = numero;
-		this.complemento = complemento;
-		this.bairro = bairro;
-		this.localidade = localidade;
-		this.uf = uf;
-		this.cep = cep;
+	public void setTelefones(Set<String> telefones) {
+		this.telefones = telefones;
 	}
-	
+
+	public Cliente() {
+		super();
+	}
+
+	public Cliente(long id, String nome, @Email @Size(min = 3, max = 50) String usuario, @Email String email,
+			Set<String> telefones, @CPF String cpf, String senha, TipoCliente tipo, String dataNascimento) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.email = email;
+		this.telefones = telefones;
+		this.cpf = cpf;
+		this.senha = senha;
+		this.tipo = (tipo == null) ? null : tipo.getCod();
+		this.dataNascimento = dataNascimento;
+	}
+
 	@Override
-    public String toString() {
-        return "Cliente{" +
-                "cep='" + cep + '\'' +
-                ", logradouro='" + logradouro + '\'' +
-                ", complemento='" + complemento + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", estado='" + localidade + '\'' +
-                ", numero='" + numero + '\'' +
-                '}';
-    }
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 }
