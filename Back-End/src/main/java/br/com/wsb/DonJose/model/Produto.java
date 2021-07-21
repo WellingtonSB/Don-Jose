@@ -17,26 +17,12 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@NotNull
-	@Size(max = 50)
 	private String nome;
-
-	@NotNull
-	@Size(max = 250)
 	private String descricao;
-
-	@NotNull
 	private String img;
-
-	@NotNull
-	@Digits(integer = 5, fraction = 2)
 	private double preco;
-
 	private long plu;
-
-	@NotNull
 	private int estoque;
-
 	private int qtdPedidoProduto;
 
 	@JsonIgnore
@@ -154,9 +140,9 @@ public class Produto implements Serializable {
 		super();
 	}
 
-	public Produto(long id, @NotNull @Size(max = 50) String nome, @NotNull @Size(max = 250) String descricao,
-			@NotNull String img, @NotNull @Digits(integer = 5, fraction = 2) double preco, long plu,
-			@NotNull int estoque, int qtdPedidoProduto) {
+	public Produto(long id, String nome,String descricao,
+			String img,double preco, long plu,
+			int estoque, int qtdPedidoProduto) {
 		super();
 		this.id = id;
 		this.nome = nome;

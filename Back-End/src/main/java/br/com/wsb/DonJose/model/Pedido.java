@@ -24,7 +24,7 @@ public class Pedido implements Serializable {
 
 	private int numeroPedido;
 
-	@Digits(integer = 5, fraction = 2)
+	//@Digits(integer = 5, fraction = 2)
 	private double frete = 10;
 
 	@ManyToOne
@@ -94,7 +94,7 @@ public class Pedido implements Serializable {
 		this.id = id;
 	}
 
-	public Pedido(long id, Date instante, int numeroPedido, @Digits(integer = 5, fraction = 2) double frete,
+	public Pedido(long id, Date instante, int numeroPedido, double frete,
 			Cliente cliente, Pagamento pagamento) {
 		super();
 		this.id = id;

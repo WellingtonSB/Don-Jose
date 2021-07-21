@@ -21,24 +21,7 @@ public class Categoria implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name = "nome", unique = true, nullable = false)
-	@Size(max = 50)
 	private String nome;
-	
-	private boolean promocao=false;
-	
-	private int porcentagemPromocao;
-	
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private LocalDateTime inicioPromocao;
-
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private LocalDateTime fimPromocao;
-		
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-	private Date data = new java.sql.Date(System.currentTimeMillis());
 	 
 	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();
@@ -67,60 +50,16 @@ public class Categoria implements Serializable {
 		this.produtos = produtos;
 	}
 
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
-	}
-
-	public boolean isPromocao() {
-		return promocao;
-	}
-
-	public void setPromocao(boolean promocao) {
-		this.promocao = promocao;
-	}
-
-	public int getPorcentagemPromocao() {
-		return porcentagemPromocao;
-	}
-
-	public void setPorcentagemPromocao(int porcentagemPromocao) {
-		this.porcentagemPromocao = porcentagemPromocao;
-	}
-
-	public LocalDateTime getInicioPromocao() {
-		return inicioPromocao;
-	}
-
-	public void setInicioPromocao(LocalDateTime inicioPromocao) {
-		this.inicioPromocao = inicioPromocao;
-	}
-
-	public LocalDateTime getFimPromocao() {
-		return fimPromocao;
-	}
-
-	public void setFimPromocao(LocalDateTime fimPromocao) {
-		this.fimPromocao = fimPromocao;
-	}
+	
 
 	public Categoria() {
 		super();
 	}
 
-	public Categoria(long id, @Size(max = 50) String nome, boolean promocao, int porcentagemPromocao,
-			LocalDateTime inicioPromocao, LocalDateTime fimPromocao, Date data) {
+	public Categoria(long id,String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.promocao = promocao;
-		this.porcentagemPromocao = porcentagemPromocao;
-		this.inicioPromocao = inicioPromocao;
-		this.fimPromocao = fimPromocao;
-		this.data = data;
 	}
 
 	@Override

@@ -39,28 +39,18 @@ public class Cliente implements Serializable {
 	@ApiModelProperty(hidden = true)
 	private long id;
 
-	@Column(name = "nome", nullable = false)
 	private String nome;
 
-	@Column(name = "usuario", nullable = false)
-	@Email
-	@Size(min = 3, max = 50)
 	private String usuario;
 
-	@Column(name = "email")
-	@Email
 	private String email;
 
-	@Column(name = "cpf", unique = true)
-	@CPF
-	private String cpf;
+	private String cpfOuCnpj;
 
-	@Column(name = "senha", nullable = false)
 	private String senha;
 
 	private Integer tipo;
 
-	@Column(name = "dataNascimento", nullable = false)
 	private String dataNascimento;
 
 
@@ -111,13 +101,13 @@ public class Cliente implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getCpf() {
-		return cpf;
+	
+	public String getCpfOuCnpj() {
+		return cpfOuCnpj;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setCpfOuCnpj(String cpfOuCnpj) {
+		this.cpfOuCnpj = cpfOuCnpj;
 	}
 
 	public String getSenha() {
@@ -173,15 +163,16 @@ public class Cliente implements Serializable {
 		super();
 	}
 
-	public Cliente(long id, String nome, @Email @Size(min = 3, max = 50) String usuario, @Email String email,
-			Set<String> telefones, @CPF String cpf, String senha, TipoCliente tipo, String dataNascimento) {
+	
+	
+	public Cliente(long id, String nome, String usuario, String email, String cpfOuCnpj, String senha, TipoCliente tipo,
+			String dataNascimento) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.usuario = usuario;
 		this.email = email;
-		this.telefones = telefones;
-		this.cpf = cpf;
+		this.cpfOuCnpj = cpfOuCnpj;
 		this.senha = senha;
 		this.tipo = (tipo == null) ? null : tipo.getCod();
 		this.dataNascimento = dataNascimento;

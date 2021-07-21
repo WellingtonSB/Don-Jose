@@ -1,4 +1,4 @@
-package br.com.wsb.DonJose.model;
+package br.com.wsb.DonJose.dto;
 
 import java.io.Serializable;
 
