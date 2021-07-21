@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.wsb.DonJose.repository.ClienteRepository;
@@ -24,7 +26,10 @@ import br.com.wsb.DonJose.service.CepService;
 import br.com.wsb.DonJose.service.ClienteService;
 import io.swagger.annotations.ApiOperation;
 import br.com.wsb.DonJose.model.ClienteLogin;
+import br.com.wsb.DonJose.dto.CategoriaDTO;
+import br.com.wsb.DonJose.dto.ClienteDTO;
 import br.com.wsb.DonJose.dto.EmailDTO;
+import br.com.wsb.DonJose.model.Categoria;
 import br.com.wsb.DonJose.model.Cliente;
 import javassist.tools.rmi.ObjectNotFoundException;
 
@@ -59,6 +64,20 @@ public class ClienteController {
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 
+	//http://localhost:8080/categorias/page?linesPerPage=9&page=1%&direction=DESC 
+		@ApiOperation(value = "Responsavel pela paginacao")
+		@GetMapping("/page")
+		public ResponseEntity<Page<ClienteDTO>> findPage(@RequestParam(value = "page", defaultValue = "0") Integer page,
+				@RequestParam(value = "linesPerPage", defaultValue = "24") Integer linesPerPage,
+				@RequestParam(value = "orderBy", defaultValue = "nome") String orderBy,
+				@RequestParam(value = "direction", defaultValue = "ASC") String direction) {
+			Page<Cliente> list = service.findPage(page, linesPerPage, orderBy, direction);
+			Page<ClienteDTO> listDto = list.map(obj -> new ClienteDTO(obj));
+			return ResponseEntity.ok().body(listDto);
+		}
+	
+	
+	
 	@ApiOperation(value = "Loga em uma conta existente")
 	@PostMapping("/logar")
 	public ResponseEntity<ClienteLogin> Autentication(@RequestBody Optional<ClienteLogin> user) {
