@@ -42,6 +42,17 @@ export class AuthService {
     return this.http.post<Cliente>(`${this.endereco}/clientes/cadastrar`, cliente);
   }
 
+
+  logado() {
+    let identificador: boolean = false;
+
+    if(environment.token != '') {
+      identificador = true;
+
+    }
+    return identificador;
+  }
+
   adminstrador(){
     let autorizado:boolean = false;
     if(environment.usuario=='adm@gmail.com'){
@@ -50,8 +61,6 @@ export class AuthService {
     return autorizado
   }
 
-
-  /* DELOGA DA SESSAO */
   logOut() {
     environment.id = 0;
     environment.nome = '';
@@ -59,8 +68,6 @@ export class AuthService {
     environment.token = '';
     environment.pedidos = 0;
     environment.listaDeDesejos = 0;
-
-    /* ARMAZENA O TOKEN DO USUARIO NO LOCAL STORAGE */
     localStorage.removeItem('token');
     this.router.navigate(['/home']);
 

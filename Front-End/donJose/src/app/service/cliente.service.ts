@@ -47,8 +47,4 @@ export class ClienteService {
     return this.http.delete<Produto[]>(`${this.api}/listadesejo/produto_lista/produtos/${idProduto}/listaDesejos/${idListaDeDesejo}`, this.autorizacao);
   }
 
-
-
-
-
 }

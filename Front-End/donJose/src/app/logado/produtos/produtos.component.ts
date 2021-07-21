@@ -15,17 +15,23 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class ProdutosComponent implements OnInit {
 
-  produto: Produto = new Produto()
-  listaDeProdutos: Produto[]
+  produto: Produto = new Produto();
+  listaDeProdutos: Produto[];
+  idListaDeDesejos = environment.listaDeDesejos;
+  idPedido = environment.pedidos;
 
-  categoria: Categoria = new Categoria()
-  idCategoria: number
-  listaDeCategoria: Categoria[]
+  categoria: Categoria = new Categoria();
+  listaDeCategoria: Categoria[];
+  listaDeCategorias:Categoria[];
+  idCategoria: number;
 
-  listaDeDesejos: ListaDeDesejos = new ListaDeDesejos()
-  idCarrinho = environment.listaDeDesejos
+  listaDeDesejos: ListaDeDesejos = new ListaDeDesejos();
 
-  idPedido = environment.pedidos
+  key = 'data'
+  reverse = true
+  filterOff: boolean = true
+
+  totalProdutos:number
 
   constructor(
     public router: Router,
@@ -35,8 +41,10 @@ export class ProdutosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    window.scroll(0, 0)
-    this.findAllByProdutos();
+        window.scroll(0, 0)
+    if(this.filterOff){
+      this.findAllByProdutos();
+    }
     this.findAllByCategoria();
   }
 
@@ -44,63 +52,69 @@ export class ProdutosComponent implements OnInit {
   findAllByProdutos() {
     this.produtoService.findAllByProdutos().subscribe((resp: Produto[]) => {
       this.listaDeProdutos = resp;
-
+      this.filterOff = true
     })
   }
 
   findAllByCategoria() {
     this.categoriaService.findAllCategorias().subscribe((resp: Categoria[]) => {
       this.listaDeCategoria = resp;
+      this.totalProdutos=this.listaDeCategoria.length-1
+      console.log(this.totalProdutos)
     })
   }
 
-  /* TRAZ SOMENTE UM UNICO PRODUTO POR MEIO DE SEUS ID */
   findByIdProduto(id: number) {
     this.produtoService.findByIdProduto(id).subscribe((resp: Produto) => {
       this.produto = resp;
-      console.log(id)
+
     })
   }
 
-  /* TRAZ SOMENTE UM UNICO CATEGORI POR MEIO DE SEUS ID */
   findByIdCategoria() {
     this.categoriaService.findByIdCategoria(this.idCategoria).subscribe((resp: Categoria) => {
       this.categoria = resp;
     })
-
   }
 
-  /* TRAZ UM ARRAY DE PRODUTOS POR MEIO DE UMA QUERY DE NOME */
   findAllByNomeProdutos(nome: string) {
     this.produtoService.findAllByNomeProdutos(nome).subscribe((resp: Produto[]) => {
       this.listaDeProdutos = resp;
     })
-
   }
 
-  comprarAgora(idProduto: number, idPedido: number) {
-    if (localStorage.getItem('token') != null) {
-      this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
-        this.router.navigate(['/carrinho'])
+  filtrarCategoria(nome: string){
+    this.categoriaService.findByNomeCategoria(nome).subscribe((resp:Categoria[])=>{
+      this.listaDeCategorias = resp
+      this.filterOff = false
+    })
+  }
+
+
+
+  adicionaItemListaDeDesejos(idProduto: number, idLista: number) {
+    if (this.authService.logado() == true) {
+      this.produtoService.adicionaItemListaDeDesejos(idProduto, idLista).subscribe(() => {
+        alert('Produto adicionado a lista de desejos!');
         this.findAllByProdutos();
       })
     } else {
+      alert("voce precisa estar logado para adicionar ao carirnho")
       this.router.navigate(['/login'])
     }
   }
 
-  adicionaItemCarrinho(idProduto: number, idPedido: number) {
-    if (localStorage.getItem('token') != null) {
-      this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
+  adicionaItemCarrinho(idProduto: number, idCarrinho: number) {
+    if (this.authService.logado() == true) {
+      this.produtoService.adicionaItemCarrinho(idProduto, idCarrinho).subscribe(() => {
         alert('Produto adicionado ao carrinho!');
         this.findAllByProdutos();
       })
     } else {
+      alert("voce precisa estar logado para adicionar ao carirnho")
       this.router.navigate(['/login'])
     }
   }
-
-
 
 }
 

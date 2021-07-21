@@ -123,3 +123,5 @@ public abstract class AbstractEmailService implements EmailService {
 	}
 
 }
+
+//https://receitasdecodigo.com.br/spring-boot/como-configurar-projetos-spring-boot-para-enviar-e-mail#:~:text=Caso%20conecte%20no%20Gmail%20precisa,menos%20seguros%20em%20sua%20conta.&text=Agora%20basta%20rodar%20a%20aplicação,mail%20em%20texto%20puro%20apenas.

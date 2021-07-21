@@ -29,14 +29,14 @@ public class Produto {
 	@Digits(integer = 5, fraction = 2)
 	private double preco;
 
+	private double promocao;
+	
 	private long plu;
 
 	@NotNull
 	private int estoque;
 
 	private int qtdPedidoProduto;
-
-	private double promocao;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("produtos")
@@ -116,13 +116,6 @@ public class Produto {
 		this.qtdPedidoProduto = qtdPedidoProduto;
 	}
 
-	public double getPromocao() {
-		return promocao;
-	}
-
-	public void setPromocao(double promocao) {
-		this.promocao = promocao;
-	}
 
 	public Categoria getCategoria() {
 		return categoria;

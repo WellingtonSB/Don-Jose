@@ -24,8 +24,9 @@ import { PagamentoComponent } from './logado/pagamento/pagamento.component';
 import { FormaPagamentoComponent } from './logado/pagamento/forma-pagamento/forma-pagamento.component';
 import { FinalizarPedidoComponent } from './logado/pagamento/finalizar-pedido/finalizar-pedido.component';
 import { FinishComponent } from './logado/pagamento/finish/finish.component';
-import { PedidosComponent } from './logado/conta-cliente/pedidos/pedidos.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ListaDeDesejosComponent } from './logado/conta-cliente/lista-de-desejos/lista-de-desejos.component';
+import { PerfilClienteComponent } from './logado/conta-cliente/perfil-cliente/perfil-cliente.component';
 
 
 
@@ -52,7 +53,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     FormaPagamentoComponent,
     FinalizarPedidoComponent,
     FinishComponent,
-    PedidosComponent
+    ListaDeDesejosComponent,
+    PerfilClienteComponent
 
   ],
   imports: [

@@ -37,6 +37,10 @@ p{
     padding: 0 2.4rem;
 }
 
+.nav-item .conta-teste{
+    padding: 0;
+    margin: 0;
+}
 /* Header */
 
 header{

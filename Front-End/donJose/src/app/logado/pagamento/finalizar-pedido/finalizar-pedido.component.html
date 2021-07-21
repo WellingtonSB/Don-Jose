@@ -55,8 +55,7 @@
           </div>
         </div>
         <div class="mb-5 d-flex justify-content-between flex-column flex-lg-row"><a class="btn btn-link text-muted"> <i
-              class="fa fa-angle-left me-2"></i>Voltar</a><a class="btn btn-dark"
-            [routerLink]="['/pagamento-realizado',pedido.id]">Finalizar a
+              class="fa fa-angle-left me-2"></i>Voltar</a><a class="btn btn-dark" (click)="comprarProduto(pedido.id,produto.id)">Finalizar a
             compra<i class="fa fa-angle-right ms-2"></i></a></div>
       </div>
       <div class="col-lg-4">

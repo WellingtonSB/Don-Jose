@@ -106,10 +106,12 @@
                 </div>
             </div>
             
-            <div class="card mb-4" *ngIf='addCat!=false || editar!=false '>
+            <!-- Mudar para modal -->
+            <div class="card mb-4" *ngIf='addCat!=false || editar!=false'>
                 <div class="card-header">
                     <h4 class="card-title" *ngIf='addCat!=false'>Cadastrar  nova categoria</h4>
                     <h4 class="card-title" *ngIf='editar!=false'>Editar Categoria</h4>
+                    
                    
                 </div>
                 <div class="card-content row table-full-width">

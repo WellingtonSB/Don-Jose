@@ -18,6 +18,7 @@ export class EditarCategoriaComponent implements OnInit {
 
   produtosDaCategoria:number = 0;
   
+  /* Mudar para modals */
   addCat:boolean =false
   editar:boolean =false
 
@@ -73,7 +74,6 @@ export class EditarCategoriaComponent implements OnInit {
 
   }
 
-  /* ATUALIZA UM DADO DE CATEGORIA NA BASE DE DADOS POR MEIO DO ID */
   putCategoria() {
     this.categoriaService.putCategoria(this.categoria).subscribe((resp: Categoria) => {
       this.categoria = resp;
@@ -101,9 +101,7 @@ export class EditarCategoriaComponent implements OnInit {
       alert('Categoria excluida com sucesso!');
 
       this.findAllCategorias();
-
     })
-
   }
 
 }

@@ -18,10 +18,12 @@
                             <div class="cart-item" *ngFor='let item of listaDeProdutos'>
                                 <div class="row d-flex align-items-center text-center">
                                     <div class="col-5">
-                                        <div class="d-flex align-items-center"><a href="detail.html"><img
-                                                    class="cart-item-img" src="{{item.img}}" alt="{{item.nome}}"></a>
-                                            <div class="cart-title text-start"><a class="text-uppercase text-dark"
-                                                    [routerLink]="['/produtos-detalhe',item.id]"><strong>{{item.nome}}</strong></a><br><span
+                                        <div class="d-flex align-items-center">
+                                            <a href="detail.html"><img class="cart-item-img" src="{{item.img}}" alt="{{item.nome}}"></a>
+                                            <div class="cart-title text-start">
+                                                <a class="text-uppercase text-dark" [routerLink]="['/produtos-detalhe',item.id]">
+                                                <strong>{{item.nome}}</strong>
+                                                </a><br><span
                                                     class="text-muted text-sm">Tamanho: Grande</span><br>
                                             </div>
                                         </div>
@@ -31,7 +33,7 @@
                                         <div class="d-flex align-items-center">
                                             <div class="btn btn-items btn-items-decrease" (click)='removerDoCarrinho(item.id, pedido.id)'>-</div>
                                             <input class="form-control text-center input-items" type="text" [(ngModel)]='item.qtdPedidoProduto' value="{{item.qtdPedidoProduto}}">
-                                            <div class="btn btn-items btn-items-increase" (click)='totalProdutos(item.id, idCarrinho)' >+</div>
+                                            <div class="btn btn-items btn-items-increase">+</div>
                                         </div>
                                     </div>
                                     <div class="col-2 text-center">R$ {{valorCarrinho}}</div>

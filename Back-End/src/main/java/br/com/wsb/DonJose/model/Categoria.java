@@ -1,9 +1,10 @@
 package br.com.wsb.DonJose.model;
 
+
+import java.time.*;
 import java.util.*;
 
 
-import javax.persistence.*;
 import javax.persistence.*;
 
 import javax.validation.constraints.*;
@@ -19,16 +20,24 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotNull
+	@Column(name = "nome", unique = true, nullable = false)
 	@Size(max = 50)
 	private String nome;
 	
+	private boolean promocao=false;
+	
+	private int porcentagemPromocao;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	private LocalDateTime inicioPromocao;
+
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+	private LocalDateTime fimPromocao;
+		
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date data = new java.sql.Date(System.currentTimeMillis());
-	
-	private int totalProdutos;
 	
 	@OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("categoria")
@@ -66,13 +75,40 @@ public class Categoria {
 		this.data = data;
 	}
 
-	public int getTotalProdutos() {
-		return totalProdutos;
+	public boolean isPromocao() {
+		return promocao;
 	}
 
-	public void setTotalProdutos(int totalProdutos) {
-		this.totalProdutos = totalProdutos;
+	public void setPromocao(boolean promocao) {
+		this.promocao = promocao;
 	}
+
+	public int getPorcentagemPromocao() {
+		return porcentagemPromocao;
+	}
+
+	public void setPorcentagemPromocao(int porcentagemPromocao) {
+		this.porcentagemPromocao = porcentagemPromocao;
+	}
+
+	public LocalDateTime getInicioPromocao() {
+		return inicioPromocao;
+	}
+
+	public void setInicioPromocao(LocalDateTime inicioPromocao) {
+		this.inicioPromocao = inicioPromocao;
+	}
+
+	public LocalDateTime getFimPromocao() {
+		return fimPromocao;
+	}
+
+	public void setFimPromocao(LocalDateTime fimPromocao) {
+		this.fimPromocao = fimPromocao;
+	}
+
+
+
 	
 	
 }

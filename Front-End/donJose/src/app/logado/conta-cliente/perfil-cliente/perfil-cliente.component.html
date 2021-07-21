@@ -1,0 +1,86 @@
+
+<div class="container-hero">
+<section class="hero">
+    <div class="container">
+      <div class="hero-content pb-5 text-center">
+        <h1 class="hero-heading">Seus pedidos</h1>
+        <div class="row">
+          <div class="col-xl-8 offset-xl-2">
+            <p class="lead">Voce pode ver os seus pedidos aqui.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-xl-9">
+          <table class="table table-borderless table-hover table-responsive-md">
+            <thead class="bg-light">
+              <tr>
+                <th class="py-4 text-uppercase text-sm">Pedido #</th>
+                <th class="py-4 text-uppercase text-sm">Data</th>
+                <th class="py-4 text-uppercase text-sm">Total</th>
+                <th class="py-4 text-uppercase text-sm">Status</th>
+                <th class="py-4 text-uppercase text-sm">Ver</th>
+              </tr>
+            </thead>
+            <!-- Refatorar -->
+            <tbody *ngFor="let ped of listaDePedidos">
+              <tr>
+                <th class="py-4 align-middle"># {{ped.numeroPedido}}</th>
+                <td class="py-4 align-middle">{{ped.data}}</td>
+                <td class="py-4 align-middle">R$ {{ped.valorTotal}}</td>
+                <td *ngIf='ped.status =="Iniciado"' class="py-4 align-middle"><span class="badge p-2 text-uppercase badge-info-light">{{ped.status}}</span></td>
+                <td *ngIf='ped.status =="Aguardando aprovacao"' class="py-4 align-middle"><span class="badge p-2 text-uppercase badge-warning-light">{{ped.status}}</span></td>
+                <td *ngIf='ped.status =="Entregue"' class="py-4 align-middle"><span class="badge p-2 text-uppercase badge-success-light">{{ped.status}}</span></td>
+                <td *ngIf='ped.status =="Cancelado"' class="py-4 align-middle"><span class="badge p-2 text-uppercase badge-danger-light">{{ped.status}}</span></td>               
+                <td  class="py-4 align-middle"><a class="btn btn-outline-dark btn-sm" href="customer-order.html">Ver</a></td>
+              </tr>
+              <tr>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Customer Sidebar-->
+        <div class="col-xl-3 col-lg-4 mb-5">
+          <div class="customer-sidebar card border-0">
+            <div class="customer-profile"><a class="d-inline-block" href="#"><img
+                  class="img-fluid rounded-circle customer-image shadow" src="{{usuario.foto}}"
+                  alt="{{usuario.nome}}"></a>
+              <h5>{{usuario.nome}}</h5>
+              <p class="text-muted text-sm mb-0">{{usuario.logradouro}}</p>
+            </div>
+            <nav class="list-group customer-nav">
+              <a class="active list-group-item d-flex justify-content-between align-items-center text-decoration-none"
+                href="customer-orders.html">
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
+                  </svg>Pedidos
+                </span>
+                <div class="badge rounded-pill bg-light text-dark fw-normal px-3">{{numeroPedidos}}</div>
+              </a><a class="list-group-item d-flex justify-content-between align-items-center text-decoration-none"
+                href="customer-account.html"><span>
+                  <svg class="svg-icon svg-icon-heavy me-2">
+                    <use xlink:href="#male-user-1"> </use>
+                  </svg>Perfil</span></a><a
+                class="list-group-item d-flex justify-content-between align-items-center text-decoration-none"
+                href="customer-addresses.html"><span>
+                  <svg class="svg-icon svg-icon-heavy me-2">
+                    <use xlink:href="#navigation-map-1"> </use>
+                  </svg>Endereço</span></a><a
+                class="list-group-item d-flex justify-content-between align-items-center text-decoration-none"
+                href="customer-login.html"><span>
+                  <svg class="svg-icon svg-icon-heavy me-2">
+                    <use xlink:href="#exit-1"> </use>
+                  </svg></span></a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+</div>

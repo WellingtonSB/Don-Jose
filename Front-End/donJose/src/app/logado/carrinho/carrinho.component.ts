@@ -18,10 +18,7 @@ import { environment } from 'src/environments/environment.prod';
 })
 export class CarrinhoComponent implements OnInit {
 
-  idUsuario = environment.id;
-  idPedido = environment.pedidos;
-
-  minhListaDeDesejos: ListaDeDesejos = new ListaDeDesejos();
+  minhaListaDeDesejos: ListaDeDesejos = new ListaDeDesejos();
   listaDeDesejosItens: ListaDeDesejos[];
   idListaDeDesejos = environment.listaDeDesejos;
 
@@ -48,7 +45,7 @@ export class CarrinhoComponent implements OnInit {
     private listaDeDesejosService: ClienteService,
     private authService: AuthService,
     private produtoService: ProdutoService,
-    private pedidoService: PedidoService,
+    private pedidoService: PedidoService
   ) { }
 
   ngOnInit() {
@@ -56,15 +53,28 @@ export class CarrinhoComponent implements OnInit {
     if (localStorage.getItem('token') == null) {
       this.router.navigate(['/login']);
     }
+    this.findByIdListaDeDesejos();
     this.findByIdProdutosCarrinho();
     this.findByIdPedido();
+
   }
 
+  findByIdListaDeDesejos() {
+    this.listaDeDesejosService.findAllByProdutosListaDeDesejos(environment.listaDeDesejos).subscribe((resp: Produto[]) => {
+      this.listaDeDesejos = resp;
+    })
+  }
+
+
+  findByIdPedido() {
+    this.pedidoService.findByIdPedido(environment.pedidos).subscribe((resp: Pedido) => {
+      this.pedido = resp
+    })
+  }
 
   findByIdProdutosCarrinho() {
     this.pedidoService.findAllByProdutosPedidos(environment.pedidos).subscribe((resp: Produto[]) => {
       this.listaDeProdutos = resp;
-
       let contador: number = 0;
       let pivo: number[] = [this.listaDeProdutos.length];
 
@@ -78,13 +88,15 @@ export class CarrinhoComponent implements OnInit {
         }
         this.memoria = this.listaDeProdutos;
         contador = 0;
+
 			}
     })
   }
 
-  findByIdPedido() {
-    this.pedidoService.findByIdPedido(environment.pedidos).subscribe((resp: Pedido) => {
-      this.pedido = resp;
+
+  adicionaItemCarrinho(idProduto: number, idCarrinho: number) {
+    this.produtoService.adicionaItemCarrinho(idProduto, idCarrinho).subscribe(() => {
+      this.findByIdProdutosCarrinho();
     })
   }
 
@@ -96,36 +108,15 @@ export class CarrinhoComponent implements OnInit {
     })
 
   }
-  totalProdutos(idProduto: number, idPedido: number) {
-    this.produtoService.compraProduto(idProduto, idPedido).subscribe(() => {
-      this.pedido.qtdProduto = this.pedido.qtdProduto + 1
-      this.totalPrd()
-      this.findByIdProdutosCarrinho();
-      this.findByIdPedido();
-    })
-  }
 
   totalPrd(){
     this.valorCarrinho = 0
-  
     for(let item of this.listaDeProdutos){
       this.valorCarrinho = this.valorCarrinho + item.preco
       
     }
   }
 
-  /* postPedido() {
-    this.pedidoService.postPedido(this.pedido).subscribe((resp: Pedido) => {
-      this.pedido = resp;
-
-      alert('Pedido cadastrado com sucesso');
-
-      this.router.navigate(['/pedido']);
-
-    })
-
-  }
- */
 
 }
 

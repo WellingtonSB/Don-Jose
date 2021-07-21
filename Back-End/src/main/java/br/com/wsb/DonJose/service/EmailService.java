@@ -8,7 +8,6 @@ import br.com.wsb.DonJose.model.Cliente;
 
 public interface EmailService {
 	
-	
 	void sendEmail(SimpleMailMessage msg);
 	
 	void sendHtmlEmail(MimeMessage msg);

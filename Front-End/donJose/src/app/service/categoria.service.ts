@@ -44,6 +44,11 @@ export class CategoriaService {
     return this.http.put<Categoria>(`${this.endereco}/categorias`, categoria, this.autorizacao);
   }
 
+  cadastrarPromocao(categoria: Categoria): Observable<Categoria> {
+
+    return this.http.put<Categoria>(`${this.endereco}/categorias/promocao`, categoria, this.autorizacao);
+  }
+
   deleteCategoria(id: number): Observable<Categoria> {
 
     return this.http.delete<Categoria>(`${this.endereco}/categorias/${id}`, this.autorizacao);

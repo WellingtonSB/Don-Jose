@@ -72,10 +72,12 @@ export class FinalizarPedidoComponent implements OnInit {
     })
   } 
 
-  comprarProduto(pedido: Pedido){
-    this.pedidoService.putPedido(pedido).subscribe((resp: Pedido)=>{
-      this.pedido = resp;
-      this.pedido.status = 'Pedido criado'
+  comprarProduto(idPedido:number,idProduto:number){
+    this.pedidoService.finalizarPedido(idPedido,idProduto).subscribe((resp:Pedido)=>{
+      this.pedido=resp
+      this.router
+      console.log("pedido criado")
+      console.log("id do pedido: "+idPedido)
     })
   }
 }
