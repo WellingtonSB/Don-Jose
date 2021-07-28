@@ -1,6 +1,7 @@
 package br.com.wsb.DonJose.service;
 
 import java.nio.charset.Charset;
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -16,9 +17,12 @@ import org.springframework.stereotype.Service;
 
 import br.com.wsb.DonJose.model.ListaDeDesejos;
 import br.com.wsb.DonJose.model.Pedido;
+import br.com.wsb.DonJose.model.enums.Perfil;
 import br.com.wsb.DonJose.repository.ClienteRepository;
 import br.com.wsb.DonJose.repository.ListaDeDesejosRepository;
 import br.com.wsb.DonJose.repository.PedidoRepository;
+import br.com.wsb.DonJose.security.UserSS;
+import br.com.wsb.DonJose.service.exceptions.AuthorizationException;
 import br.com.wsb.DonJose.service.exceptions.DataIntegrityException;
 import br.com.wsb.DonJose.service.exceptions.ObjectNotFoundException;
 import br.com.wsb.DonJose.dto.ClienteDTO;
@@ -40,12 +44,30 @@ public class ClienteService {
 	@Autowired
 	private BCryptPasswordEncoder pe;
 
+	public List<Cliente> findAll() {
+		return clienteRepository.findAll();
+	}
+	
 	public Cliente find(Integer id) {
 		Optional<Cliente> obj = clienteRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
 	}
 
+	public Cliente findByEmail(String email) {
+		UserSS user = UserService.authenticated();
+		if (user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+	
+		Cliente obj = clienteRepository.findByEmail(email);
+		if (obj == null) {
+			throw new ObjectNotFoundException(
+					"Objeto não encontrado! Id: " + user.getId() + ", Tipo: " + Cliente.class.getName());
+		}
+		return obj;
+	}
+	
 	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
@@ -68,6 +90,17 @@ public class ClienteService {
 			cli.getTelefones().add(objDto.getTelefone3());
 		}
 		return cli;
+	}
+	
+	private void updateData(Cliente newObj, Cliente obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setEmail(obj.getEmail());
+	}
+	
+	public Cliente update(Cliente obj) {
+		Cliente newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return clienteRepository.save(newObj);
 	}
 	
 	public void delete(Integer id) {
