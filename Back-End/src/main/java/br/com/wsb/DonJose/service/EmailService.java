@@ -14,8 +14,8 @@ public interface EmailService {
 	void sendOrderConfirmationEmail(Pedido obj);
 	
 	void sendHtmlEmail(MimeMessage msg);
+		
+	void sendOrderConfirmationHtmlEmail(Pedido obj);
 	
-	void sendResetHtmlEmail(Cliente usuario, String newPass);
-	
-	void sendNewPasswordEmail(Cliente usuario, String newPass);
+	//void sendNewPasswordEmail(Cliente usuario, String newPass);
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.HashSet;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,6 +28,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import br.com.wsb.DonJose.model.enums.Perfil;
 import br.com.wsb.DonJose.model.enums.TipoCliente;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -64,12 +67,16 @@ public class Cliente implements Serializable {
 	@JsonIgnoreProperties("cliente")
 	private ListaDeDesejos listaDeDesejos;
 
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="PERFIS")
+	private Set<Integer> perfis = new HashSet<>();
+	
 	@ElementCollection
 	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 	
 	public Cliente() {
-		super();
+		addPerfil(Perfil.CLIENTE);
 	}
 	
 	public Cliente(Integer id, String nome, String usuario, String email, String cpfOuCnpj, String senha, TipoCliente tipo,
@@ -83,6 +90,7 @@ public class Cliente implements Serializable {
 		this.senha = senha;
 		this.tipo = (tipo == null) ? null : tipo.getCod();
 		this.dataNascimento = dataNascimento;
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public Integer getId() {
@@ -153,6 +161,16 @@ public class Cliente implements Serializable {
 		return pedidos;
 	}
 
+	public Set<Perfil> getPerfis() {
+		//para cada elemento  x converter em enums
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+	
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
+	}
+	
+	
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}

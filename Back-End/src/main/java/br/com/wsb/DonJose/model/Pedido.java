@@ -25,7 +25,7 @@ public class Pedido implements Serializable {
 	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private Date instante;
 
-	private int numeroPedido;
+
 
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
@@ -40,12 +40,12 @@ public class Pedido implements Serializable {
 	public Pedido() {
 	}
 	
-	public Pedido(Integer id, Date instante, int numeroPedido,
+	public Pedido(Integer id, Date instante, 
 			Cliente cliente, Pagamento pagamento) {
 		super();
 		this.id = id;
 		this.instante = instante;
-		this.numeroPedido = numeroPedido;
+
 		this.cliente = cliente;
 		this.pagamento = pagamento;
 	}
@@ -70,13 +70,6 @@ public class Pedido implements Serializable {
 		this.instante = instante;
 	}
 
-	public int getNumeroPedido() {
-		return numeroPedido;
-	}
-
-	public void setNumeroPedido(int numeroPedido) {
-		this.numeroPedido = numeroPedido;
-	}
 
 	public Cliente getCliente() {
 		return cliente;

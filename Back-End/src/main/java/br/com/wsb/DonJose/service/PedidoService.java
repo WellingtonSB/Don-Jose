@@ -1,6 +1,7 @@
 package br.com.wsb.DonJose.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,7 @@ public class PedidoService {
 	}
 	
 	public Pedido insert(Pedido obj) {
+		
 		obj.setId(null);
 		obj.setInstante(new Date());
 		obj.setCliente(clienteService.find(obj.getCliente().getId()));
@@ -66,7 +68,6 @@ public class PedidoService {
 		obj = repository.save(obj);
 		pagamentoRepository.save(obj.getPagamento());
 		for (ItemPedido ip : obj.getItens()) {
-			
 			ip.setDesconto(0.0);
 			ip.setProduto(produtoService.find(ip.getProduto().getId()));
 			ip.setPreco(ip.getProduto().getPreco());
@@ -74,10 +75,10 @@ public class PedidoService {
 			produtoService.stock(ip.getProduto().getId());
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
-		emailService.sendOrderConfirmationEmail(obj);
+		emailService.sendOrderConfirmationHtmlEmail(obj);
+
 		System.out.println(obj);
 		return obj;
 	}
-	
-	
+
 }

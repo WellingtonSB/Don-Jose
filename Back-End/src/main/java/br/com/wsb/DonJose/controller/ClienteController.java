@@ -1,5 +1,6 @@
 package br.com.wsb.DonJose.controller;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.wsb.DonJose.repository.ClienteRepository;
 import br.com.wsb.DonJose.service.AuthService;
@@ -27,6 +29,7 @@ import br.com.wsb.DonJose.service.ClienteService;
 import io.swagger.annotations.ApiOperation;
 import br.com.wsb.DonJose.dto.CategoriaDTO;
 import br.com.wsb.DonJose.dto.ClienteDTO;
+import br.com.wsb.DonJose.dto.ClienteNewDTO;
 import br.com.wsb.DonJose.dto.EmailDTO;
 import br.com.wsb.DonJose.model.Categoria;
 import br.com.wsb.DonJose.model.Cliente;
@@ -121,7 +124,15 @@ public class ClienteController {
 	public ResponseEntity<Void> forgot(@Valid @RequestBody EmailDTO objDto) throws ObjectNotFoundException {
 		authService.sendNewPassword(objDto.getEmail());
 		return ResponseEntity.noContent().build();
-	}*/
+	}
 	
-	
+		@ApiOperation(value = "Cria uma nova conta")
+		@PostMapping("/cadastrar")
+		public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto) {
+			Cliente obj = service.fromDTO(objDto);
+			obj = service.insert(obj);
+			URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+					.path("/{id}").buildAndExpand(obj.getId()).toUri();
+			return ResponseEntity.created(uri).build();
+		}*/
 }

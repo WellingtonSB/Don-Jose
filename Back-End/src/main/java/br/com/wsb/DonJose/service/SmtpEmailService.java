@@ -9,15 +9,16 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-public class SmtpEmailService  {
-	//public class SmtpEmailService extends AbstractEmailService 
+import br.com.wsb.DonJose.model.Cliente;
+
+public class SmtpEmailService extends AbstractEmailService {
 	
-	/*@Autowired 
+	@Autowired 
 	private MailSender mailSender;
 	
 	@Autowired
 	private JavaMailSender javaMailSender;
-	
+		
 	private static final Logger LOG = LoggerFactory.getLogger(SmtpEmailService.class);
 
 	@Override
@@ -30,9 +31,11 @@ public class SmtpEmailService  {
 
 	@Override
 	public void sendHtmlEmail(MimeMessage msg) {
-		LOG.info("Enviando email...");
+		LOG.info("Enviando email HTML...");
 		javaMailSender.send(msg);
 		LOG.info("Email enviado");
 		
-	}*/
+	}
+
+
 }
