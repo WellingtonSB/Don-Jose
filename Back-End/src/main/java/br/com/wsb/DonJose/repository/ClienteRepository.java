@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.wsb.DonJose.model.Cliente;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 	public List<Cliente> findAllByNomeContainingIgnoreCase(String nome);
 
 	public Optional<Cliente> findByUsuario(String userName);

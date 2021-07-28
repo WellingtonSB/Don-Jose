@@ -15,15 +15,16 @@ public class Produto implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 
 	private String nome;
 	private String descricao;
 	private String img;
+	@Digits(integer = 5, fraction = 2)
 	private double preco;
 	private long plu;
 	private int estoque;
-	private int qtdPedidoProduto;
+	private int qtdProd;
 
 	@JsonIgnore
 	@ManyToMany
@@ -48,11 +49,11 @@ public class Produto implements Serializable {
 		return lista;
 	}
 	
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -108,16 +109,18 @@ public class Produto implements Serializable {
 		return estoque;
 	}
 
+	
 	public void setEstoque(int estoque) {
 		this.estoque = estoque;
 	}
 
-	public int getQtdPedidoProduto() {
-		return qtdPedidoProduto;
+	
+	public int getQtdProd() {
+		return qtdProd;
 	}
 
-	public void setQtdPedidoProduto(int qtdPedidoProduto) {
-		this.qtdPedidoProduto = qtdPedidoProduto;
+	public void setQtdProd(int qtdProd) {
+		this.qtdProd = qtdProd;
 	}
 
 	public List<Categoria> getCategorias() {
@@ -140,9 +143,10 @@ public class Produto implements Serializable {
 		super();
 	}
 
-	public Produto(long id, String nome,String descricao,
+	
+	public Produto(Integer id, String nome,String descricao,
 			String img,double preco, long plu,
-			int estoque, int qtdPedidoProduto) {
+			int estoque) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -151,7 +155,6 @@ public class Produto implements Serializable {
 		this.preco = preco;
 		this.plu = plu;
 		this.estoque = estoque;
-		this.qtdPedidoProduto = qtdPedidoProduto;
 	}
 
 	@Override

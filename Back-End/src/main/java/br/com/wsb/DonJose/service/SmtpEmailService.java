@@ -9,9 +9,10 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-public class SmtpEmailService extends AbstractEmailService {
+public class SmtpEmailService  {
+	//public class SmtpEmailService extends AbstractEmailService 
 	
-	@Autowired 
+	/*@Autowired 
 	private MailSender mailSender;
 	
 	@Autowired
@@ -33,5 +34,5 @@ public class SmtpEmailService extends AbstractEmailService {
 		javaMailSender.send(msg);
 		LOG.info("Email enviado");
 		
-	}
+	}*/
 }

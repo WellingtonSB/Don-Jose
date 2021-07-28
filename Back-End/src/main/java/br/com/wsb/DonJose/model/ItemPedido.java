@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.validation.constraints.Digits;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,6 +20,7 @@ public class ItemPedido implements Serializable {
 
 	private Double desconto;
 	private Integer quantidade;
+	@Digits(integer = 5, fraction = 2)
 	private Double preco;
 
 	public ItemPedido() {

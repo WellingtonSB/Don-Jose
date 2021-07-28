@@ -2,6 +2,7 @@ package br.com.wsb.DonJose.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,14 +23,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.wsb.DonJose.controller.utils.URL;
+import br.com.wsb.DonJose.dto.CategoriaDTO;
 import br.com.wsb.DonJose.dto.ProdutoDTO;
+import br.com.wsb.DonJose.model.Categoria;
 import br.com.wsb.DonJose.model.Produto;
 import br.com.wsb.DonJose.repository.ProdutoRepository;
 import br.com.wsb.DonJose.service.ProdutoService;
 import io.swagger.annotations.ApiOperation;
-
-
-
 
 @RestController
 @RequestMapping("/produtos")
@@ -42,21 +42,22 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoService service;
 
-	@ApiOperation(value = "Busca por todos os produtos")
+	@ApiOperation(value = "Busca por todas as categorias ")
 	@GetMapping
-	public ResponseEntity<List<Produto>> findAllByProdutos() {
-
-		return ResponseEntity.ok(repository.findAll());
+	public ResponseEntity<List<ProdutoDTO>> findAll() {
+		List<Produto> list = service.findAll();
+		List<ProdutoDTO> listDto = list.stream().map(obj -> new ProdutoDTO(obj)).collect(Collectors.toList());  
+		return ResponseEntity.ok().body(listDto);
 	}
-
-	@ApiOperation(value = "Busca por todos os produtos usando paginacao")
-	@GetMapping
+	
+	@ApiOperation(value = "Busca por id")
+	@GetMapping("/{id}")
 	public ResponseEntity<Produto> find(@PathVariable Integer id) {
 		Produto obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
-	}
+	}	
 	
-	@ApiOperation(value = "Responsavel pela paginacao")
+	@ApiOperation(value = "Busca por todos os produtos usando paginacao")
 	@GetMapping("/page")
 	public ResponseEntity<Page<ProdutoDTO>> findPage(
 			@RequestParam(value="nome", defaultValue="") String nome, 
@@ -72,12 +73,19 @@ public class ProdutoController {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
-	@ApiOperation(value = "Deleta um produto")
-	@DeleteMapping("/{id}")
-	public void deleteProduto(@PathVariable long id) {
-		repository.deleteById(id);
+	@ApiOperation(value = "Cria um novo produto")
+	@PostMapping("/cadastrar")
+	public ResponseEntity<Produto> cadastrar(@RequestBody Produto produto) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(service.cadastrarProduto(produto));
 	}
 
 	
+	@ApiOperation(value = "Deleta um produto")
+	@DeleteMapping("/{id}")
+	public void deleteProduto(@PathVariable Integer id) {
+		repository.deleteById(id);
+	}
+
+
 	
 }

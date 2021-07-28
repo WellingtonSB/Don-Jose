@@ -25,7 +25,6 @@ import br.com.wsb.DonJose.service.AuthService;
 import br.com.wsb.DonJose.service.CepService;
 import br.com.wsb.DonJose.service.ClienteService;
 import io.swagger.annotations.ApiOperation;
-import br.com.wsb.DonJose.model.ClienteLogin;
 import br.com.wsb.DonJose.dto.CategoriaDTO;
 import br.com.wsb.DonJose.dto.ClienteDTO;
 import br.com.wsb.DonJose.dto.EmailDTO;
@@ -59,7 +58,7 @@ public class ClienteController {
 
 	@ApiOperation(value = "Busca por um cliente especifico via ID")
 	@GetMapping("/{id}")
-	public ResponseEntity<Cliente> findByIdCliente(@PathVariable long id) {
+	public ResponseEntity<Cliente> findByIdCliente(@PathVariable Integer id) {
 
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
@@ -78,7 +77,7 @@ public class ClienteController {
 	
 	
 	
-	@ApiOperation(value = "Loga em uma conta existente")
+	/*@ApiOperation(value = "Loga em uma conta existente")
 	@PostMapping("/logar")
 	public ResponseEntity<ClienteLogin> Autentication(@RequestBody Optional<ClienteLogin> user) {
 		return service.Logar(user).map(resp -> ResponseEntity.ok(resp))
@@ -113,7 +112,7 @@ public class ClienteController {
 
 	@ApiOperation(value = "Deleta a conta")
 	@DeleteMapping("/{id}")
-	public void deletaCliente(@PathVariable long id) {
+	public void deletaCliente(@PathVariable Integer id) {
 
 		repository.deleteById(id);
 	}
@@ -122,7 +121,7 @@ public class ClienteController {
 	public ResponseEntity<Void> forgot(@Valid @RequestBody EmailDTO objDto) throws ObjectNotFoundException {
 		authService.sendNewPassword(objDto.getEmail());
 		return ResponseEntity.noContent().build();
-	}
+	}*/
 	
 	
 }

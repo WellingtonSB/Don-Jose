@@ -15,16 +15,18 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import br.com.wsb.DonJose.model.enums.EstadoPagamento;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")
 public class Pagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private long id;
+	private Integer id;
 
 	private Integer estado;
 	
@@ -44,11 +46,11 @@ public class Pagamento implements Serializable {
 		this.pedido = pedido;
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

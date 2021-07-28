@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.wsb.DonJose.model.ListaDeDesejos;
 
 @Repository
-public interface ListaDeDesejosRepository extends JpaRepository<ListaDeDesejos, Long> {
+public interface ListaDeDesejosRepository extends JpaRepository<ListaDeDesejos, Integer> {
 
 }

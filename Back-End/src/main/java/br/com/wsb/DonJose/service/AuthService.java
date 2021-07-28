@@ -13,7 +13,7 @@ import javassist.tools.rmi.ObjectNotFoundException;
 @Service
 public class AuthService {
 	
-	@Autowired
+	/*@Autowired
 	private ClienteRepository usuarioRepository;
 	
 	@Autowired
@@ -57,7 +57,8 @@ public class AuthService {
 		else { 
 			return (char) (rand.nextInt(26) + 97);
 		}
-	}
+	}	*/
+	
 	
 	
 }

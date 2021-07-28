@@ -7,14 +7,13 @@ import br.com.wsb.DonJose.model.Produto;
 public class ProdutoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private long id;
+	private Integer id;
 	private String nome;
 	private String descricao;
 	private String img;
 	private double preco;
 	private long plu;
 	private int estoque;
-	private int qtdPedidoProduto;
 
 	public ProdutoDTO() {
 	}
@@ -28,14 +27,13 @@ public class ProdutoDTO implements Serializable {
 		preco = obj.getPreco();
 		plu = obj.getPlu();
 		estoque = obj.getEstoque();
-		qtdPedidoProduto = obj.getQtdPedidoProduto();
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -85,14 +83,6 @@ public class ProdutoDTO implements Serializable {
 
 	public void setEstoque(int estoque) {
 		this.estoque = estoque;
-	}
-
-	public int getQtdPedidoProduto() {
-		return qtdPedidoProduto;
-	}
-
-	public void setQtdPedidoProduto(int qtdPedidoProduto) {
-		this.qtdPedidoProduto = qtdPedidoProduto;
 	}
 
 	public void setPreco(double preco) {

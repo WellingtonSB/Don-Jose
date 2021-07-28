@@ -1,8 +1,11 @@
 package br.com.wsb.DonJose.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.Set;
+import java.util.Date;
 import java.util.HashSet;
 
 import javax.persistence.*;
@@ -17,15 +20,12 @@ public class Pedido implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
 	private Date instante;
 
 	private int numeroPedido;
-
-	//@Digits(integer = 5, fraction = 2)
-	private double frete = 10;
 
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
@@ -37,7 +37,28 @@ public class Pedido implements Serializable {
 	@OneToMany(mappedBy = "id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>();
 
-	public long getId() {
+	public Pedido() {
+	}
+	
+	public Pedido(Integer id, Date instante, int numeroPedido,
+			Cliente cliente, Pagamento pagamento) {
+		super();
+		this.id = id;
+		this.instante = instante;
+		this.numeroPedido = numeroPedido;
+		this.cliente = cliente;
+		this.pagamento = pagamento;
+	}
+	
+	public double getValorTotal() {
+		double soma = 0.0;
+		for (ItemPedido ip : itens) {
+			soma = soma + ip.getSubTotal();
+		}
+		return soma;
+	}
+	
+	public Integer getId() {
 		return id;
 	}
 
@@ -55,14 +76,6 @@ public class Pedido implements Serializable {
 
 	public void setNumeroPedido(int numeroPedido) {
 		this.numeroPedido = numeroPedido;
-	}
-
-	public double getFrete() {
-		return frete;
-	}
-
-	public void setFrete(double frete) {
-		this.frete = frete;
 	}
 
 	public Cliente getCliente() {
@@ -90,20 +103,10 @@ public class Pedido implements Serializable {
 		this.itens = itens;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public Pedido(long id, Date instante, int numeroPedido, double frete,
-			Cliente cliente, Pagamento pagamento) {
-		super();
-		this.id = id;
-		this.instante = instante;
-		this.numeroPedido = numeroPedido;
-		this.frete = frete;
-		this.cliente = cliente;
-		this.pagamento = pagamento;
-	}
 
 	@Override
 	public int hashCode() {
@@ -127,4 +130,26 @@ public class Pedido implements Serializable {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		StringBuilder builder = new StringBuilder();
+		builder.append("Pedido número: ");
+		builder.append(getId());
+		builder.append(", Instante: ");
+		builder.append(sdf.format(getInstante()));
+		builder.append(", Cliente: ");
+		builder.append(getCliente().getNome());
+		builder.append(", Situação do pagamento: ");
+		builder.append(getPagamento().getEstado().getDescricao());
+		builder.append("\nDetalhes:\n");
+		for (ItemPedido ip : getItens()) {
+			builder.append(ip.toString());
+		}
+		builder.append("Valor total: ");
+		builder.append(nf.format(getValorTotal()));
+		return builder.toString();
+	}
+	
 }

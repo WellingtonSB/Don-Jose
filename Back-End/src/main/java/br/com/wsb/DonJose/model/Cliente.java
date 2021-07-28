@@ -37,7 +37,7 @@ public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@ApiModelProperty(hidden = true)
-	private long id;
+	private Integer id;
 
 	private String nome;
 
@@ -47,6 +47,7 @@ public class Cliente implements Serializable {
 
 	private String cpfOuCnpj;
 
+	@JsonIgnore
 	private String senha;
 
 	private Integer tipo;
@@ -63,18 +64,32 @@ public class Cliente implements Serializable {
 	@JsonIgnoreProperties("cliente")
 	private ListaDeDesejos listaDeDesejos;
 
-	//@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-	//private List<Endereco> enderecos = new ArrayList<>();
-
 	@ElementCollection
 	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<>();
+	
+	public Cliente() {
+		super();
+	}
+	
+	public Cliente(Integer id, String nome, String usuario, String email, String cpfOuCnpj, String senha, TipoCliente tipo,
+			String dataNascimento) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.usuario = usuario;
+		this.email = email;
+		this.cpfOuCnpj = cpfOuCnpj;
+		this.senha = senha;
+		this.tipo = (tipo == null) ? null : tipo.getCod();
+		this.dataNascimento = dataNascimento;
+	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -159,24 +174,7 @@ public class Cliente implements Serializable {
 		this.telefones = telefones;
 	}
 
-	public Cliente() {
-		super();
-	}
-
 	
-	
-	public Cliente(long id, String nome, String usuario, String email, String cpfOuCnpj, String senha, TipoCliente tipo,
-			String dataNascimento) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.usuario = usuario;
-		this.email = email;
-		this.cpfOuCnpj = cpfOuCnpj;
-		this.senha = senha;
-		this.tipo = (tipo == null) ? null : tipo.getCod();
-		this.dataNascimento = dataNascimento;
-	}
 
 	@Override
 	public int hashCode() {

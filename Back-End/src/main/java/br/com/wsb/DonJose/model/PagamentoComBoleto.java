@@ -1,14 +1,16 @@
 package br.com.wsb.DonJose.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import br.com.wsb.DonJose.model.enums.EstadoPagamento;
 
 @Entity
+@JsonTypeName("pagamentoComBoleto")
 public class PagamentoComBoleto extends Pagamento {
 	private static final long serialVersionUID = 1L;
 

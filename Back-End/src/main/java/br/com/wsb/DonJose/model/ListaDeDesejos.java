@@ -14,7 +14,7 @@ public class ListaDeDesejos implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 	
 	@OneToOne
     @MapsId
@@ -23,14 +23,14 @@ public class ListaDeDesejos implements Serializable {
 	private Cliente cliente;
 	
 	@ManyToMany(mappedBy = "listaDesejos", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({"nome", "descricao", "img", "preco", "estoque", "categoria", "pedidos", "qtdPedidoProduto", "listaDesejos","plu","promocao"})
+	@JsonIgnoreProperties({"nome", "descricao", "img", "preco", "estoque", "categoria", "pedidos", "listaDesejos","plu","promocao"})
 	private List<Produto> produtos = new ArrayList<>();
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

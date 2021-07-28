@@ -41,7 +41,7 @@ public class ListaDeDesejosController {
 
 	@ApiOperation(value = "Procura por um  listas de desejo específico via ID ")
 	@GetMapping("/{id}")
-	public ResponseEntity<ListaDeDesejos> findByIdListaDeDesejos(@PathVariable long id) {
+	public ResponseEntity<ListaDeDesejos> findByIdListaDeDesejos(@PathVariable Integer id) {
 
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}

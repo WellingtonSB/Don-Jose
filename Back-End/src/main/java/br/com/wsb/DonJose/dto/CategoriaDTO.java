@@ -10,26 +10,26 @@ import br.com.wsb.DonJose.model.Categoria;
 
 public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	private long id;
-	
-	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=5, max=80, message="O tamanho deve ser entre 5 e 80 caracteres")
+
+	private Integer id;
+
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Length(min = 5, max = 80, message = "O tamanho deve ser entre 5 e 80 caracteres")
 	private String nome;
 
 	public CategoriaDTO() {
 	}
-	
+
 	public CategoriaDTO(Categoria obj) {
 		id = obj.getId();
 		nome = obj.getNome();
 	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -39,5 +39,5 @@ public class CategoriaDTO implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}	
+	}
 }

@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import br.com.wsb.DonJose.model.Categoria;
 
 @Repository
-public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
+public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
 	public List<Categoria> findAllByNomeContainingIgnoreCase(String nome);
 }

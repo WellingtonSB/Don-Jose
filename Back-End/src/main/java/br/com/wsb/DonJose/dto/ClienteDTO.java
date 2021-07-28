@@ -14,7 +14,7 @@ import br.com.wsb.DonJose.service.validation.ClienteUpdate;
 public class ClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private long id;
+	private Integer id;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length
@@ -34,11 +34,11 @@ public class ClienteDTO implements Serializable {
 		email = obj.getEmail();
 	}
 	
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
