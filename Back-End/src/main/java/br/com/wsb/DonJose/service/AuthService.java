@@ -8,37 +8,37 @@ import org.springframework.stereotype.Service;
 
 import br.com.wsb.DonJose.model.Cliente;
 import br.com.wsb.DonJose.repository.ClienteRepository;
-import javassist.tools.rmi.ObjectNotFoundException;
+import br.com.wsb.DonJose.service.exceptions.ObjectNotFoundException;
 
 @Service
 public class AuthService {
+
+	@Autowired
+	private ClienteRepository clienteRepository;
 	
 	@Autowired
-	private ClienteRepository usuarioRepository;
-	
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	private BCryptPasswordEncoder pe;
 	
 	@Autowired
 	private EmailService emailService;
 	
 	private Random rand = new Random();
 	
-	/*public void sendNewPassword(String email) throws ObjectNotFoundException {
+	public void sendNewPassword(String email)  {
 		
-		Cliente usuario = usuarioRepository.findByEmail(email);
-		if(usuario == null) {
+		Cliente cliente = clienteRepository.findByEmail(email);
+		if (cliente == null) {
 			throw new ObjectNotFoundException("Email não encontrado");
 		}
 		
-		String newPass = newPassowrd();
-		usuario.setSenha(bCryptPasswordEncoder.encode(newPass));
+		String newPass = newPassword();
+		cliente.setSenha(pe.encode(newPass));
 		
-		usuarioRepository.save(usuario);
-		emailService.sendResetHtmlEmail(usuario, newPass);
+		clienteRepository.save(cliente);
+		emailService.sendNewPasswordEmail(cliente, newPass);
 	}
 
-	private String newPassowrd() {
+	private String newPassword() {
 		char[] vet = new char[10];
 		for (int i=0; i<10; i++) {
 			vet[i] = randomChar();
@@ -48,17 +48,14 @@ public class AuthService {
 
 	private char randomChar() {
 		int opt = rand.nextInt(3);
-		if (opt == 0) {
+		if (opt == 0) { // gera um digito
 			return (char) (rand.nextInt(10) + 48);
 		}
-		else if (opt == 1) { 
+		else if (opt == 1) { // gera letra maiuscula
 			return (char) (rand.nextInt(26) + 65);
 		}
-		else { 
+		else { // gera letra minuscula
 			return (char) (rand.nextInt(26) + 97);
 		}
-	}*/	
-	
-	
-	
+	}
 }

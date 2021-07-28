@@ -1,26 +1,24 @@
 package br.com.wsb.DonJose.service;
 
-import java.nio.charset.Charset;
+import java.awt.image.BufferedImage;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import br.com.wsb.DonJose.model.ListaDeDesejos;
-import br.com.wsb.DonJose.model.Pedido;
 import br.com.wsb.DonJose.model.enums.Perfil;
 import br.com.wsb.DonJose.repository.ClienteRepository;
-import br.com.wsb.DonJose.repository.ListaDeDesejosRepository;
-import br.com.wsb.DonJose.repository.PedidoRepository;
 import br.com.wsb.DonJose.security.UserSS;
 import br.com.wsb.DonJose.service.exceptions.AuthorizationException;
 import br.com.wsb.DonJose.service.exceptions.DataIntegrityException;
@@ -31,36 +29,71 @@ import br.com.wsb.DonJose.model.Cliente;
 
 @Service
 public class ClienteService {
-
-	@Autowired
-	private ClienteRepository clienteRepository;
-
-	@Autowired
-	private ListaDeDesejosRepository listaDeDesejosRepository;
-
-	@Autowired
-	private CepService cepService;
 	
+	@Autowired
+	private ClienteRepository repository;
+
 	@Autowired
 	private BCryptPasswordEncoder pe;
+	
+	@Autowired
+	private S3Service s3Service;
+	
+	@Autowired
+	private ImageService imageService;
+		
+	@Value("${img.prefix.client.profile}")
+	private String prefix;
+	
+	@Value("${img.profile.size}")
+	private Integer size;
 
-	public List<Cliente> findAll() {
-		return clienteRepository.findAll();
-	}
 	
 	public Cliente find(Integer id) {
-		Optional<Cliente> obj = clienteRepository.findById(id);
+		UserSS user = UserService.authenticated();
+		if (user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		
+		Optional<Cliente> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
 	}
+	
+	@Transactional
+	public Cliente insert(Cliente obj) {
+		obj.setId(null);
+		obj = repository.save(obj);
+		return obj;
+	}
+	
+	public Cliente update(Cliente obj) {
+		Cliente newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repository.save(newObj);
+	}
 
+	public void delete(Integer id) {
+		find(id);
+		try {
+			repository.deleteById(id);
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não é possível excluir porque há pedidos relacionados");
+		}
+	}
+	
+	public List<Cliente> findAll() {
+		return repository.findAll();
+	}
+	
 	public Cliente findByEmail(String email) {
 		UserSS user = UserService.authenticated();
 		if (user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())) {
 			throw new AuthorizationException("Acesso negado");
 		}
 	
-		Cliente obj = clienteRepository.findByEmail(email);
+		Cliente obj = repository.findByEmail(email);
 		if (obj == null) {
 			throw new ObjectNotFoundException(
 					"Objeto não encontrado! Id: " + user.getId() + ", Tipo: " + Cliente.class.getName());
@@ -68,16 +101,13 @@ public class ClienteService {
 		return obj;
 	}
 	
-	@Transactional
-	public Cliente insert(Cliente obj) {
-		obj.setId(null);
-		obj = clienteRepository.save(obj);
-		return obj;
+	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		return repository.findAll(pageRequest);
 	}
 	
-	
 	public Cliente fromDTO(ClienteDTO objDto) {
-		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(),null, null, null, null, null);
+		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null, null, null, null);
 	}
 	
 	public Cliente fromDTO(ClienteNewDTO objDto) {
@@ -97,25 +127,18 @@ public class ClienteService {
 		newObj.setEmail(obj.getEmail());
 	}
 	
-	public Cliente update(Cliente obj) {
-		Cliente newObj = find(obj.getId());
-		updateData(newObj, obj);
-		return clienteRepository.save(newObj);
-	}
-	
-	public void delete(Integer id) {
-		find(id);
-		try {
-			clienteRepository.deleteById(id);
+	public URI uploadProfilePicture(MultipartFile multipartFile) {
+		UserSS user = UserService.authenticated();
+		if (user == null) {
+			throw new AuthorizationException("Acesso negado");
 		}
-		catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir porque há pedidos relacionados");
-		}
+		
+		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
+		jpgImage = imageService.cropSquare(jpgImage);
+		jpgImage = imageService.resize(jpgImage, size);
+		
+		String fileName = prefix + user.getId() + ".jpg";
+		
+		return s3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
 	}
-	
-	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
-		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		return clienteRepository.findAll(pageRequest);
-	}
-	
 }

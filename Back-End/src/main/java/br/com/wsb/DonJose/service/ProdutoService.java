@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.wsb.DonJose.repository.*;
 import br.com.wsb.DonJose.service.exceptions.DataIntegrityException;
-import br.com.wsb.DonJose.service.exceptions.FileNotFoundException;
+import br.com.wsb.DonJose.service.exceptions.FileException;
 import br.com.wsb.DonJose.service.exceptions.ObjectNotFoundException;
 
 @Service
@@ -60,7 +60,7 @@ public class ProdutoService {
 	public Produto stock(Integer idProduto) {
 		Optional<Produto>produtoExistente = produtoRepository.findById(idProduto);
 		if (produtoExistente.isPresent() && produtoExistente.get().getEstoque() == 0) {
-			throw new FileNotFoundException("Estoque vazio!");
+			throw new FileException("Estoque vazio!");
 		}
 		produtoExistente.get().setEstoque(produtoExistente.get().getEstoque()-produtoExistente.get().getQtdProd());
 		return produtoRepository.save(produtoExistente.get());
