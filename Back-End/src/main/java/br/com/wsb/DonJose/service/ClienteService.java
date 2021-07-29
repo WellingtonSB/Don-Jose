@@ -18,21 +18,28 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.wsb.DonJose.model.enums.Perfil;
+import br.com.wsb.DonJose.model.enums.TipoCliente;
 import br.com.wsb.DonJose.repository.ClienteRepository;
+import br.com.wsb.DonJose.repository.EnderecoRepository;
 import br.com.wsb.DonJose.security.UserSS;
 import br.com.wsb.DonJose.service.exceptions.AuthorizationException;
 import br.com.wsb.DonJose.service.exceptions.DataIntegrityException;
 import br.com.wsb.DonJose.service.exceptions.ObjectNotFoundException;
 import br.com.wsb.DonJose.dto.ClienteDTO;
 import br.com.wsb.DonJose.dto.ClienteNewDTO;
+import br.com.wsb.DonJose.model.Cidade;
 import br.com.wsb.DonJose.model.Cliente;
+import br.com.wsb.DonJose.model.Endereco;
 
 @Service
 public class ClienteService {
+
+	@Autowired
+	private ClienteRepository repo;
 	
 	@Autowired
-	private ClienteRepository repository;
-
+	private EnderecoRepository enderecoRepository;
+	
 	@Autowired
 	private BCryptPasswordEncoder pe;
 	
@@ -47,15 +54,15 @@ public class ClienteService {
 	
 	@Value("${img.profile.size}")
 	private Integer size;
-
 	
 	public Cliente find(Integer id) {
+		
 		UserSS user = UserService.authenticated();
 		if (user==null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
 			throw new AuthorizationException("Acesso negado");
 		}
 		
-		Optional<Cliente> obj = repository.findById(id);
+		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
 	}
@@ -63,20 +70,21 @@ public class ClienteService {
 	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
-		obj = repository.save(obj);
+		obj = repo.save(obj);
+		enderecoRepository.saveAll(obj.getEnderecos());
 		return obj;
 	}
 	
 	public Cliente update(Cliente obj) {
 		Cliente newObj = find(obj.getId());
 		updateData(newObj, obj);
-		return repository.save(newObj);
+		return repo.save(newObj);
 	}
 
 	public void delete(Integer id) {
 		find(id);
 		try {
-			repository.deleteById(id);
+			repo.deleteById(id);
 		}
 		catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir porque há pedidos relacionados");
@@ -84,7 +92,7 @@ public class ClienteService {
 	}
 	
 	public List<Cliente> findAll() {
-		return repository.findAll();
+		return repo.findAll();
 	}
 	
 	public Cliente findByEmail(String email) {
@@ -93,7 +101,7 @@ public class ClienteService {
 			throw new AuthorizationException("Acesso negado");
 		}
 	
-		Cliente obj = repository.findByEmail(email);
+		Cliente obj = repo.findByEmail(email);
 		if (obj == null) {
 			throw new ObjectNotFoundException(
 					"Objeto não encontrado! Id: " + user.getId() + ", Tipo: " + Cliente.class.getName());
@@ -103,15 +111,18 @@ public class ClienteService {
 	
 	public Page<Cliente> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		return repository.findAll(pageRequest);
+		return repo.findAll(pageRequest);
 	}
 	
 	public Cliente fromDTO(ClienteDTO objDto) {
-		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null, null, null, null);
+		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null, null);
 	}
 	
 	public Cliente fromDTO(ClienteNewDTO objDto) {
-		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), pe.encode(objDto.getSenha()), null, null, null);
+		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoCliente.toEnum(objDto.getTipo()), pe.encode(objDto.getSenha()));
+		Cidade cid = new Cidade(objDto.getCidadeId(), null, null);
+		Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), cli, cid);
+		cli.getEnderecos().add(end);
 		cli.getTelefones().add(objDto.getTelefone1());
 		if (objDto.getTelefone2()!=null) {
 			cli.getTelefones().add(objDto.getTelefone2());
@@ -142,3 +153,4 @@ public class ClienteService {
 		return s3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
 	}
 }
+

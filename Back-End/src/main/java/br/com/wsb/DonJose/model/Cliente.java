@@ -38,59 +38,46 @@ public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@ApiModelProperty(hidden = true)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-
 	private String nome;
-
-	private String usuario;
-
+	
+	@Column(unique=true)
 	private String email;
-
 	private String cpfOuCnpj;
-
+	private Integer tipo;
+	
 	@JsonIgnore
 	private String senha;
-
-	private Integer tipo;
-
-	private String dataNascimento;
-
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "cliente")
-	private List<Pedido> pedidos = new ArrayList<>();
-
-	@OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
-	@PrimaryKeyJoinColumn
-	@JsonIgnoreProperties("cliente")
-	private ListaDeDesejos listaDeDesejos;
-
+	
+	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
+	private List<Endereco> enderecos = new ArrayList<>();
+	
+	@ElementCollection
+	@CollectionTable(name="TELEFONE")
+	private Set<String> telefones = new HashSet<>();
+	
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name="PERFIS")
 	private Set<Integer> perfis = new HashSet<>();
 	
-	@ElementCollection
-	@CollectionTable(name = "TELEFONE")
-	private Set<String> telefones = new HashSet<>();
+	@JsonIgnore
+	@OneToMany(mappedBy="cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
 	
 	public Cliente() {
-		addPerfil(Perfil.CLIENTE);
+		addPerfil(Perfil.ADMIN);
 	}
-	
-	public Cliente(Integer id, String nome, String usuario, String email, String cpfOuCnpj, String senha, TipoCliente tipo,
-			String dataNascimento) {
+
+	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo, String senha) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.usuario = usuario;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
+		this.tipo = (tipo==null) ? null : tipo.getCod();
 		this.senha = senha;
-		this.tipo = (tipo == null) ? null : tipo.getCod();
-		this.dataNascimento = dataNascimento;
-		addPerfil(Perfil.CLIENTE);
+		addPerfil(Perfil.ADMIN);
 	}
 
 	public Integer getId() {
@@ -109,14 +96,6 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -124,21 +103,13 @@ public class Cliente implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public String getCpfOuCnpj() {
 		return cpfOuCnpj;
 	}
 
 	public void setCpfOuCnpj(String cpfOuCnpj) {
 		this.cpfOuCnpj = cpfOuCnpj;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
 	}
 
 	public TipoCliente getTipo() {
@@ -149,20 +120,15 @@ public class Cliente implements Serializable {
 		this.tipo = tipo.getCod();
 	}
 
-	public String getDataNascimento() {
-		return dataNascimento;
+	public String getSenha() {
+		return senha;
 	}
-
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
-
-	public List<Pedido> getPedidos() {
-		return pedidos;
-	}
-
+	
 	public Set<Perfil> getPerfis() {
-		//para cada elemento  x converter em enums
 		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
 	}
 	
@@ -170,19 +136,13 @@ public class Cliente implements Serializable {
 		perfis.add(perfil.getCod());
 	}
 	
-	
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
+	public List<Endereco> getEnderecos() {
+		return enderecos;
 	}
 
-	public ListaDeDesejos getListaDeDesejos() {
-		return listaDeDesejos;
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
-
-	public void setListaDeDesejos(ListaDeDesejos listaDeDesejos) {
-		this.listaDeDesejos = listaDeDesejos;
-	}
-
 
 	public Set<String> getTelefones() {
 		return telefones;
@@ -192,13 +152,19 @@ public class Cliente implements Serializable {
 		this.telefones = telefones;
 	}
 
-	
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
 
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -211,8 +177,11 @@ public class Cliente implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Cliente other = (Cliente) obj;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
+	}	
 }

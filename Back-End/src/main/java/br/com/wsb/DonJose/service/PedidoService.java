@@ -72,7 +72,6 @@ public class PedidoService {
 			ip.setProduto(produtoService.find(ip.getProduto().getId()));
 			ip.setPreco(ip.getProduto().getPreco());
 			ip.setPedido(obj);
-			produtoService.stock(ip.getProduto().getId());
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
 		emailService.sendOrderConfirmationHtmlEmail(obj);

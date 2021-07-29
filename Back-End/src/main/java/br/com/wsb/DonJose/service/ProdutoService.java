@@ -57,13 +57,5 @@ public class ProdutoService {
 		return produtoRepository.findDistinctByNomeContainingAndCategoriasIn(nome, categorias, pageRequest);	
 	}
 	
-	public Produto stock(Integer idProduto) {
-		Optional<Produto>produtoExistente = produtoRepository.findById(idProduto);
-		if (produtoExistente.isPresent() && produtoExistente.get().getEstoque() == 0) {
-			throw new FileException("Estoque vazio!");
-		}
-		produtoExistente.get().setEstoque(produtoExistente.get().getEstoque()-produtoExistente.get().getQtdProd());
-		return produtoRepository.save(produtoExistente.get());
-	}
 	
 }

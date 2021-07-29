@@ -24,7 +24,6 @@ public class Produto implements Serializable {
 	private double preco;
 	private long plu;
 	private int estoque;
-	private int qtdProd;
 
 	@JsonIgnore
 	@ManyToMany
@@ -114,14 +113,6 @@ public class Produto implements Serializable {
 		this.estoque = estoque;
 	}
 
-	
-	public int getQtdProd() {
-		return qtdProd;
-	}
-
-	public void setQtdProd(int qtdProd) {
-		this.qtdProd = qtdProd;
-	}
 
 	public List<Categoria> getCategorias() {
 		return categorias;

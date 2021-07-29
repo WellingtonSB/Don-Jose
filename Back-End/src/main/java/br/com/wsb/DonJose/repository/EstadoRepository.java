@@ -1,18 +1,16 @@
 package br.com.wsb.DonJose.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.wsb.DonJose.model.Cliente;
+import br.com.wsb.DonJose.model.Estado;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
-	public List<Cliente> findAllByNomeContainingIgnoreCase(String nome);
+public interface EstadoRepository extends JpaRepository<Estado, Integer> {
 
 	@Transactional(readOnly=true)
-	Cliente findByEmail(String email);
+	public List<Estado> findAllByOrderByNome();
 }

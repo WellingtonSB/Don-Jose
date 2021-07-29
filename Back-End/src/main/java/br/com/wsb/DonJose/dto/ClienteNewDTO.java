@@ -11,7 +11,7 @@ import br.com.wsb.DonJose.service.validation.ClienteInsert;
 
 @ClienteInsert
 public class ClienteNewDTO implements Serializable {
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Length(min=5, max=120, message="O tamanho deve ser entre 5 e 120 caracteres")
@@ -29,26 +29,27 @@ public class ClienteNewDTO implements Serializable {
 	@NotEmpty(message="Preenchimento obrigatório")
 	private String senha;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
+	//@NotEmpty(message="Preenchimento obrigatório")
 	private String logradouro;
 
-	@NotEmpty(message="Preenchimento obrigatório")
+	//@NotEmpty(message="Preenchimento obrigatório")
 	private String numero;
 
 	private String complemento;
 
 	private String bairro;
 
-	@NotEmpty(message="Preenchimento obrigatório")
+	//@NotEmpty(message="Preenchimento obrigatório")
 	private String cep;
 	
-	@NotEmpty(message="Preenchimento obrigatório")
+	//@NotEmpty(message="Preenchimento obrigatório")
 	private String telefone1;
 
 	private String telefone2;
 	
 	private String telefone3;
 
+	private Integer cidadeId;
 	
 	public ClienteNewDTO() {
 	}
@@ -148,13 +149,20 @@ public class ClienteNewDTO implements Serializable {
 	public void setTelefone3(String telefone3) {
 		this.telefone3 = telefone3;
 	}
+
+	public Integer getCidadeId() {
+		return cidadeId;
+	}
+
+	public void setCidadeId(Integer cidadeId) {
+		this.cidadeId = cidadeId;
+	}
+	
 	public String getSenha() {
 		return senha;
 	}
-
+	
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
-	
 }
