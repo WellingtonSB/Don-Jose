@@ -39,7 +39,7 @@ public class SmtpEmailService extends AbstractEmailService {
 
 	@Override
 	public void sendNewPasswordEmail(Cliente usuario, String newPass) {
-		// TODO Auto-generated method stub
+
 		
 	}
 

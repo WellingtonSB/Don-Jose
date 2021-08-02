@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary" class="backbtn" routerLink="/home" routerDirection="back">
+        <img src='../../assets/back-dark.svg' />
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1 class="title">Meus pedidos</h1>
+
+  <div class="order-items">
+    <ion-card mode="ios">
+      <ion-card-content>
+        <div class="item-img">
+          <img src='https://i.imgur.com/uMk7K3n.png' />
+        </div>
+
+        <div class="item-info">
+          <p>Bolos</p>
+          <p>Bolo de brigadeiro</p>
+          <p>R$34.00</p>
+
+          <ion-button expand="block" class="main-button">Pedir novamente</ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  
+  </div>
+</ion-content>

@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="primary" class="backbtn" routerLink="/home" routerDirection="back">
+        <img src="../../assets/back-dark.svg" />
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="search-outline" color="dark"></ion-icon>
+      </ion-button>
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+        <span>&nbsp;</span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides pager="true" class="product-slider">
+    <ion-slide>
+      <img src="https://i.imgur.com/wMlnDzC.png" />
+    </ion-slide>
+    <ion-slide>
+      <img src="https://i.imgur.com/wMlnDzC.png" />
+    </ion-slide>
+    <ion-slide>
+      <img src="https://i.imgur.com/wMlnDzC.png" />
+    </ion-slide>
+  </ion-slides>
+
+  <div class="ion-padding-vertical">
+    <h1 class="item-name">Torta Ferreiro</h1>
+
+    <h4 class="price">
+      R$29.99
+      <span class="real-price">R$49.99</span>
+    </h4>
+  </div>
+
+  <div class="seperator">
+    <hr>
+  </div>
+
+  <div class="review">
+    <ion-row>
+      <ion-col size="6">
+        <div class="rating">
+          4.5
+        </div>
+
+        Muito bom!
+      </ion-col>
+      <ion-col size="6">
+        <div class="count">49 Reviews</div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="seperator">
+    <hr>
+  </div>
+
+  <div class="description">
+    <h5>Descrição</h5>
+
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore facere assumenda placeat explicabo vitae nesciunt ut itaque labore nostrum officiis quisquam rerum cumque, incidunt a? Eveniet nesciunt officiis veritatis eos!
+    </p>
+
+  </div>
+
+  <div class="seperator">
+    <hr>
+  </div>
+
+  <div class="variation">
+    <ion-segment (ionChange)="segmentChanged($event)" value="size">
+      <ion-segment-button value="size">
+        <ion-label>Selecionar Tamanho</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="color">
+        <ion-label>Selecionar Quantidade</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div class="seperator">
+    <hr>
+  </div>
+
+  <div class="variation-selector">
+    <div class="sizes" [class.active-variation]="activeVariation == 'size'">
+      <div [class.active]="selectedSize == 1" (click)="changeSize(1)">
+        10kg
+      </div>
+      <div [class.active]="selectedSize == 2" (click)="changeSize(2)">
+        20kg
+      </div>
+      <div [class.active]="selectedSize == 3" (click)="changeSize(3)">
+        30kg
+      </div>
+      <div [class.active]="selectedSize == 4" (click)="changeSize(4)">
+        40kg
+      </div>
+    </div>
+
+    <div class="colors" [class.active-variation]="activeVariation == 'color'">
+      <div [class.active]="selectedColor == 1" (click)="changeColor(1)">
+        1 unid
+      </div>
+      <div [class.active]="selectedColor == 2" (click)="changeColor(2)">
+        2 unid
+      </div>
+      <div [class.active]="selectedColor == 3" (click)="changeColor(3)">
+        3 ou mais
+      </div>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-col size="6">
+      <ion-button expand="full" color="light">Add carrinho</ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button expand="full">Comprar agora</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>
