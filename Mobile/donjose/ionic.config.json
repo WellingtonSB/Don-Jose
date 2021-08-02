@@ -1,7 +1,7 @@
 {
-  "name": "donjose",
+  "name": "ecomm-app",
   "integrations": {
-    "capacitor": {}
+    "cordova": {}
   },
   "type": "angular"
 }

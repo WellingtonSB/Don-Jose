@@ -1,33 +1,33 @@
-<ion-card>
-  <ion-card-header>
-    <ion-card-subtitle>Produts</ion-card-subtitle>
-    <img src="https://i.imgur.com/SRVJppe.jpg" alt="">
-    <ion-card-title>Card Title</ion-card-title>
-  </ion-card-header>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <img src="../../assets/menu_bar.svg" />
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button class="notification">
+        <ion-icon name="notifications-outline" color="dark"></ion-icon>
+        <span>&nbsp;</span>
+      </ion-button>
+      <ion-button class="filter">
+        <ion-icon name="funnel-outline" color="dark"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon name="search-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-card-content>
-    Keep close to Nature's heart... and break clear away, once in awhile,
-    and climb a mountain or spend a week in the woods. Wash your spirit clean.
-  </ion-card-content>
-</ion-card>
+<h1 class="title">Todos os produtos</h1>
 
-<ion-card>
-  <ion-item>
-    <ion-icon name="pin" slot="start"></ion-icon>
-    <ion-label>ion-item in a card, icon left, button right</ion-label>
-    <ion-button fill="outline" slot="end">View</ion-button>
-  </ion-item>
-
-  <ion-card-content>
-    This is content, without any paragraph or header tags,
-    within an ion-card-content element.
-  </ion-card-content>
-</ion-card>
-
-<ion-card>
-  <ion-item href="#" class="ion-activated">
-    <ion-icon name="wifi" slot="start"></ion-icon>
-    <ion-label>Card Link Item 1 activated</ion-label>
-  </ion-item>
-
-</ion-card>
+<ion-content >
+    <ion-row class="favorite-items">
+    <ion-col size="6" class="ion-text-left padding-left0" *ngFor="let product of allProducts">
+      <img src="{{ product.image }}" />
+      <p>R${{ product.price }}</p>
+      <h6>{{ product.name }}</h6>
+    </ion-col>
+  </ion-row>
+</ion-content>

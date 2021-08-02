@@ -1,16 +1,63 @@
-.container {
-    height: 100%;
-    display: grid;
-    justify-content: center;
-    align-items: center;
+
+ion-content{
+    --ion-background-color:#fff;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.page-header h1 {
-    margin-top: 0;
+.background-container{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  background: url('https://i.imgur.com/8DuVyRB.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+  flex-direction: column;
+  justify-content: center;
+
 }
 
-.button-container {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+ion-card{
+ text-align: center;
+ background: transparent;
+ box-shadow: none;
+
+ img{
+     margin-top: 75px;
+     height: 7rem;
+     width: 7.2rem;
+ }
+ ion-card-title{
+     font-size: 20px;
+     color: #D2EDDD;
+     font-weight: 500;
+
+ }
+
+
+ ion-card-content{
+  margin-top: 10px;
+
+  ion-button{
+      width: 180px;
+      height: 60px;
+      --border-radius: 40px;
+      --background: #c59d5f;
+      color:#fff;
+      font-weight: 400;
+      text-transform: none;
+      font-size: 20px;
+  }
+ }
+}
+
+@media screen and (min-width:500px){
+    .background-filter{
+        height: 100%;
+        width: 100%;
+        background: #c59d5f;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 }
