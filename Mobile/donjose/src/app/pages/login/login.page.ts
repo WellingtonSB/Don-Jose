@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { UtilService } from '../util.service';
+import { UtilService } from '../../util.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,6 @@ export class LoginPage implements OnInit {
   }
 
   login() {
-    // Enabling Side Menu
     this.util.setMenuState(true);
     this.navCtrl.navigateRoot('/home', { animationDirection: 'forward' });
   }

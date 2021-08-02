@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-products',
@@ -9,9 +9,6 @@ import { DataService } from '../data.service';
 export class ProductsPage implements OnInit {
 
   public allProducts = [];
-
-
-
   constructor(
     private data: DataService,
   ) { }
