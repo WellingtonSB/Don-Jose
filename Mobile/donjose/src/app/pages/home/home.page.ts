@@ -18,11 +18,11 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-     console.log(this.categoriaService.findAllCategorias().subscribe(resp=>{
+   /*   console.log(this.categoriaService.findAllCategorias().subscribe(resp=>{
       console.log(resp);
     }),error =>{
       console.log(error);
-    }); 
+    }); */ 
     this.categories = this.data.getCategories();
     this.featuredProducts = this.data.getFeaturedProducts();
     this.bestSellProducts = this.data.getBestSellProducts();

@@ -11,9 +11,12 @@ import { CategoriaDTO } from "src/app/model/categoriaDTO";
 
 export class CategoriaService {
 
-    constructor(public http: HttpClient){}
+    /* constructor(public http: HttpClient){}
     
     findAllCategorias():Observable<CategoriaDTO[]>{
         return this.http.get<CategoriaDTO[]>(`${environment.baseUrl}/categorias`);
-    }
+    } */
+
+
+
 }

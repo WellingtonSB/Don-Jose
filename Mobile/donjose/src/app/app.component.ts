@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private util: UtilService,
-    private router: Router,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -49,4 +49,7 @@ export class AppComponent implements OnInit {
   close() {
     menuController.toggle();
   }
+
 }
+
+

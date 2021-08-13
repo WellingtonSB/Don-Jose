@@ -1,10 +1,9 @@
-<ion-app>
+<ion-app >
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay" [disabled]="!isMenuEnabled">
       <ion-content>
         <div class="main-list">
           <ion-list id="inbox-list">
-
             <ion-menu-toggle auto-hide="false">
               <ion-item lines="none" (click)="navigate('/home', 1)" detail="false" class="ion-text-center"
                 [class.selected]="selectedIndex == 1">
